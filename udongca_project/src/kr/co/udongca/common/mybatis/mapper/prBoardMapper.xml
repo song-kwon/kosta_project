@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="prBoardMapper">
+	<!--
+		검색 리스트에서 홍보글들을 간략하게 보여 줄 때 쓰는 SELECT SQL 문
+		이름, 이미지를 표시하고, No는 Page 처리 및 상세 페이지 링크에 사용
+	-->
+	<sql id="select-basic-PRBoard">
+		SELECT
+			cafeNo cafeNo,
+			cafeName cafeName,
+			cafeFakeImage cafeFakeImage
+		FROM (
+			SELECT
+				CEIL(rownum/#{itemsPerPage}) page,
+				cafeNo,
+				cafeName,
+				cafeFeature,
+				cafeAddress,
+				cafeFakeImage
+			FROM (
+				SELECT
+					cafeNo,
+					cafeName,
+					cafeFeature,
+					cafeAddress,
+					cafeFakeImage
+				FROM PRboard
+				ORDER BY cafeNo DESC
+				)
+			)
+		WHERE page = #{page} 
+	</sql>
+	<!-- 홍보글 상세 내용(사업자 등록 번호 제외)을 보여주는 SELECT SQL 문 -->
+	<sql id="select-full-PRBoard">
+		SELECT
+			cafeNo cafeNo,
+			cafeName cafeName,
+			cafeIntro cafeIntro,
+			cafeTel cafeTel,
+			cafeFeature cafeFeature,
+			cafeAddress cafeAddress,
+			operationHour operationHour,
+			managerName managerName,
+			managerTel managerTel,
+			cafeRealImage cafeRealImage,
+			cafeFakeImage cafeFakeImage,
+			cafeRating cafeRating,
+			cafeReviewCount cafeReviewCount,
+			RegistrationDate RegistrationDate,
+			memberId memberId
+		FROM PRboard
+	</sql>
+	
+	<sql id="prboard-column">
+			cafeNo cafeNo,
+			cafeName cafeName,
+			cafeIntro cafeIntro,
+			cafeTel cafeTel,
+			cafeFeature cafeFeature,
+			cafeAddress cafeAddress,
+			operationHour operationHour,
+			managerName managerName,
+			managerTel managerTel,
+			cafeRealImage cafeRealImage,
+			cafeFakeImage cafeFakeImage,
+			cafeRating cafeRating,
+			cafeReviewCount cafeReviewCount,
+			RegistrationDate RegistrationDate,
+			memberId memberId
+	</sql>
+	<!-- 홍보글 추가 -->
+	<insert id="insertPRBoard" parameterType="PRBoard">
+		INSERT INTO PRboard (
+			cafeNo,
+			cafeName,
+			cafeIntro,
+			cafeTel,
+			cafeFeature,
+			cafeAddress,
+			coporateNumber,
+			operationHour,
+			managerName,
+			managerTel,
+			cafeRealImage,
+			cafeFakeImage,
+			RegistrationDate,
+			memberId
+		)
+		VALUES (
+			#{cafeNo},
+			#{cafeName},
+			#{cafeIntro},
+			#{cafeTel},
+			#{cafeFeature},
+			#{cafeAddress},
+			#{coporateNumber},
+			#{operationHour},
+			#{managerName},
+			#{managerTel},
+			#{cafeRealImage},
+			#{cafeFakeImage},
+			sysdate,
+			#{memberId}
+		)
+	</insert>
+	<!-- 홍보글 수정 -->
+	<update id="updatePRBoard" parameterType="PRBoard">
+		UPDATE PRboard
+		SET cafeName = #{cafeName},
+			cafeIntro = #{cafeIntro},
+			cafeTel = #{cafeTel},
+			cafeFeature = #{cafeFeature},
+			cafeAddress = #{cafeAddress},
+			operationHour = #{operationHour},
+			managerName = #{managerName},
+			managerTel = #{managerTel},
+			cafeRealImage = #{cafeRealImage},
+			cafeFakeImage = #{cafeFakeImage}
+		WHERE cafeNo = #{cafeNo}
+	</update>
+	<!-- 홍보글 삭제 -->
+	<delete id="deletePRBoard" parameterType="_int">
+		DELETE FROM PRBoard
+		WHERE cafeNo = #{cafeNo}
+	</delete>
+	<!-- 지역으로 홍보글 검색 -->
+	<select id="selectPRBoardListByAddress" parameterType="Map" resultType="PRBoard">
+		SELECT
+			cafeNo cafeNo,
+			cafeName cafeName,
+			cafeFakeImage cafeFakeImage
+		FROM (
+			SELECT
+				CEIL(rownum/#{itemsPerPage}) page,
+				cafeNo,
+				cafeName,
+				cafeFeature,
+				cafeAddress,
+				cafeFakeImage
+			FROM (
+				SELECT
+					cafeNo,
+					cafeName,
+					cafeFeature,
+					cafeAddress,
+					cafeFakeImage
+				FROM PRboard
+				where cafeAddress LIKE '%${cafeAddress}%'
+				ORDER BY cafeNo DESC
+				)
+			)
+		WHERE page = #{page} 
+	</select>
+	<!-- 테마로 홍보글 검색 -->
+	<select id="selectPRBoardListByFeature" parameterType="Map" resultType="PRBoard">
+		SELECT
+			cafeNo cafeNo,
+			cafeName cafeName,
+			cafeFakeImage cafeFakeImage
+		FROM (
+			SELECT
+				CEIL(rownum/#{itemsPerPage}) page,
+				cafeNo,
+				cafeName,
+				cafeFeature,
+				cafeAddress,
+				cafeFakeImage
+			FROM (
+				SELECT
+					cafeNo,
+					cafeName,
+					cafeFeature,
+					cafeAddress,
+					cafeFakeImage
+				FROM PRboard
+				where cafeFeature LIKE '%${cafeFeature}%'
+				ORDER BY cafeNo DESC
+				)
+			)
+		WHERE page = #{page} 
+	</select>
+	<!-- 홍보글 전체 정보 검색 -->
+	<select id="selectPRBoardByNo" parameterType="_int" resultType="PRBoard">
+		<include refid="select-full-PRBoard"/>
+		WHERE cafeNo = #{cafeNo}
+	</select>
+	<!-- 사업자 등록 번호 중복 확인 -->
+	<select id="selectPRBoardByCoporateNumber" parameterType="String" resultType="PRBoard">
+		<include refid="select-full-PRBoard"/>
+		WHERE coporateNumber = #{coporateNumber}
+	</select>
+	<!-- 홍보글 번호 Sequence -->
+	<select id="selectNextPRBoardSequence" resultType="_int">
+		SELECT PRboard_cafeNo_seq.nextval FROM dual
+	</select>
+	
+	<select id="countThemeCafe" parameterType="string" resultType="int">
+		select count(cafeNo) from prboard where cafeFeature like '%${value}%'
+	</select>
+	
+	<select id="countCafeAddress" parameterType="string" resultType="int">
+		select count(cafeNo) from prboard where cafeAddress like '%${value}%'
+	</select>
+	
+	<select id="selectMainPRBoardByAddress" parameterType="string" resultType="PRBoard">
+		SELECT
+				cafeNo cafeNo,
+				cafeName cafeName,
+				cafeFakeImage cafeFakeImage,
+				cafeAddress cafeAddress
+		FROM PRboard
+		where cafeAddress LIKE '%${value}%' and ceil(rownum) <![CDATA[ < ]]> 4
+		ORDER BY cafeNo DESC
+	</select>
+	
+	<select id="selectMainPRBoardByRating" resultType="prboard">
+		SELECT
+				cafeNo cafeNo,
+				cafeName cafeName,
+				cafeFakeImage cafeFakeImage,
+				cafeAddress cafeAddress
+		FROM PRboard
+		where ceil(rownum) <![CDATA[ < ]]> 10
+		ORDER BY cafeRating DESC
+	</select>
+	
+	<select id="selectMainPRBoardByRegistrationDate" resultType="prboard">
+		SELECT
+				cafeNo cafeNo,
+				cafeName cafeName,
+				cafeFakeImage cafeFakeImage,
+				cafeAddress cafeAddress
+		FROM PRboard
+		where ceil(rownum) <![CDATA[ < ]]> 10
+		ORDER BY RegistrationDate DESC
+	</select>
+	
+	<select id="selectCafeReviewCountInPRBoard" parameterType="int" resultType="int">
+		SELECT cafeReviewCount FROM PRBoard WHERE cafeNo = #{cafeNo}
+	</select>
+	
+	<update id="updateCafeReviewCountInPRBoard" parameterType="map">
+		UPDATE PRBoard SET cafeReviewCount = #{cafeReviewCount} WHERE cafeNo = #{cafeNo}
+	</update>
+	
+	<select id="selectCafeRatingInPRBoard" parameterType="int" resultType="int">
+		SELECT cafeRating FROM PRBoard WHERE cafeNo = #{cafeNo}
+	</select>
+	
+	<update id="updateCafeRatingInPRBoard" parameterType="map">
+		UPDATE PRBoard SET cafeRating = #{cafeRating} WHERE cafeNo = #{cafeNo}
+	</update>
+	
+	<select id="countOtherFeature" resultType="int">
+		select count(cafeNo) from prBoard
+		where cafeFeature like '%wifi%' or cafeFeature like '%socket%' or cafeFeature like '%smoking%' or cafeFeature like '%park%'
+	</select>
+	
+	<select id="selectPRBoardListByFeatureOther" parameterType="map" resultType="PRBoard">
+		SELECT
+			cafeNo cafeNo,
+			cafeName cafeName,
+			cafeFakeImage cafeFakeImage
+		FROM (
+			SELECT
+				CEIL(rownum/#{itemsPerPage}) page,
+				cafeNo,
+				cafeName,
+				cafeFeature,
+				cafeAddress,
+				cafeFakeImage
+			FROM (
+				SELECT
+					cafeNo,
+					cafeName,
+					cafeFeature,
+					cafeAddress,
+					cafeFakeImage
+				FROM PRboard
+				where cafeFeature like '%wifi%' or cafeFeature like '%socket%' or cafeFeature like '%smoking%' or cafeFeature like '%park%'
+				ORDER BY cafeNo DESC
+				)
+			)
+		WHERE page = #{page} 
+	</select>
+</mapper>

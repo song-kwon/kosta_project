@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter" c:defaultCharset="UTF-8"/>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	
+	
+	<context:component-scan base-package="kr.co.udongca.controller,kr.co.udongca.service.impl,kr.co.udongca.dao.impl"/>
+	  
+	<!-- 단순 링크 --> 
+	<mvc:view-controller path="/loginPage.udc" view-name="etc/login.tiles" />
+	<mvc:view-controller path="/generalMemberJoinform.udc" view-name="etc/generalMemberJoinform.tiles"/>
+	<mvc:view-controller path="/licenseeMemberJoinform.udc" view-name="etc/licenseeMemberJoinform.tiles"/>
+	<mvc:view-controller path="/joinSelect.udc" view-name="etc/joinSelect.tiles"/>
+	<mvc:view-controller path="/member/member_list.udc" view-name="member/memberList.tiles"/> 
+	 <mvc:view-controller path="/noticeBoard/noticeBoardRegisterSuccess.udc" view-name="noticeBoard/noticeBoardRegisterSuccess.tiles"/>
+	<mvc:view-controller path="/noticeBoard/noticeBoardModifySuccess.udc" view-name="noticeBoard/noticeBoardModifySuccess.tiles"/>
+	<mvc:view-controller path="/oneToOneInquiry/oneToOneInquiryRegisterSuccess.udc" view-name="oneToOneInquiry/oneToOneInquiryRegisterSuccess.tiles"/>
+	<mvc:view-controller path="/oneToOneInquiry/oneToOneInquiryModifySuccess.udc" view-name="oneToOneInquiry/oneToOneInquiryModifySuccess.tiles"/>
+	<mvc:view-controller path="/member/customerCenter.udc" view-name="/WEB-INF/view/udongca-tiles/etc/customerCenter_header_menu.jsp"/>
+	<mvc:view-controller path="/member/memberListPaging.udc" view-name="master/master_memberList.tiles"/>
+	<mvc:view-controller path="/master/reportBoard.udc" view-name="master/master_reportList.tiles"/>
+	<mvc:view-controller path="/oneToOneInquiry/master/oneToOneList.udc" view-name="master/master_oneToOneList.tiles"/>
+	<mvc:view-controller path="/prBoard_write_form.udc" view-name="prBoard/prBoard_write_form.tiles"/>
+	<mvc:view-controller path="/prBoard/prBoard_write_form2.udc" view-name="prBoard/prBoard_write_form2.tiles"/>
+	<mvc:view-controller path="/prBoard_modifyForm.udc" view-name="prBoard/prBoard_modifyForm.tiles"/>
+	<mvc:view-controller path="/prBoard/prBoard_modifyForm2.udc" view-name="prBoard/prBoard_modifyForm2.tiles"/>
+	<mvc:view-controller path="/member/member_bookmark.udc" view-name="member/member_bookmark.tiles"/>
+		<!-- JDBC 설정 -->
+ 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver" 
+		p:url="jdbc:oracle:thin:@localhost:1521:XE"
+		p:username="udongca" 
+		p:password="master" 
+		p:maxTotal="100" />
+
+	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource" 
+		p:mapperLocations="classpath:kr/co/udongca/common/mybatis/mapper/*Mapper.xml"
+		p:configLocation="classpath:kr/co/udongca/common/mybatis/config/mybatis-config.xml" />
+
+	
+	<bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
+		c:sqlSessionFactory-ref="sqlSessionFactory"/> 
+		
+	<!--  transaction bean 등록 -->
+	
+	<bean name="txmanager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+	 	p:dataSource-ref="dataSource"/>
+	 <tx:annotation-driven transaction-manager="txmanager"/>
+	
+	<!-- Tiles 설정 -->
+	<bean name="tilesConfig"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/config/udongca-tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- MultipartResolver 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+
+	<!-- ViewResolver 설정 -->
+	<bean name="vr1"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver"
+		p:order="1" />
+
+	<bean name="vr2"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
+		p:order="2" />
+
+	<bean name="vr3"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="3" />
+
+
+</beans>

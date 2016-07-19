@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bookmarkMapper">
+	<sql id="bookmark_column">
+		ceil(rownum) no,memberId,cafeNo
+	</sql>
+	
+	<resultMap type="PRBoard" id="prBoard-fakeImage">
+		<result column="cafeName" property="cafeName"/>
+		<result column="cafeFakeImage" property="cafeFakeImage"/>
+	</resultMap>
+	
+	<resultMap type="bookmark" id="bookmark-member-main">
+		<result column="cafeNo" property="cafeNo"/>
+		<association property="prBoard" javaType="PRBoard" resultMap="prBoard-fakeImage" />
+	</resultMap>
+	
+	<resultMap type="PRBoard" id="prboard-bookmark">
+		<result column="cafeAddress" property="cafeAddress"/>
+	</resultMap>
+	
+	<resultMap type="bookmark" id="bookmark-member-list">
+		<result column="no" property="no"/>
+		<result column="cafeNo" property="cafeNo"/>
+		<result column="memberId" property="memberId"/>
+		<result column="cafeName" property="cafeName"/>
+		<association property="prBoard" javaType="PRBoard" resultMap="prboard-bookmark"/>
+	</resultMap>
+	
+	<insert id="insertBookmark" parameterType="bookmark">
+		INSERT INTO bookmark (memberId, cafeNo) VALUES (#{memberId}, #{cafeNo})
+	</insert>
+	
+	<delete id="deleteBookmark" parameterType="bookmark">
+		DELETE FROM bookmark WHERE memberId = #{memberId} AND cafeNo = #{cafeNo}
+	</delete>
+	
+	<select id="selectBookmarkByMemberId" parameterType="string" resultType="bookmark">
+		SELECT cafeNo FROM bookmark WHERE memberId = #{memberId}
+	</select>
+	
+	<select id="countMemberBookmark" parameterType="string" resultType="int">
+		select count(memberId)
+		from bookmark
+		where memberId=#{memberId}
+	</select>
+	
+	<select id="memberBookmarkListPaging" parameterType="map" resultMap="bookmark-member-list">
+		SELECT ceil(rownum) no, memberId, cafeNo , cafeName, cafeAddress
+		FROM (SELECT CEIL(rownum/#{itemPerPage}) page, ceil(rownum) no, memberId,cafeNo,cafeName,cafeAddress
+			FROM(SELECT ceil(rownum) no, b.memberId, b.cafeNo, p.cafeName,p.cafeAddress
+				FROM bookmark b , prboard p where b.memberId =  #{memberId} and p.cafeNo = b.cafeNo order by no asc
+					)
+				) 
+		WHERE page =  #{page}
+	</select>
+	
+	<select id="selectBookmarkAndPRBoardByMemberId" parameterType="string" resultMap="bookmark-member-main">
+		SELECT b.cafeNo , p.cafeFakeImage, p.cafeName FROM bookmark b, prboard p WHERE b.memberId = #{memberId} and b.cafeNo=p.cafeNo and ceil(rownum) <![CDATA[ < ]]> 10
+	</select>
+	
+	<delete id="deleteBookmarkByCafeNo" parameterType="int">
+		DELETE FROM bookmark WHERE cafeNo = #{cafeNo}
+	</delete>
+</mapper>
