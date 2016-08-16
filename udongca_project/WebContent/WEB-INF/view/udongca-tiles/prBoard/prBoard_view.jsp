@@ -4,7 +4,7 @@
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=fb0d10514e172c531b661118b62d9c6f&libraries=services"></script>
 <style type="text/css">
 	table, th{
-		font-size:20px;
+		font-size:15px;
 		font-weigth:bold;
 	}
 	.carousel-inner > .item > img {
@@ -57,9 +57,6 @@
 		cursor:default;
 		border-bottom:1.5px solid;
 }
-	.cafeIntro {
-		width:250px;
-	}
 	.replyText{
 		width:500px;
 	}
@@ -89,7 +86,6 @@
 	
 	
 	$(document).ready(function(){
-		$(".sidenav").attr("style","height:1085px;")
 		
 		$("#prReportReason").on('change',function(){
 			var text = this.value;
@@ -118,7 +114,7 @@
 			}
 		});
 		
-		$("#imageArea").append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='300' width='400'>");
+		$("#imageArea").append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "'width='100%' height='320px'>");
 		
 		if ("${sessionScope.login}"){
 			if ("${sessionScope.login.memberId}" == "${requestScope.prBoard.memberId}" && "${sessionScope.login.memberType}" == "licenseeMember"){
@@ -151,7 +147,7 @@
 		var starNumber = Math.round(cafeAverageRating * 2) / 2.0;
 		
 		for (var i = 1; i < 6; i++){
-			$("#cafeAverageRatingIcon").append("<img src='/udongca_project/udongca-image/star" + ((i <= starNumber) ? "1" : ((i - starNumber == 0.5) ? "h" : "0") ) + ".png' height='32' width='32'>");
+			$("#cafeAverageRatingIcon").append("<img src='/udongca_project/udongca-image/star" + ((i <= starNumber) ? "1" : ((i - starNumber == 0.5) ? "h" : "0") ) + ".png' height='16' width='16'>");
 		}
 		
 		$(document).on('click','#addReply',function(){
@@ -307,7 +303,7 @@
 		if (currentImageNumber < 0){
 			currentImageNumber = cafeFakeImageArrayNumber - 1;
 		}
-		$("#imageArea").empty().append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='300' width='400'>");
+		$("#imageArea").empty().append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='320px' width='100%'>");
 	};
 	
 	function nextImage(){
@@ -315,11 +311,10 @@
 		if (currentImageNumber > cafeFakeImageArrayNumber - 1){
 			currentImageNumber = 0;
 		}
-		$("#imageArea").empty().append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='300' width='400'>");
+		$("#imageArea").empty().append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='320px' width='100%''>");
 	};
 	
 	function menuImage(no,menuType){
-		$(".sidenav").attr("style","height:1085px;")
 		$("#content").empty();
 		$(".myReviewReplyArea").empty();
 		$("#content").attr("style", "");
@@ -334,7 +329,7 @@
 				$("#menuType").append(menuType);
 				if(obj != ""){
 					$("#content").append(
-							"<div id='myCarousel' class='carousel slide' style='margin-bottom:60px margin-bottom:60px;margin-left: 150px;margin-right: 200px;'>"+
+							"<div id='myCarousel' class='carousel slide' style='margin-bottom:60px'>"+
 							"<ol class='carousel-indicators'></ol><div class='carousel-inner' role='listbox'></div>");
 					for(var i =0;i<obj.length;i++){
 
@@ -377,11 +372,9 @@
 	}
 	
 	function mapLocation(){
-		$(".sidenav").attr("style","height:1085px;")
 		$("#content").empty();
 		$(".myReviewReplyArea").empty();
-		$("#content").attr("style", "width:600px;height:350px;margin-left:150px;");
-		$(".contentTable").attr("style","margin-left:15%");
+		$("#content").attr("style", "width:100%;height:350px;");
 		var mapContainer = document.getElementById('content'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -424,7 +417,6 @@
 	}
 	
 	function reviewList(page){
-		$(".sidenav").attr("style","height:1110px;")
 		currentPage = page;
 		var html = "";
 		$("#content").empty();
@@ -614,84 +606,84 @@
 		}
 	}
 </script>
-<div style="width:1000px;">
 	<input type="hidden" id="cafeNo" value="${requestScope.prBoard.cafeNo}">
 	<div><h1 style="margin-top:0px;" id="cafeName">  ${requestScope.prBoard.cafeName }</h1></div><p>
 	<div style="color:darkorange;"><font size="4">&nbsp;&nbsp;안녕하세요! "${requestScope.prBoard.cafeName }"에 오신 것을 환영합니다!!</font></div><br>
-	<table style="width:950px;">
-		<tr>
-			<td rowspan="5" style="width:300px; padding-right:15px;">
+	<div class='col-sm-12'>
+		<div class='col-sm-6'>
 			<!--
 				홍보글 객체에서 fakeImage를 불러 와, 이를 Split한 뒤 for 문으로 경로를 순차적으로 조회.
 			-->
-			<div id="imageArea" style="padding:10px; width:400px;"></div>
+			<div id="imageArea" style="height:320px;"></div>
 			<div align="center">
 				<button onclick="prevImage()" class="btn btn-default">이전</button>
 				<button onclick="nextImage()" class="btn btn-default">다음</button>
 			</div>
-		</td>
-		<th>영업 시간</th>
-		<td>${requestScope.prBoard.operationHour}</td>
-	</tr>
-	<tr>
-					<th>연락처</th>
-					<td>
+		</div>
+		<div class='col-sm-6' style="height:320px;">
+			<table>
+				<tr>
+					<td style="min-width:65px; height:30px;">영업 시간</td>
+					<td style="padding-left:20px">${requestScope.prBoard.operationHour}</td>
+				</tr>
+				<tr>
+					<td>연락처</td>
+					<td style="padding-left:20px">
 						카페: ${requestScope.prBoard.cafeTel}<br>
 						사업자: ${requestScope.prBoard.managerTel}
 					</td>
 				</tr>
 				<tr>
-					<th>카페 평점</th>
-					<td id="cafeAverageRatingIcon"></td>
+					<td>카페 평점</td>
+					<td id="cafeAverageRatingIcon" style="padding-left:20px"></td>
 					<td id="cafeAverageRatingNumber"></td>
 				</tr>
 				<tr>
-					<th>카페 특징</th>
-					<td>
+					<td>카페 특징</td>
+					<td style="padding-left:20px">
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'wifi')}">
-							<img src="/udongca_project/udongca-image/coffee-cup-with-wireless-symbol.png" title="Wi-Fi" height="40" width="40">
+							<img src="/udongca_project/udongca-image/coffee-cup-with-wireless-symbol.png" title="Wi-Fi" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'socket')}">
-							<img src="/udongca_project/udongca-image/socket.png" title="콘센트" height="40" width="40">
+							<img src="/udongca_project/udongca-image/socket.png" title="콘센트" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'park')}">
-							<img src="/udongca_project/udongca-image/parking-sign.png" title="주차장" height="40" width="40">
+							<img src="/udongca_project/udongca-image/parking-sign.png" title="주차장" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'smoking')}">
-							<img src="/udongca_project/udongca-image/smoking-area.png" title="흡연실" height="40" width="40">
+							<img src="/udongca_project/udongca-image/smoking-area.png" title="흡연실" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme1')}">
-							<img src="/udongca_project/udongca-image/sweet-cake-piece.png" title="디저트카페" height="40" width="40">
+							<img src="/udongca_project/udongca-image/sweet-cake-piece.png" title="디저트카페" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme2')}">
-							<img src="/udongca_project/udongca-image/books-stack.png" title="북카페" height="40" width="40">
+							<img src="/udongca_project/udongca-image/books-stack.png" title="북카페" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme3')}">
-							<img src="/udongca_project/udongca-image/plain-dog.png" title="강아지카페" height="40" width="40">
+							<img src="/udongca_project/udongca-image/plain-dog.png" title="강아지카페" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme4')}">
-							<img src="/udongca_project/udongca-image/halloween-black-cat.png" title="고양이카페" height="40" width="40">
+							<img src="/udongca_project/udongca-image/halloween-black-cat.png" title="고양이카페" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme5')}">
-							<img src="/udongca_project/udongca-image/mother-and-child-with-balloons.png" title="키즈카페" height="40" width="40">
+							<img src="/udongca_project/udongca-image/mother-and-child-with-balloons.png" title="키즈카페" height="20" width="20">
 						</c:if>
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme6')}">
-							<img src="/udongca_project/udongca-image/question-button.png" title="기타테마" height="40" width="40">
+							<img src="/udongca_project/udongca-image/question-button.png" title="기타테마" height="20" width="20">
 						</c:if>
-					</td>
 				</tr>
 				<tr>
-					<th>카페 소개</th>
-					<td><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
+					<td>카페 소개</td>
+					<td style="padding-left:20px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
 				</tr>
-	</table>
-
-		<div id="buttonArea" class="form-group" align="center" style="width:800px; padding-top:20px; margin-bottom:40px;"></div>
-		
-			<span id="menuType" style="margin-left:150px;font-size:x-large;"></span>
-			<div id="content"></div>
-		
-</div>
+			</table>
+				
+		</div>
+	</div>
+	
+	<div id="buttonArea" class="form-group" align="center" style="padding-top:20px; margin-bottom:20px;"></div>
+	<div id="menuType" align="center" style="font-size:x-large;"></div>
+	<div class="col-sm-12" align="center" id="content"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="prReportModal" role="dialog">

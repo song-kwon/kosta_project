@@ -2,10 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready(function() {
+	$("#notice").prop("class","active");
+	
 		$("#tbody").on("click","tr",function() {
 			location.replace("/udongca_project/noticeBoard/noticeBoard.udc?noticeNo="+ $(this).find(":first").text());
 	});
-});
+	
+		if($(".container").width() <= 992){
+			$(".notice_content, .notice_date").remove();
+		}
+})
 </script>
 
 <style type="text/css">
@@ -14,7 +20,6 @@ table{
 	border-top:2px solid;
 	border-bottom:2px solid;
 	width:800px;
-	margin:30px;
 	text-align:center;
 	table-layout:fixed;
 }
@@ -50,6 +55,17 @@ tr#tr, td{
 
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
+
+@media (max-width:992px){
+ .notice_content, .notice_date{
+ 	display: none;
+ }
+ 
+ .notice_no{
+ 	width:100px;
+ }
+}
+
 </style>
 
 <div><h1>공지 사항</h1></div>
@@ -58,14 +74,13 @@ td#td2:hover{text-decoration:underline; color:red;}
 		<a href="/udongca_project/noticeBoard/registerNoticeBoardform.udc?codeType=notice_type"><input type="button" value="공지사항 등록"></a>
 	</div>
 </c:if>
-<table>
+<table class="table">
 	<thead id="thead">
 		<tr>
-			<td>No</td>
+			<td class="notice_no">No</td>
 			<td>공지 제목</td>
-			<td>공지 내용</td>
-			<td>작성일자</td>
-			<col width="30px"><col width="300px"><col width="300px"><col width="100px">
+			<td class="notice_content">공지 내용</td>
+			<td class="notice_date">작성일자</td>
 		</tr>
 	</thead>
 	<tbody id="tbody">
@@ -73,8 +88,8 @@ td#td2:hover{text-decoration:underline; color:red;}
 			<tr id="tr">
 				<td>${list.noticeNo }</td>
 				<td id="td1" class="cursor" nowrap="nowrap"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.category }]</span>&nbsp;${list.noticeTitle }</td>
-				<td id="td2" class="cursor" nowrap="nowrap">${list.noticeContent }</td>
-				<td>${list.noticeDate }</td>
+				<td class="notice_content" id="td2" class="cursor" nowrap="nowrap">${list.noticeContent }</td>
+				<td class="notice_date">${list.noticeDate }</td>
 			</tr>
 		</c:forEach>
 	</tbody>

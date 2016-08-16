@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core" %>
 <script  type="text/javascript">
 $(document).ready(function(){
+	$("#notice").prop("class","active");
 	$("input[type='text']").prop({"class":"form-control"});
 	$("#title").on("keyup keypress", function(){
 		if($(this).val().length>50){

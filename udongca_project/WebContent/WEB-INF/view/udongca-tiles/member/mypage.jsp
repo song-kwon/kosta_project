@@ -111,7 +111,7 @@
 					});
 </script>
 <style type="text/css">
-.table {
+/* .table {
 	border-collapse: collapse;
 	width: 800px;
 	margin: 30px;
@@ -130,7 +130,7 @@ thead {
 
 table, tbody {
 	height: 30px;
-}
+} */
 
 .cursor{
 	text-align:left;
@@ -158,8 +158,7 @@ table, tbody {
 }
 #memberReportList tr:hover,#memberInquiryList tr:hover{text-decoration:underline; color:red;}
 </style>
-<div class="nav_bodyDiv">
-	<div class="panel-group" id="accordion" style="width: 915px">
+	<div class="panel-group" id="accordion">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">
@@ -268,4 +267,3 @@ table, tbody {
 
 		</div>
 	</div>
-</div>

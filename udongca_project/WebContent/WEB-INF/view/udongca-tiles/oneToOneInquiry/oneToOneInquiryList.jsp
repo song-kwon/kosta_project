@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready(function() {
+	$("#oneToOneMaster").prop("class","active");
 		$("#tbody").on("click","tr",function() {
 				location.replace("/udongca_project/oneToOneInquiry/oneToOneInquiry.udc?inquiryNo="
 						+ $(this).find(":first").text());

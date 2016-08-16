@@ -46,11 +46,10 @@ a{
 
 </style>
 
-<div style="width:180px;">
 <input type="hidden" value="${sessionScope.login.memberId }" id="loginId">
 <c:choose>
 	<c:when test="${sessionScope.login.memberType == 'licenseeMember' }">
-		<ul class="nav nav-pills nav-stacked">
+		<ul class="nav nav-pills">
 		<li class="li member"><a href="/udongca_project/member/member_prBoard_list.udc">내 홍보글</a></li>
 		<li class="li member"><a href="/udongca_project/member/memberReportListPaging.udc">신고내역</a></li>
 		<li class="li member"><a href="/udongca_project/member/memberInquiryListPaging.udc">1:1문의</a></li>
@@ -60,7 +59,7 @@ a{
 	</c:when>
 	<c:otherwise>
 		<div class="menuLink">
-			<ul class="nav nav-pills nav-stacked">
+			<ul class="nav nav-pills">
 			<li class="li member"><a id="book" href="/udongca_project/member/member_bookmark.udc">즐겨찾기</a></li>
 			<li class="li member"><a href="/udongca_project/member/member_preferLocation_form.udc">선호지역</a></li>
 			<li class="li member"><a href="/udongca_project/member/memberReviewListPaging.udc">내가쓴리뷰</a></li>
@@ -72,4 +71,3 @@ a{
 		</div>
 	</c:otherwise>
 </c:choose>
-</div>

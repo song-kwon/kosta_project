@@ -321,9 +321,9 @@
 <style type="text/css">
 
 
-nav{
+/* nav{
 	line-height: 40px;
-}
+} */
 .table{
 	border-collapse: collapse;
 	width:800px;
@@ -356,13 +356,13 @@ label{
 h2{
 	margin-left:30px;
 }
-.nav>li>a{
+/* .nav>li>a{
 	
     padding-left: 0px;
     padding-bottom: 0px;
     padding-top: 0px;
     padding-right: 0px;
-}
+} */
 .fa{
 	cursor:pointer;
 	font-size:30pt;

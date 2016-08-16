@@ -10,16 +10,15 @@
 <script type="text/javascript" src="/udongca_project/scripts/udongca.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
+<link rel="stylesheet" href="/udongca_project/css/bootstrap.css">
 <!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.css">
+<link rel="stylesheet" href="/udongca_project/css/bootstrap-theme.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
+<script src="/udongca_project/scripts/bootstrap.js"></script>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("button").prop({"class":"btn btn-default"});
 	$("input[type='button']").prop({"class":"btn btn-default"});
 	$("input[type='submit']").prop({"class":"btn btn-default"});
 	$("input[type='reset']").prop({"class":"btn btn-default"});
@@ -31,7 +30,7 @@ $(document).ready(function(){
 </script>
 
 <style type="text/css">
-header {
+/* header {
 	background-color: darkgoldenrod;
 	text-align: center;
 	width: 1280px;
@@ -42,18 +41,6 @@ header, a{
 	color:antiquewhite;
 }
 
-nav {
-	line-height: 70px;
-	background-color: burlywood;
-	padding: 15px;
-	min-height: 700px;
-	width: 180px;
-	float: left;
-	font-size:20px;
-	text-align:center;
-	color:black;
-	color-link:saddlebrown;
-}
 
 section {
 	padding: 15px;
@@ -102,7 +89,7 @@ input[type="button"]{
 }
 select{
 	width:150px !important;
-}
+} */
 .pagination > .active > a,
 .pagination > .active > a:hover{
 	background-color:#6b4004;
@@ -125,7 +112,7 @@ select{
 			<tiles:insertAttribute name="body" />
 		</section>
 
-		<footer class="navbar">
+		<footer class="container-fluid text-center">
 			<tiles:insertAttribute name="footer" />
 		</footer>
 </div>

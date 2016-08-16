@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script  type="text/javascript">
 		$(document).ready(function(){
+			$("#notice").prop("class","active");
+			
 			/* 	
 			$.ajax({
 					"url" : "/udongca_project/noticeBoard/selectByCodeType.udc?codeType=notice_type",

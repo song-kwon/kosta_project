@@ -17,6 +17,9 @@ tr#tr{
 
 <script type="text/javascript">
 $(document).ready(function(){
+		
+		$("#notice").prop("class","active");
+
 	$("#deleteBtn").on("click",function(){
 		var result = confirm("해당 게시물을 삭제하시겠습니까?");		
 		if(result==true){

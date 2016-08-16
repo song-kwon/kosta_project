@@ -1,41 +1,54 @@
-<%@ page contentType="text/html;charset=utf-8" %>
+<%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Comparible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1" >
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
 <script type="text/javascript" src="/udongca_project/scripts/jquery.js"></script>
 <script type="text/javascript" src="/udongca_project/scripts/udongca.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
 <!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("input[type='button']").prop({"class":"btn btn-default"});
-	$("input[type='submit']").prop({"class":"btn btn-default"});
-	$("input[type='reset']").prop({"class":"btn btn-default"});
-	$("input[type='password']").prop({"class":"form-control"});
-	$("textarea").prop({"class":"form-control"});
-	$("nav").height($("section").height()+60);
-	$("section").resize(function(){
-		$("nav").height($("section").height()+60);
-	})
-});
+	$(document).ready(function() {
+		$("input[type='button']").prop({
+			"class" : "btn btn-default"
+		});
+		$("input[type='submit']").prop({
+			"class" : "btn btn-default"
+		});
+		$("input[type='reset']").prop({
+			"class" : "btn btn-default"
+		});
+		$("input[type='password']").prop({
+			"class" : "form-control"
+		});
+		$("textarea").prop({
+			"class" : "form-control"
+		});
+		/* $("nav").height($("section").height() + 60);
+		$("section").resize(function() {
+			$("nav").height($("section").height() + 60);
+		}) */
+	});
 </script>
 
 <style type="text/css">
-table{
-	color:black;
+table {
+	color: black;
 }
-header{
+/* header{
 	background-color:darkgoldenrod;
 	min-height:190px;
 	text-align:center;
@@ -103,37 +116,45 @@ input[type="button"]{
 
 select{
 	width:150px !important;
+} */
+.pagination>.active>a, .pagination>.active>a:hover {
+	background-color: #6b4004;
 }
-.pagination > .active > a,
-.pagination > .active > a:hover{
-	background-color:#6b4004;
+
+.pagination>li>a {
+	color: #a2522d;
 }
-.pagination > li > a{
-	color:#a2522d;
-}
-.pagination > li > a:hover{
-	color:#6b4004;
+
+.pagination>li>a:hover {
+	color: #6b4004;
 }
 </style>
 </head>
 
 <body>
-<div id="wrap">
-<header class="navbar navbar-nav"> 
-<tiles:insertAttribute name="header"/>
-</header>
+	<div id="wrap">
+		<header class="navbar">
+			<tiles:insertAttribute name="header" />
+		</header>
+		<div class="container">
+			<div class="col-sm-12">
+				<nav class="col-sm-12">
+					<tiles:insertAttribute name="menu" />
+				</nav>
+			</div>
+		</div>
 
-<nav class="nav sidenav col-md-2">
-<tiles:insertAttribute name="menu"/>
-</nav>
+		<div class="container">
+			<div class="col-sm-12">
+				<section class="nav_section col-sm-12">
+					<tiles:insertAttribute name="body" />
+				</section>
+			</div>
+		</div>
 
-<section class="nav_section col-md-8">
-<tiles:insertAttribute name="body"/>
-</section>
-
-<footer class="navbar">
-<tiles:insertAttribute name="footer"/>
-</footer>
-</div>
+		<footer class="container-fluid text-center">
+			<tiles:insertAttribute name="footer" />
+		</footer>
+	</div>
 </body>
 </html>
