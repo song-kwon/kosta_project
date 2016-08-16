@@ -70,7 +70,6 @@
 
 <script type="text/javascript">
 	var isAddedFavorite = null;
-	var isMemberLicensed = null;
 	var cafeFakeImageArray = "${requestScope.prBoard.cafeFakeImage}".split(";");
 	var cafeFakeImageArrayNumber = cafeFakeImageArray.length - 1;
 	var currentImageNumber = 0;
@@ -84,9 +83,7 @@
 	var cafeAverageRating = (cafeReviewCount) ? cafeRating / cafeReviewCount : 0;
 	var countGroup = null;
 	
-	
 	$(document).ready(function(){
-		
 		$("#prReportReason").on('change',function(){
 			var text = this.value;
 			if(text == '직접 입력'){
@@ -142,13 +139,13 @@
 			}
 		}
 		
-		$("#cafeAverageRatingNumber").text(cafeAverageRating.toPrecision(3) + " / ${requestScope.prBoard.cafeReviewCount}");
-		
 		var starNumber = Math.round(cafeAverageRating * 2) / 2.0;
 		
 		for (var i = 1; i < 6; i++){
-			$("#cafeAverageRatingIcon").append("<img src='/udongca_project/udongca-image/star" + ((i <= starNumber) ? "1" : ((i - starNumber == 0.5) ? "h" : "0") ) + ".png' height='16' width='16'>");
+			$("#cafeAverageRating").append("<img src='/udongca_project/udongca-image/star" + ((i <= starNumber) ? "1" : ((i - starNumber == 0.5) ? "h" : "0") ) + ".png' height='16' width='16'>");
 		}
+		
+		$("#cafeAverageRating").append("<br>" + cafeAverageRating.toPrecision(3) + " / ${requestScope.prBoard.cafeReviewCount}");
 		
 		$(document).on('click','#addReply',function(){
 			$.ajax({
@@ -620,27 +617,26 @@
 				<button onclick="nextImage()" class="btn btn-default">다음</button>
 			</div>
 		</div>
-		<div class='col-sm-6' style="height:320px;">
+		<div class='col-sm-6' style="min-height:200px;">
 			<table>
 				<tr>
 					<td style="min-width:65px; height:30px;">영업 시간</td>
-					<td style="padding-left:20px">${requestScope.prBoard.operationHour}</td>
+					<td style="padding-left:10px">${requestScope.prBoard.operationHour}</td>
 				</tr>
 				<tr>
 					<td>연락처</td>
-					<td style="padding-left:20px">
+					<td style="padding-left:10px">
 						카페: ${requestScope.prBoard.cafeTel}<br>
 						사업자: ${requestScope.prBoard.managerTel}
 					</td>
 				</tr>
 				<tr>
 					<td>카페 평점</td>
-					<td id="cafeAverageRatingIcon" style="padding-left:20px"></td>
-					<td id="cafeAverageRatingNumber"></td>
+					<td id="cafeAverageRating" style="padding-left:10px; align:center;"></td>
 				</tr>
 				<tr>
 					<td>카페 특징</td>
-					<td style="padding-left:20px">
+					<td style="padding-left:10px">
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'wifi')}">
 							<img src="/udongca_project/udongca-image/coffee-cup-with-wireless-symbol.png" title="Wi-Fi" height="20" width="20">
 						</c:if>
@@ -671,13 +667,13 @@
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme6')}">
 							<img src="/udongca_project/udongca-image/question-button.png" title="기타테마" height="20" width="20">
 						</c:if>
+					</td>
 				</tr>
 				<tr>
 					<td>카페 소개</td>
-					<td style="padding-left:20px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
+					<td style="padding-left:10px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
 				</tr>
 			</table>
-				
 		</div>
 	</div>
 	

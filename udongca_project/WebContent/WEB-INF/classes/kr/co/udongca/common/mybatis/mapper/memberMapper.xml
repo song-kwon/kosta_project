@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<sql id="select-basic">
+		SELECT memberId, memberName, memberPassword, memberEmail
+		FROM member
+	</sql>
+
+	<select id="login" parameterType="member" resultType="member">
+		select
+		memberId,memberPassword,memberName,memberEmail,memberPenalty,loginPossibility,
+		memberType from member
+		where memberId = #{memberId} and
+		memberPassword=#{memberPassword}
+	</select>
+	<select id="member_info" parameterType="string" resultType="member">
+		select
+		memberId,memberName,memberPassword,memberEmail,memberPenalty,loginPossibility,memberType
+		from member
+		where memberId=#{memberId}
+	</select>
+	
+	<update id="member_login_possible" parameterType="member">
+		UPDATE member SET loginPossibility='possible' WHERE memberId=#{memberId}
+	</update>
+
+	<update id="member_modify" parameterType="member">
+		update member set
+		memberPassword=#{memberPassword},memberName=#{memberName} where
+		memberId=#{memberId}
+	</update>
+
+	<insert id="general_member_insert" parameterType="member">
+		INSERT INTO
+		member VALUES (#{memberId}, #{memberName}, #{memberPassword},
+		#{memberEmail}, 0, 'impossible', 'generalMember')
+	</insert>
+
+	<insert id="licensee_member_insert" parameterType="member">
+		INSERT INTO
+		member VALUES (#{memberId}, #{memberName}, #{memberPassword},
+		#{memberEmail}, 0, 'impossible', 'licenseeMember')
+	</insert>
+
+	<select id="count_same_id" parameterType="String" resultType="int">
+		SELECT count(memberId) FROM member WHERE memberId=#{memberId}
+	</select>
+	
+	<select id="count_same_email" parameterType="String" resultType="int">
+		SELECT count(memberEmail) FROM member WHERE memberEmail=#{memberEmail}
+	</select>
+	
+	<select id="member_list" resultType="member">
+		<include refid="select-basic"/>
+	</select>
+	<select id="select_list_page" parameterType="map" resultType="member">
+		SELECT memberId, memberName, memberPassword, memberEmail, memberPenalty, loginPossibility
+		FROM(SELECT CEIL(rownum/#{itemPerPage}) page, memberId, memberName, memberPassword, memberEmail,memberPenalty, loginPossibility
+			     FROM(SELECT memberId, memberName, memberPassword, memberEmail,memberPenalty, loginPossibility
+					     FROM member order by memberId asc
+					     )
+				 )
+		WHERE page = #{page}
+	</select>
+	<select id="find_by_id" parameterType="String" resultType="member">
+		SELECT memberId, memberName, memberPassword, memberEmail, memberPenalty, loginPossibility, memberType FROM member WHERE memberId=#{memberId}
+	</select>
+	
+	<select id="find_by_email" parameterType="String" resultType="member">
+		SELECT memberId, memberName, memberPassword, memberEmail, memberPenalty, loginPossibility, memberType FROM member WHERE memberEmail=#{memberEmail}
+	</select>
+	
+	<select id="count_member" resultType="_int">
+	SELECT count(memberId) from member
+	</select>
+	
+	<update id="member_drop" parameterType="string">
+		update member set loginpossibility='Impossible' where memberId=#{memberId}
+	</update>
+	
+	<select id="count_memberId_find" parameterType="member" resultType="int">
+		select count(memberId) from member where memberName=#{memberName} and memberEmail=#{memberEmail}
+	</select>
+	
+	<select id="memberId_find" parameterType="member" resultType="member">
+		<include refid="select-basic"/>
+		where memberName=#{memberName} and memberEmail=#{memberEmail}
+	</select>
+	
+	<update id="member_update" parameterType="member">
+		update member set memberPenalty=#{memberPenalty}, loginpossibility=#{loginPossibility} where memberId=#{memberId}
+	</update>
+	<select id="count_memberPassword_find" parameterType="member" resultType="int">
+		select count(memberId) from member where memberId=#{memberId} and memberName=#{memberName} and memberEmail=#{memberEmail}
+	</select>
+	
+	<select id="memberPassword_find" parameterType="member" resultType="member">
+		<include refid="select-basic"/>
+		where memberId=#{memberId} and memberName=#{memberName} and memberEmail=#{memberEmail}
+	</select>
+	
+	<select id="member_prBoard_list" parameterType="map" resultType="prboard">
+		SELECT
+			<include refid="prBoardMapper.prboard-column"/>
+		FROM (
+			SELECT
+				CEIL(rownum/#{itemsPerPage}) page,
+				<include refid="prBoardMapper.prboard-column"/>
+			FROM (
+				SELECT
+					<include refid="prBoardMapper.prboard-column"/>
+				FROM PRboard
+				where memberId=#{memberId}
+				ORDER BY cafeNo DESC
+				)
+			)
+		WHERE page = #{page} 
+	</select>
+	
+	<select id="countMemberPRBoard" parameterType="string" resultType="int">
+		select count(cafeNo) from prboard where memberId=#{memberId}
+	</select>
+</mapper>

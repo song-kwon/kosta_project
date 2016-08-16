@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reviewBoardMapper">
+	
+	<sql id="review-column">
+		reviewNo, reviewTitle, reviewDate, reviewContent, ratingStars, reviewRealImage, reviewFakeImage, memberId, cafeNo
+	</sql>
+	
+	
+	<select id="countMyReview" parameterType="string" resultType="int">
+		select count(reviewNo) from review_board where memberId=#{memberId}
+	</select>
+	
+	<select id="myReviewListPaging" parameterType="map" resultType="reviewBoard">
+		SELECT myReviewNo,<include refid="review-column"/>
+		FROM(SELECT CEIL(rownum/#{itemPerPage}) page, myReviewNo,<include refid="review-column"/>
+			     FROM(SELECT ceil(rownum) myReviewNo,<include refid="review-column"/> FROM review_board where memberId = #{memberId} order by myReviewNo desc
+					     )
+				 )
+		WHERE page = #{page}
+	</select>
+	
+	<select id="reviewDetail" parameterType="map" resultType="reviewBoard">
+		select <include refid="review-column"/>
+		from review_board
+		where reviewNo = #{reviewNo} and cafeNo=#{cafeNo}
+	</select>
+	
+	<select id="reviewReplyList" parameterType="int" resultType="reviewReply">
+		select <include refid="reviewReplyMapper.reviewReply-column"/>
+		from review_reply
+		where reviewNo=#{reviewNo}
+		order by replyGroup asc ,replyNo asc
+	</select>
+	
+	<select id="reviewGourpCount" parameterType="int" resultType="int">
+		select COALESCE(MAX(replyGroup), 0)
+		from review_reply
+		where reviewNo=#{reviewNo}
+	</select>
+	
+	<select id="countCafeReview" parameterType="int" resultType="int">
+		select count(reviewNo) from review_board where cafeNo=#{cafeNo}
+	</select>
+	
+	<select id="cafeReviewListPaging" parameterType="map" resultType="reviewBoard">
+		SELECT <include refid="review-column"/>
+		FROM(SELECT CEIL(rownum/#{itemPerPage}) page, <include refid="review-column"/>
+			     FROM(SELECT <include refid="review-column"/> FROM review_board where cafeNo = #{cafeNo} order by reviewNo desc
+					     )
+				 )
+		WHERE page = #{page}
+	</select>
+	
+	<select id="selectReview" parameterType="int" resultType="reviewBoard">
+		select <include refid="review-column"/>
+		from review_board
+		where reviewNo = #{reviewNo}
+	</select>
+	
+	<insert id="insertReview" parameterType="reviewBoard">
+		INSERT INTO review_board(<include refid="review-column"/>)
+		VALUES(
+			#{reviewNo},
+			#{reviewTitle},
+			#{reviewDate},
+			#{reviewContent},
+			#{ratingStars},
+			#{reviewRealImage},
+			#{reviewFakeImage},
+			#{memberId},
+			#{cafeNo}
+		)
+	</insert>
+	
+	<update id="updateReview" parameterType="reviewBoard">
+		UPDATE review_board SET
+			reviewTitle = #{reviewTitle},
+			reviewContent = #{reviewContent},
+			ratingStars = #{ratingStars},
+			reviewRealImage = #{reviewRealImage},
+			reviewFakeImage = #{reviewFakeImage}
+		WHERE reviewNo = #{reviewNo}
+	</update>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM review_board
+		WHERE reviewNo = #{reviewNo}
+	</delete>
+	
+	<select id="selectNextReviewBoardSequence" resultType="_int">
+		SELECT review_board_reviewNo_seq.nextval FROM dual
+	</select>
+	
+	<select id="selectMainReviewList" resultType="reviewBoard">
+		select * 
+		from review_board
+		where ceil(rownum) <![CDATA[ < ]]> 11 order by reviewNo desc
+	</select>
+	
+	<select id="selectReviewNoByCafeNo" parameterType="int" resultType="int">
+		SELECT reviewNo FROM review_board WHERE cafeNo = #{cafeNo}
+	</select>
+	
+	<delete id="deleteReviewByCafeNo" parameterType="int">
+		DELETE FROM review_board WHERE cafeNo = #{cafeNo}
+	</delete>
+</mapper>
