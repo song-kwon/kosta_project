@@ -11,7 +11,8 @@ $(document).ready(function(){
 		listAndPage($("#pnum").val());
 	});
 	listAndPage($("#pnum").val());
-	$('.fa').on('click',function(){
+	
+	$('.form-group .fa').on('click',function(){
 		 var $this = $(this); 
 		 if($this.hasClass("fa-thumbs-down")){
 			 $this.removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
@@ -39,9 +40,9 @@ function link(id){
 			$("#memberEmail").val(obj.memberInfo.memberEmail);
 			$("#memberPenalty").val(obj.memberInfo.memberPenalty);
 			$("#loginPossibility").val(obj.memberInfo.loginPossibility);
-			$(".fa").removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
+			$(".form-group .fa").removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
 			for(var i =0; i<$("#memberPenalty").val();i++){
-				$(".fa")[i].className = "fa fa-thumbs-down";
+				$(".form-group .fa")[i].className = "fa fa-thumbs-down";
 			}
 			 if($("#loginPossibility").val()=='possible'){
 				$("#possible").attr("selected","selected");
@@ -102,8 +103,8 @@ function link(id){
 }
  function submit(){
 		var value=0;
-		 for(var i =0;i<$(".fa").length;i++){
-			if($(".fa")[i].className=="fa fa-thumbs-down"){
+		 for(var i =0;i<$(".form-group .fa").length;i++){
+			if($(".form-group .fa")[i].className=="fa fa-thumbs-down"){
 				value++;
 			}
 		} 
@@ -149,10 +150,10 @@ function link(id){
 	}
 </script> 
 <style type="text/css">
-nav{
+ nav{
 	line-height: 40px;
 }
-table{
+/* table{
 	border-collapse: collapse;
 	width:800px;
 	margin:30px;
@@ -178,7 +179,7 @@ thead{
 	font-weight:bold;
 	cursor:default;
 	border-bottom:3px solid;
-}
+} */
 .modal-footer{
 	background-color:#faebd7;
 	border-radius:6px;
@@ -196,8 +197,12 @@ thead{
     padding-bottom: 0px;
     padding-top: 0px;
     padding-right: 0px;
+} 
+.fa-thumbs-o-down{
+	cursor:pointer;
+	font-size:30pt;
 }
-.fa{
+.fa-thumbs-down{
 	cursor:pointer;
 	font-size:30pt;
 }

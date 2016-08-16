@@ -76,6 +76,15 @@
 </script>
 
 <style type="text/css">
+
+@media (min-width: 992px){
+.fa-search{
+    display: none;
+}
+}
+.fa-search{
+ color:white;font-size:inherit;margin-right:0px;
+}
 /* .div2{
 	padding:7px;
 	text-align:center;
@@ -101,12 +110,21 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">
+	
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
 				<span class="icon-bar"></span> <span class="icon-bar"></span><span
 					class="icon-bar"></span>
 			</button>
+			
+			<!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar2">
+				<span class="icon-bar"></span> <span class="icon-bar"></span><span
+					class="icon-bar"></span>
+			</button> -->
+			<button class="fa fa fa-search navbar-toggle" data-toggle="collapse" data-target="#myNavbar2"></button>
+		
 		</div>
 
 		<c:choose>
@@ -175,7 +193,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 </div>
 
 <div class="container" style="margin-top: 5px; margin-bottom: 5px;">
-	<div class="row">
+	<div class="row collapse navbar-collapse" id="myNavbar2">
 		<div class="col-sm-12 form-inline">
 			<div class="col-sm-6" align="center">
 				<label for="sel1">주소검색</label> <select id="address1"

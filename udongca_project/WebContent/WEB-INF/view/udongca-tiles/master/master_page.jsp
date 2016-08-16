@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="https://use.fontawesome.com/d86bc62528.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		if ($("#memberCheck").val() != "master") {
@@ -11,7 +11,7 @@
 		refresh();
 		
 		/* 클릭시 thumbs-down기능 */
-		$('.fa').on('click',function(){
+		$('.form-group .fa').on('click',function(){
 			 var $this = $(this); 
 			 if($this.hasClass("fa-thumbs-down")){
 				 $this.removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
@@ -324,7 +324,7 @@
 /* nav{
 	line-height: 40px;
 } */
-.table{
+/* .table{
 	border-collapse: collapse;
 	width:800px;
 	margin:30px;
@@ -340,7 +340,7 @@ thead{
 	border-bottom:3px solid;
 	cursor:default;
 	 
-}
+} */
 
 table, tbody{
 	height:30px;
@@ -363,13 +363,11 @@ h2{
     padding-top: 0px;
     padding-right: 0px;
 } */
-.fa{
+.fa-thumbs-o-down{
 	cursor:pointer;
 	font-size:30pt;
 }
-.panel-default > .panel-heading{
-	background-image:linear-gradient(to bottom, #faebd7 0%, rgba(218, 159, 76, 0.68) 100%);
-}
+
 .panel-title>a{
 	font-weight: bold;
 	font-size:12pt;
@@ -385,14 +383,15 @@ h2{
 .modal-title{
 	color:white;
 }
+
 </style>
 <!-- 3table -->
 <input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
-<div class="panel-group" id="accordion" style="width:915px">
+<div class="panel-group" id="accordion" >
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color:sienna;text-decoration:none;">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
        1:1문의</a>
       </h4>
     </div>
