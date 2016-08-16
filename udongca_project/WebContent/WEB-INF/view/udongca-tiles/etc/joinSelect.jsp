@@ -22,18 +22,20 @@ table{
 }
 </style>
 
+<div class="container">
+<div class="col-sm-12" align="center">
 <div class="nonav_bodyDiv" style="width:600px;">
 <div><h1>우동카 회원가입</h1></div><br>
 <table>
 	<tr>
-		<td style="font-size:xx-large; cursor:pointer;"><label>일반 회원 가입<br><input type="radio" name="memberType" value="generalMember"></label></td>
-		<td></td>
-		<td style="font-size:xx-large; cursor:pointer;"><label>사업자 회원 가입<br><input type="radio" name="memberType" value="licenseeMember"></label></td>
+		<td style="font-size:x-large; cursor:pointer;"><label>일반 회원 가입<br><input type="radio" name="memberType" value="generalMember"></label></td>
+		<td style="font-size:x-large; cursor:pointer;"><label>사업자 회원 가입<br><input type="radio" name="memberType" value="licenseeMember"></label></td>
 	</tr>
 </table>
 
-<div id="a" align="center">
+<div id="a" align="center" style="padding-bottom:30px;">
 	<input type="button" value="회원가입하기">
 </div>
-
+</div>
+</div>
 </div>

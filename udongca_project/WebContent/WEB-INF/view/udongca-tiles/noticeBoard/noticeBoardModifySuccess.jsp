@@ -9,7 +9,7 @@
 <div align="center">
 	<h2>공지가 성공적으로 수정되었습니다!</h2>
 </div>
-<div align="center">
+<div align="center" style="padding:30px;">
 	<a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc"><input
 		type="button" value="공지목록"></a> <a
 		href="/udongca_project/main.udc"><input type="button"

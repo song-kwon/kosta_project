@@ -25,7 +25,6 @@ thead{
 	text-align:center;
 	width:400px;
 	height:40px;
-	margin:20px;
 	font-size:13pt;
 	font-weight:bold;
 	cursor:default;
@@ -52,19 +51,29 @@ tr#tr, td{
 
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
+
+@media (max-width:992px){
+ .inquiry_content{
+ 	display: none;
+ }
+ 
+ .inquiry_no{
+ 	width:100px;
+ }
+}
 </style>
 
-<div>
+<div style="padding:20px;">
 	<h1>1:1 문의 내역</h1>
 </div>
-<table>
+<table class="table">
 	<thead id="thead">
 		<tr>
-			<td>No</td>
+			<td class="inquiry_no">No</td>
 			<td>문의 제목</td>
-			<td>문의 내용</td>
+			<td class="inquiry_content">문의 내용</td>
 			<td>작성자</td>
-			<col width="50px"><col width="200px"><col width="300px"><col width="60px">
+			<col width="50px"><col width="170px"><col width="300px"><col width="60px">
 		</tr>
 	</thead>
 	<tbody id="tbody">
