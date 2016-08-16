@@ -6,14 +6,14 @@
  .nav-pills > li.active > a:focus{
 	background-color:#6b4004;
 }
-.nav>li>a{
+/* .nav>li>a{
 	font-weight: bold;
 	font-size:12pt;
-}
+} */
 .nav > li > a:hover,
 .nav > li > a:focus{
 	background-color:#faebd7;
-}
+} 
 </style>
 <script type="text/javascript">
 $(document).ready(function(){

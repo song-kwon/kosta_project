@@ -37,7 +37,7 @@
 				refresh($("#pnum").text(),$("#selectType").val());
 			});
 			/* 손가락 클릭시 이벤트처리 */
-			$('.fa').on('click',function(){
+			$('.form-group .fa').on('click',function(){
 				 var $this = $(this); 
 				 if($this.hasClass("fa-thumbs-down")){
 					 $this.removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
@@ -327,7 +327,7 @@ thead{
 	border-bottom:3px solid;
 }
 
-.fa{
+.form-group > .fa{
 	cursor:pointer;
 	font-size:30pt;
 }

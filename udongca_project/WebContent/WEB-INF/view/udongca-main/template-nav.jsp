@@ -11,14 +11,12 @@
 <script type="text/javascript" src="/udongca_project/scripts/udongca.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
+<link rel="stylesheet" href="/udongca_project/css/bootstrap.css">
 <!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.css">
+<link rel="stylesheet" href="/udongca_project/css/bootstrap-theme.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
+<script src="/udongca_project/scripts/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/d86bc62528.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
