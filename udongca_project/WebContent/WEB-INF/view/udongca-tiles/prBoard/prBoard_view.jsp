@@ -58,13 +58,25 @@
 		border-bottom:1.5px solid;
 }
 	.replyText{
-		width:500px;
+		white-space:pre-wrap;
 	}
 	#reviewContentText{
 		white-space:pre-wrap;
 	}
 		.reportContent{
 		display:none;
+	}
+	.cafeIntro{
+		white-space: pre-wrap;
+	}
+	
+	@media (max-width:992px){
+		.review_table_content, .review_table_date{
+	 		display: none;
+		}
+		.review_table_no{
+			width:100px;
+		}
 	}
 </style>
 
@@ -166,8 +178,7 @@
 		
 		$(document).on('click','.reReplyInputBtn',function(){
 			$("#reReplyInput").remove();
-			$(this).parent().parent().parent().append("<div id='reReplyInput' style='height:40px;'><input type='text' id='reReplyContent' placeholder='댓글 입력' class='form-control' style='float:left;width:835px;margin-left:50px'><button class='addReReply btn btn-default'>등록</button></div>");
-			$("nav").height($('section').height()+60);
+			$(this).parent().parent().parent().append("<div id='reReplyInput' style='height:70px;'><input type='text' id='reReplyContent' placeholder='댓글 입력' class='form-control' style='float:left'><button class='addReReply btn btn-default'>등록</button></div>");
 		});
 		
 		$(document).on('click','.addReReply',function(){
@@ -355,11 +366,11 @@
 				    });
 				}
 				else{
-					$("#content").append("<br><font size=3 style='margin:150px;'>해당 카테고리의 메뉴가 존재하지 않습니다.<br></font>");
+					$("#content").append("<font size=3 style='align:center'>해당 카테고리의 메뉴가 존재하지 않습니다.</font>");
 				}
 				
 				if ("${sessionScope.login.memberId}" == "${requestScope.prBoard.memberId}" && "${sessionScope.login.memberType}" == "licenseeMember"){
-					$("#content").append("<div style='padding:25px; float:right;'><button onclick='menuModifyForm()' class='btn btn-default'>메뉴 수정</button></div>");
+					$("#content").append("<div style='align:center'><button onclick='menuModifyForm()' class='btn btn-default'>메뉴 수정</button></div>");
 				}
 			},
 			"error":function(xhr){
@@ -430,13 +441,19 @@
 				}
 				else{
 					html += "<div style='font-size:30px;'>방문 후기</div><br>";
-					html += "<table id='review_table' style='width:950px;'><thead id='review_table_thead'><tr><td style='width:50px;'>No</td><td style='width:150px;'>제목</td><td style='width:250px'>리뷰 내용</td><td style='width:90px;'>작성 날짜</td></tr></thead>";
+					html += "<table class='table' id='review_table'><thead id='review_table_thead'><tr><td class='review_table_no'>No</td><td class='review_table_title'>제목</td>";
+					if ($(".container").width() >= 992){
+						html += "<td class='review_table_content'>리뷰 내용</td><td class='review_table_date'>작성 날짜</td>";
+					}
+					html += "</tr></thead>";
 					for (var i = 0; i < json.list.length; i++){
 						html += "<tr onclick='reviewDetail(" + json.list[i].reviewNo + ")' style='cursor:pointer;'>";
-						html += "<td>" + json.list[i].reviewNo + "</td>";
-						html += "<td id='td1' style='text-align:left; cursor:pointer; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'><a href='javascript:void(0)' style='text-decoration:none;' >" + json.list[i].reviewTitle +"</a></td>";
-						html += "<td id='td2-" + i + "' style='text-align:left; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" + json.list[i].reviewContent + "</td>";
-						html += "<td>" + json.list[i].reviewDate + "</td>";
+						html += "<td class='review_table_no'>" + json.list[i].reviewNo + "</td>";
+						html += "<td class='review_table_title' id='td1' style='text-align:left; cursor:pointer; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'><a href='javascript:void(0)' style='text-decoration:none;' >" + json.list[i].reviewTitle +"</a></td>";
+						if ($(".container").width() >= 992){
+							html += "<td class='review_table_content' id='td2-" + i + "' style='text-align:left; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" + json.list[i].reviewContent + "</td>";
+							html += "<td class='review_table_date'>" + json.list[i].reviewDate + "</td>";
+						}
 						html += "</tr>";
 					}
 					html += "</table><br>";
@@ -446,7 +463,7 @@
 					}
 					
 					html = "";
-					html += "</table><br><div style='padding-left:400px;'><ul class='pagination'>";
+					html += "</table><br><div><ul class='pagination'>";
 					html += "<li><a href='javascript:void(0" + ((!json.pageBean.previousPageGroup) ? "" : (" onclick='reviewList(" + (json.pageBean.beginPage-1))) + ")'" + ">◀</a></li>";
 					
 					for (var i = json.pageBean.beginPage; i < json.pageBean.endPage+1; i++){
@@ -457,9 +474,9 @@
 				}
 				
 				if ("${sessionScope.login.memberType}" == "generalMember"){
-					html += "<div style='width:950px;' align='right'><button onclick=reviewWrite(true) class='btn btn-default'>리뷰 작성</button></div>";
+					html += "<div style='align:right'><button onclick=reviewWrite(true) class='btn btn-default'>리뷰 작성</button></div>";
 				}else{
-					html += "<div style='width:950px;' align='right'><button onclick=reviewWrite(false) class='btn btn-default'>리뷰 작성</button></div>";
+					html += "<div style='align:right'><button onclick=reviewWrite(false) class='btn btn-default'>리뷰 작성</button></div>";
 				}
 				
 				$("#content").append(html);
@@ -486,11 +503,11 @@
 				currentReviewNo = reviewNo;
 				currentReviewMemberId = json.review.memberId;
 				
-				$("#content").append("<table><tr><td id='reviewArea' style='width:950px;'></td></tr><tr><td id='replyArea'></td></tr></table>");
+				$("#content").append("<table><tr><td id='reviewArea'></td></tr><tr><td id='replyArea'></td></tr></table>");
 				
 				var writerId = "'" + currentReviewMemberId + "'";
 				reviewImageArray = json.review.reviewFakeImage.split(";");
-				html += "<table style='text-align:center; font-size:18px; height:50px; width:inherit; table-layout:fixed;'><tr style='font-size:30px; font-weight:bold;'><td id='reviewTitle' style='width:950px;'></td></tr>";
+				html += "<table style='text-align:center; font-size:18px; height:50px; width:inherit; table-layout:fixed;'><tr style='font-size:30px; font-weight:bold;'><td id='reviewTitle'></td></tr>";
 				html += "<tr style='text-align:right;'><td>작성자 : " + currentReviewMemberId+"</td></tr>";
 				html += "<tr style='text-align:right'><td>작성일자 : " + json.review.reviewDate + "</td></tr>";
 				html += "<tr><td colspan=3><div style='padding:10px;'>평점  ";
@@ -501,24 +518,26 @@
 				html += "<tr><td style='padding:20px;' id='reviewContent' colspan=3>";
 				html += "</td></tr>";
 				html += "<tr><td style='word-break:break-all;' id='reviewContentText' colspan=3>";
-				html += "</td></tr></table>";
+				html += "</td></tr>";
+				html += "<tr><td style='align:center'colspan=3>"
 				if ("${sessionScope.login.memberId}" == currentReviewMemberId){
-					html += "<button onclick=reviewModifyForm(" + reviewNo + "," + writerId + ") class='btn btn-default' style='margin-left:765px;margin-bottom:20px'>수정</button>";
-					html += "<button onclick=reviewDelete(" + reviewNo + "," + writerId + ") class='btn btn-default' style='margin-bottom:20px'>삭제</button>";
+					html += "<button onclick=reviewModifyForm(" + reviewNo + "," + writerId + ") class='btn btn-default' style='margin-bottom:20px;align:center'>수정</button>";
+					html += "<button onclick=reviewDelete(" + reviewNo + "," + writerId + ") class='btn btn-default' style='margin-bottom:20px;align:center'>삭제</button>";
 				}
 				if ("${sessionScope.login.memberId}" && "${sessionScope.login.memberId}" != currentReviewMemberId){
-					html += "<div style='float:right;margin-right:40px;'><button onclick='reviewReport()' class='btn btn-default' style='margin-bottom:20px'>신고</button>";
+					html += "<button onclick='reviewReport()' class='btn btn-default' style='margin-bottom:20px;align:center'>신고</button>";
 				}
-				html += "<button onclick='reviewList(" + currentPage + ")' class='btn btn-default' style='margin-bottom:20px'>목록</button></td></tr>";
+				html += "<button onclick='reviewList(" + currentPage + ")' class='btn btn-default' style='margin-bottom:20px;align:center'>목록</button></td></tr>";
+				html += "</td></tr></table>";
 				
 				$("#reviewArea").append(html);
 				$("#reviewTitle").text(json.review.reviewTitle);
 				for (var i = 0; i < reviewImageArray.length - 1; i++){
-					$("#reviewContent").append("<img src='/udongca_project/images/" + reviewImageArray[i] + "' height='300' width='300'><br>");
+					$("#reviewContent").append("<img src='/udongca_project/images/" + reviewImageArray[i] + "' width='100%' height='320px'><br>");
 				}
 				$("#reviewContentText").append(document.createTextNode(json.review.reviewContent));
 				
-				html = "<table style='width:950px;' id='replyBoard'>";
+				html = "<table id='replyBoard'>";
 				
 				for (var group = 1; group < countGroup+1; group++){
 					var isParentExist = false;
@@ -564,7 +583,7 @@
 				}
 				html += "</table>"
 				if ("${sessionScope.login}"){
-					html += "<div class='form-group'><input type='text' class='form-control input-lg' id='replyContent' style='width:860px;float:left;' placeholder='댓글 입력'><button class='btn btn-default btn-lg' id='addReply'>등록</button></div>";
+					html += "<div class='form-group'><input type='text' class='form-control input-lg' id='replyContent' style='float:left;' placeholder='댓글 입력'><button class='btn btn-default btn-lg' id='addReply'>등록</button></div>";
 					html += "";
 				}
 				
@@ -577,9 +596,6 @@
 			
 			"error":function(xhr){
 				alert("An error occured in reviewDetail(): " + xhr.status + " " + xhr.statusText);
-			},
-			"complete":function(){
-				$("nav").height($('section').height()+60);
 			}
 		});
 	}
@@ -603,11 +619,18 @@
 		}
 	}
 </script>
+<style>
+pre{
+ border: none;
+ background-color:white;
+}
+
+</style>
 	<input type="hidden" id="cafeNo" value="${requestScope.prBoard.cafeNo}">
 	<div><h1 style="margin-top:0px;" id="cafeName">  ${requestScope.prBoard.cafeName }</h1></div><p>
 	<div style="color:darkorange;"><font size="4">&nbsp;&nbsp;안녕하세요! "${requestScope.prBoard.cafeName }"에 오신 것을 환영합니다!!</font></div><br>
 	<div class='col-sm-12'>
-		<div class='col-sm-6'>
+		<div class='col-sm-6' style="margin-bottom:20px;">
 			<!--
 				홍보글 객체에서 fakeImage를 불러 와, 이를 Split한 뒤 for 문으로 경로를 순차적으로 조회.
 			-->
@@ -618,25 +641,25 @@
 			</div>
 		</div>
 		<div class='col-sm-6' style="min-height:200px;">
-			<table>
+			<table class="table">
 				<tr>
-					<td style="min-width:65px; height:30px;">영업 시간</td>
-					<td style="padding-left:10px">${requestScope.prBoard.operationHour}</td>
+					<td class='col-sm-2' style="min-width:60px; height:30px;">영업 시간</td>
+					<td class='col-sm-4' style="padding-left:10px">${requestScope.prBoard.operationHour}</td>
 				</tr>
 				<tr>
-					<td>연락처</td>
-					<td style="padding-left:10px">
+					<td class='col-sm-2' >전화번호</td>
+					<td class='col-sm-4' style="padding-left:10px">
 						카페: ${requestScope.prBoard.cafeTel}<br>
 						사업자: ${requestScope.prBoard.managerTel}
 					</td>
 				</tr>
 				<tr>
-					<td>카페 평점</td>
-					<td id="cafeAverageRating" style="padding-left:10px; align:center;"></td>
+					<td class='col-sm-2' >카페 평점</td>
+					<td class='col-sm-4' id="cafeAverageRating" style="padding-left:10px; align:center;"></td>
 				</tr>
 				<tr>
-					<td>카페 특징</td>
-					<td style="padding-left:10px">
+					<td class='col-sm-2' >카페 특징</td>
+					<td class='col-sm-4' style="padding-left:10px">
 						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'wifi')}">
 							<img src="/udongca_project/udongca-image/coffee-cup-with-wireless-symbol.png" title="Wi-Fi" height="20" width="20">
 						</c:if>
@@ -669,9 +692,9 @@
 						</c:if>
 					</td>
 				</tr>
-				<tr>
-					<td>카페 소개</td>
-					<td style="padding-left:10px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
+				<tr style="  padding: 8px;  line-height: 1.42857143;  vertical-align: top;  border-bottom: 1px solid #ddd;">
+					<td class='col-sm-2' >카페 소개</td>
+					<td class='col-sm-4' style="padding-left:10px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
 				</tr>
 			</table>
 		</div>

@@ -17,6 +17,7 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="/udongca_project/scripts/bootstrap.js"></script>
 <script src="https://use.fontawesome.com/d86bc62528.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("input[type='button']").prop({
