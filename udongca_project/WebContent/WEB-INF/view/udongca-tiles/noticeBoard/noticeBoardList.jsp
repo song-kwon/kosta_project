@@ -56,7 +56,7 @@ tr#tr, td{
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
 
-@media (max-width:992px){
+@media (max-width:768px){
  .notice_content, .notice_date{
  	display: none;
  }
