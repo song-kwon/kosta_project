@@ -83,6 +83,10 @@ div#menu3, a:hover {
 	color: navajowhite;
 	font-weight: bold;
 } */
+
+.search{
+ padding:0px;
+}
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">
@@ -171,8 +175,9 @@ div#menu3, a:hover {
 
 <div class="container" style="margin-top: 5px; margin-bottom: 5px;">
 	<div class="row">
-		<div class="col-sm-12 form-inline">
-			<div class="col-sm-6" align="center">
+	<div class="collapse navbar-collapse search" id="myNavbar2">
+		<div class="col-sm-12 form-inline search">
+			<div class="col-sm-7 search" align="center">
 				<label for="sel1">주소검색</label> <select id="address1"
 					class="form-control" size="1"><option value=0>시/도</option>
 					<c:forEach items="${requestScope.result.majorCategory}"
@@ -188,11 +193,12 @@ div#menu3, a:hover {
 					</c:forEach></select>
 				<button class="form-control btn-danger" id="searchAddress">검색</button>
 			</div>
-			<div class="col-sm-6" align="center">
+			<div class="col-sm-5 search" align="center">
 				<label for="sel1">테마검색</label> <select id="theme"
 					class="form-control"><option value="0">테마선택</option></select>
 				<button class="form-control btn-danger" id="searchTheme">검색</button>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>
