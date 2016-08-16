@@ -118,7 +118,9 @@ select{
 .pagination>.active>a, .pagination>.active>a:hover {
 	background-color: #6b4004;
 }
-
+a{
+ font-size:15pt;
+}
 .pagination>li>a {
 	color: #a2522d;
 }

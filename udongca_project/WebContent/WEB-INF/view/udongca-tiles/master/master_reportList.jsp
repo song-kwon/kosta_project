@@ -302,12 +302,7 @@ table{
 	margin-left:30px;
 	text-align:center;
 }
-.nav>li>a{
-    padding-left: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-}
+
 .pager li > a,
 .pager li > span {
   display: inline-block;

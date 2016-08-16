@@ -6,17 +6,12 @@
  .nav-pills > li.active > a:focus{
 	background-color:#6b4004;
 }
- .nav>li>a{
-	padding:0px;
-} 
+
 .nav > li > a:hover,
 .nav > li > a:focus{
 	background-color:#faebd7;
 } 
-nav{
-	line-height: 40px;
-	
-}
+
 
 </style>
 <script type="text/javascript">

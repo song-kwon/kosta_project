@@ -47,12 +47,7 @@ td{
 	cursor:pointer;
 	table-layout:fixed;
 }
-.nav>li>a{
-    padding-left: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-}
+
 
 .modal-footer{
 	background-color:#faebd7;

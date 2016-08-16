@@ -192,12 +192,7 @@ thead{
 	cursor:pointer;
 	table-layout:fixed;
 }
-.nav>li>a{
-    padding-left: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-} 
+
 .fa-thumbs-o-down{
 	cursor:pointer;
 	font-size:30pt;
