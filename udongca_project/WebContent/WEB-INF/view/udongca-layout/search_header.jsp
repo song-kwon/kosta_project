@@ -48,7 +48,7 @@
 	height: 48px;
 }
 
-.col-xs-1 {
+/* .col-xs-1 {
 	width: 120px;
 }
 
@@ -73,7 +73,7 @@ div#menu2, a:hover {
 div#menu3, a:hover {
 	color: navajowhite;
 	font-weight: bold;
-}
+} */
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">

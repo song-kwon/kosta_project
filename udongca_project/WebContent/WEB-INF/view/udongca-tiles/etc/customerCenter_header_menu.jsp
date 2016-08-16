@@ -48,7 +48,7 @@ cursor:pointer;
 
 <li class="dropdown"><a class="dropdown-toggle"
 	data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
-	<ul class="dropdown-menu">
+	<ul class="dropdown-menu" style="text-align:right">
 		<li><a
 			href="/udongca_project/noticeBoard/noticeBoardListPaging.udc"
 			class="menu">공지사항</a></li>
