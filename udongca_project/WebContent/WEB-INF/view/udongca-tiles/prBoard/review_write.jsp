@@ -116,7 +116,7 @@ table{
 			</tr>
 			<tr>
 				<td class="text">사진</td>
-				<td><input type="file" name="reviewImage" multiple="multiple"></td>
+				<td><input type="file" name="reviewImage" multiple="multiple" style="width:100px;"></td>
 				<td></td>
 			</tr>
 		</table>

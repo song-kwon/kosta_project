@@ -427,10 +427,10 @@ function memberReportDetail(reportboardNo){
 function sessionCheck(memberId){
 	if(!memberId){
 		if(confirm('로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?\n(확인:로그인페이지 / 취소:메인페이지)')){
-			location.href='http://192.168.0.116:4322/udongca_project/loginPage.udc';
+			location.href='http://localhost:5000/udongca_project/loginPage.udc';
 			return false;
 		}else{
-			location.href='http://192.168.0.116:4322/udongca_project/main.udc';
+			location.href='http://localhost:5000/udongca_project/main.udc';
 			return false;
 		}
 	}

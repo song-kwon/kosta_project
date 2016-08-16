@@ -38,6 +38,15 @@
 			});
 </script>
 <style type="text/css">
+@media (min-width: 768px){
+.fa-search{
+    display: none;
+}
+}
+.fa-search{
+ color:white;font-size:inherit;margin-right:0px;
+}
+
 .div2 {
 	padding: 7px;
 	text-align: center;
@@ -77,12 +86,21 @@ div#menu3, a:hover {
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">
+	
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
 				<span class="icon-bar"></span> <span class="icon-bar"></span><span
 					class="icon-bar"></span>
 			</button>
+			
+			<!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar2">
+				<span class="icon-bar"></span> <span class="icon-bar"></span><span
+					class="icon-bar"></span>
+			</button> -->
+			<button class="fa fa fa-search navbar-toggle" data-toggle="collapse" data-target="#myNavbar2"></button>
+		
 		</div>
 
 		<c:choose>
