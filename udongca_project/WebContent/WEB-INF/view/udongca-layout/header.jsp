@@ -77,7 +77,7 @@
 
 <style type="text/css">
 
-@media (min-width: 992px){
+@media (min-width: 768px){
 .fa-search{
     display: none;
 }
@@ -195,14 +195,14 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 <div class="container" style="margin-top: 5px; margin-bottom: 5px;">
 	<div class="row collapse navbar-collapse" id="myNavbar2">
 		<div class="col-sm-12 form-inline">
-			<div class="col-sm-6" align="center">
+			<div class="col-sm-7" align="center">
 				<label for="sel1">주소검색</label> <select id="address1"
 					class="form-control" size="1"><option>시/도</option></select> <select
 					id="address2" class="form-control"><option>시/도 먼저
 						선택</option></select>
 				<button class="form-control btn-danger" id="main_searchAddress">검색</button>
 			</div>
-			<div class="col-sm-6" align="center">
+			<div class="col-sm-5" align="center">
 				<label for="sel1">테마검색</label> <select id="theme"
 					class="form-control"><option>테마선택</option></select>
 				<button class="form-control btn-danger" id="main_searchTheme">검색</button>

@@ -48,9 +48,9 @@
 						$("#memberPenalty").val(obj.memberInfo.memberPenalty);
 						$("#loginPossibility").val(obj.memberInfo.loginPossibility);
 						/* memberPenalty 값에 따라 검정 thumbs로 바뀜  */
-						$(".fa").removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
+						$(".form-group .fa").removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down");
 						for(var i =0; i<$("#memberPenalty").val();i++){
-							$(".fa")[i].className = "fa fa-thumbs-down";
+							$(".form-group .fa")[i].className = "fa fa-thumbs-down";
 						}
 						/* loginPossibility값에 따라 선택*/
 						 if($("#loginPossibility").val()=='possible'){
@@ -274,9 +274,9 @@
 	/* 회원 정보 수정 */
 	  function submit(){
 			var value=0;
-			var a = $(".fa");
-			 for(var i =0;i<$(".fa").length;i++){
-				if($(".fa")[i].className=="fa fa-thumbs-down"){
+			var a = $(".form-group .fa");
+			 for(var i =0;i<$(".form-group .fa").length;i++){
+				if($(".form-group .fa")[i].className=="fa fa-thumbs-down"){
 					value++;
 				}
 			} 
@@ -383,7 +383,20 @@ h2{
 .modal-title{
 	color:white;
 }
+@media (max-width: 768px){
+#tr1>td:first-child,
+#tr1>td:nth-child(3){
+	display:none;
+}
 
+.m_hide{
+	display:none;
+}
+}
+.fa-thumbs-down{
+	cursor:pointer;
+	font-size:30pt;
+}
 </style>
 <!-- 3table -->
 <input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
@@ -400,10 +413,10 @@ h2{
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<td style="width: 50px;">No</td>
-							<td style="width: 200px;">제목</td>
-							<td style="width: 300px;">문의유형</td>
-							<td style="width: 100px;">작성자</td>
+							<td class="m_hide" style="width: 50px;">No</td>
+							<td style="width: 200px;white-space: nowrap;">제목</td>
+							<td class="m_hide" style="width: 300px;white-space: nowrap;">문의유형</td>
+							<td style="width: 100px;white-space: nowrap;">작성자</td>
 						</tr>
 					</thead>
 					<tbody id="table1">
@@ -415,7 +428,7 @@ h2{
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" style="color:sienna;text-decoration:none;">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
         리뷰 신고</a>
       </h4>
     </div>
@@ -424,9 +437,9 @@ h2{
 				<table class="table table-hover">
 					<thead>
 						<tr id="tr">
-							<td style="width: 100px;">No</td>
+							<td class="m_hide" style="width: 100px;">No</td>
 							<td style="width: 100px;">신고자</td>
-							<td style="width: 300px;">신고사유</td>
+							<td class="m_hide" style="width: 300px;">신고사유</td>
 							<td style="width: 100px;">처리결과</td>
 						</tr>
 					</thead>
@@ -439,18 +452,18 @@ h2{
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" style="color:sienna;text-decoration:none;">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
         	홍보글신고</a>
       </h4>
     </div>
 		<div id="collapse3" class="panel-collapse collapse">
 			<div class="panel-body">
-				<table style="table-layout: fixed;" class="table table-hover">
+				<table class="table table-hover">
 					<thead>
 						<tr id="tr">
-							<td style="width: 100px;">No</td>
+							<td class="m_hide" style="width: 100px;">No</td>
 							<td style="width: 100px;">신고자</td>
-							<td style="width: 300px;">신고사유</td>
+							<td class="m_hide" style="width: 300px;">신고사유</td>
 							<td style="width: 100px;">처리결과</td>
 						</tr>
 					</thead>
@@ -463,18 +476,18 @@ h2{
 	  <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" style="color:sienna;text-decoration:none;">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" >
         	리플신고</a>
       </h4>
     </div>
 		<div id="collapse4" class="panel-collapse collapse">
 			<div class="panel-body">
-				<table style="table-layout: fixed;" class="table table-hover">
+				<table class="table table-hover">
 					<thead>
 						<tr id="tr">
-							<td style="width: 100px;">No</td>
+							<td class="m_hide" style="width: 100px;">No</td>
 							<td style="width: 100px;">신고자</td>
-							<td style="width: 300px;">신고사유</td>
+							<td class="m_hide" style="width: 300px;">신고사유</td>
 							<td style="width: 100px;">처리결과</td>
 						</tr>
 					</thead>
