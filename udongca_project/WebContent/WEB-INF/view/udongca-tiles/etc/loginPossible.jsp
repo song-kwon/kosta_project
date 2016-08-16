@@ -12,6 +12,8 @@ table, th{
 }
 </style>
 
+<div class="container">
+<div class="col-sm-12" align="center">
 <div><h1>이메일 인증 완료</h1></div>
 <table>
 	<tr>
@@ -34,3 +36,4 @@ table, th{
 <div align="center" style="margin:20px; width:300px;">
 	<a href="/udongca_project/loginPage.udc"><input type="button" id="login" value="로그인"></a>
 </div>
+</div></div>

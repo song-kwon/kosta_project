@@ -90,6 +90,9 @@ input[type="button"]{
 select{
 	width:150px !important;
 } */
+a{
+ font-size:15pt;
+}
 .pagination > .active > a,
 .pagination > .active > a:hover{
 	background-color:#6b4004;

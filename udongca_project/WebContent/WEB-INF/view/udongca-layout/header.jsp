@@ -107,6 +107,8 @@
 div#menu1,a:hover{color:navajowhite; font-weight:bold;}
 div#menu2,a:hover{color:navajowhite; font-weight:bold;}
 div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
+
+
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">
@@ -133,32 +135,29 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 					<c:when test="${sessionScope.login.memberType =='master'}">
 						<div class="collapse navbar-collapse" id="myNavbar" align="right">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="/udongca_project/main.udc" class="menu">메인&nbsp;</a></li>
+								<li><a href="#"
+										style="font-size: 18px; font-weight: bold; color: antiquewhite; cursor:default;">
+										${sessionScope.login.memberName }님! 반갑습니다.&nbsp;&nbsp;</a></li>
 								<li><a href="/udongca_project/member/logout.udc"
 									class="menu">&nbsp;로그아웃&nbsp;</a></li>
 								<li><a href="/udongca_project/member/master_page.udc"
 									class="menu">&nbsp;관리자페이지&nbsp;</a></li>
 								<li><jsp:include
 										page="/WEB-INF/view/udongca-tiles/etc/customerCenter_header_menu.jsp" /></li>
-								<li><div
-										style="font-size: 18px; font-weight: bold; color: antiquewhite;">
-										${sessionScope.login.memberName }님! 반갑습니다.&nbsp;&nbsp;</div></li>
 							</ul>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="collapse navbar-collapse" id="myNavbar" align="right">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="/udongca_project/main.udc" class="menu">메인&nbsp;</a></li>
+								<li><a	style="font-size: 18px; font-weight: bold; color: antiquewhite; cursor:default;">
+										${sessionScope.login.memberName }님! 반갑습니다.&nbsp;&nbsp;</a></li>
 								<li><a href="/udongca_project/member/logout.udc"
 									class="menu">&nbsp;로그아웃&nbsp;</a></li>
 								<li><a href="/udongca_project/member/member_myPage.udc"
 									class="menu">&nbsp;마이페이지&nbsp;</a></li>
 								<li><jsp:include
 										page="/WEB-INF/view/udongca-tiles/etc/customerCenter_header_menu.jsp" /></li>
-								<li><div
-										style="font-size: 18px; font-weight: bold; color: antiquewhite;">
-										${sessionScope.login.memberName }님! 반갑습니다.&nbsp;&nbsp;</div></li>
 								<li><c:if
 										test="${sessionScope.login.memberType eq 'licenseeMember' }">
 										<a href="/udongca_project/prBoard_write_form.udc"><input
@@ -185,7 +184,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 	</div>
 </div>
 
-<div class="jumbotron">
+<div class="jumbotron" onclick="location.href='http://localhost:5000/udongca_project/main.udc';">
 	<div class="container text-center">
 		<h1 class="ddd">우 동 카</h1>
 		<p>우리동네카페</p>
@@ -193,7 +192,8 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 </div>
 
 <div class="container" style="margin-top: 5px; margin-bottom: 5px;">
-	<div class="row collapse navbar-collapse" id="myNavbar2">
+	<div class="row">
+		<div class="collapse navbar-collapse" id="myNavbar2">
 		<div class="col-sm-12 form-inline">
 			<div class="col-sm-7" align="center">
 				<label for="sel1">주소검색</label> <select id="address1"
@@ -207,6 +207,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 					class="form-control"><option>테마선택</option></select>
 				<button class="form-control btn-danger" id="main_searchTheme">검색</button>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>

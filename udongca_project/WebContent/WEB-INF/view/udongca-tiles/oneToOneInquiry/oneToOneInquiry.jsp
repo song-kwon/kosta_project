@@ -3,7 +3,7 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:750px;
+	width:900px;
 	margin:30px;
 	text-align:left;
 	font-size:18px;
@@ -34,7 +34,9 @@ $(document).ready(function(){
 });
 </script>
 
-<div><h1>1:1문의</h1></div>
+<div style="padding:20px;"><h1>1:1문의</h1></div>
+<div class="container">
+<div class="col-sm-12" align="center">
 <table border="1">
 	<tr id="tr">
 		<td style="width:80px; border-right:1px dotted; font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType }]</td>
@@ -60,7 +62,7 @@ $(document).ready(function(){
 		</c:otherwise>
 	</c:choose>
 </table>
-<div align="center">
+<div align="center" style="padding-bottom:30px;">
 	<c:if test="${sessionScope.login.memberId == requestScope.map.oneToOneInquiry.memberId}">
 		<a href="/udongca_project/oneToOneInquiry/modifyOneToOneInquiryform.udc?inquiryNo=${requestScope.map.oneToOneInquiry.inquiryNo}&codeType=inquiry_type"><input type="button" id="modifyBtn" value="문의수정"></a>
 		<input type="button" id="deleteBtn" value="문의삭제">
@@ -73,3 +75,4 @@ $(document).ready(function(){
 	</c:if>
 	<a href="/udongca_project/main.udc"><input type="button" value="메인페이지"></a>
 </div>
+</div></div>
