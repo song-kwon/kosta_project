@@ -68,9 +68,9 @@ td#td2:hover{text-decoration:underline; color:red;}
 
 </style>
 
-<div><h1>공지 사항</h1></div>
+<div style="padding-top:20px;"><h1>공지 사항</h1></div>
 <c:if test="${sessionScope.login.memberId=='udongca' }">
-	<div align="right">
+	<div align="right" style="padding:20px;">
 		<a href="/udongca_project/noticeBoard/registerNoticeBoardform.udc?codeType=notice_type"><input type="button" value="공지사항 등록"></a>
 	</div>
 </c:if>
@@ -81,6 +81,7 @@ td#td2:hover{text-decoration:underline; color:red;}
 			<td>공지 제목</td>
 			<td class="notice_content">공지 내용</td>
 			<td class="notice_date">작성일자</td>
+			<col width="50px"><col width="170px"><col width="300px"><col width="60px">
 		</tr>
 	</thead>
 	<tbody id="tbody">

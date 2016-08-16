@@ -3,7 +3,7 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:700px;
+	width:900px;
 	margin:30px;
 	text-align:left;
 	font-size:18px;
@@ -29,7 +29,9 @@ $(document).ready(function(){
 });
 </script>
 
-<div><h1>공지 사항</h1></div>
+<div style="padding:20px;"><h1>공지 사항</h1></div>
+<div class="container">
+<div class="col-sm-12" align="center">
 <table border="1">
 	<tr id="tr">
 		<td style="width:60px; border-right:1px dotted; font-weight:bold;">[${requestScope.noticeBoard.category }]</td>
@@ -40,7 +42,7 @@ $(document).ready(function(){
 		<td colspan="3" style="width:500px; height:300px;">${requestScope.noticeBoard.noticeContent }</td>
 	</tr>
 </table>
-<div align="center">
+<div align="center" style="padding-bottom:30px;">
 	<c:if test="${sessionScope.login.memberId=='udongca' }">
 		<a href="/udongca_project/noticeBoard/modifyNoticeBoardform.udc?noticeNo=${requestScope.noticeBoard.noticeNo}&codeType=notice_type"><input type="button" value="공지수정"></a>
 		<input type="button" id="deleteBtn" value="공지삭제">
@@ -48,3 +50,4 @@ $(document).ready(function(){
 	<a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc"><input type="button" value="공지목록"></a>
 	<a href="/udongca_project/main.udc"><input type="button" value="메인페이지"></a>
 </div>
+</div></div>

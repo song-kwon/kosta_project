@@ -71,6 +71,7 @@ table{
 	border:1px dotted;
 	height:auto;
 	background-color:antiquewhite;
+	width:900px;
 }
 
 .text{
@@ -81,7 +82,9 @@ table{
 }
 </style>
 
-<div><h1>1:1문의 등록</h1></div>
+<div style="padding:20px;"><h1>1:1문의 등록</h1></div>
+<div class="container">
+<div class="col-sm-12" align="center">
 <br>
 <form action="/udongca_project/oneToOneInquiry/registerOneToOneInquiry.udc?memberId=${sessionScope.login.memberId }" method="post" onsubmit="return checkSubmit();">
 <div class="div">
@@ -112,5 +115,6 @@ table{
 </table>
 </div>
 <br>
-<div align="center"><input type="submit" value="등록"> <a href="/udongca_project/main.udc"><input type="button" value="취소"></a></div>
+<div align="center" style="padding-bottom:30px;"><input type="submit" value="등록"> <a href="/udongca_project/main.udc"><input type="button" value="취소"></a></div>
 </form>
+</div></div>

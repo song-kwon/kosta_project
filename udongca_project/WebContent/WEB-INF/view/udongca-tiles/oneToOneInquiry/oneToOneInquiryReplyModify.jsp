@@ -4,7 +4,7 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:700px;
+	width:900px;
 	margin:30px;
 	text-align:left;
 	font-size:18px;
@@ -35,7 +35,9 @@ function checkSubmit(){
 }
 </script>
 
-<div><h1>1:1문의</h1></div>
+<div style="padding:20px;"><h1>1:1문의</h1></div>
+<div class="container">
+<div class="col-sm-12" align="center">
 <form action="/udongca_project/oneToOneInquiry/modifyOneToOneInquiryReply.udc?inquiryNo=${requestScope.oneToOneInquiry.inquiryNo}" method="post" onsubmit="return checkSubmit();">
 <table border="1">
 	<tr id="tr">
@@ -51,10 +53,11 @@ function checkSubmit(){
 		<td colspan="3"><textarea name="inquiryReply" rows="20" cols="140" placeholder="아직 답변이 달리지 않았습니다. 문의에 대한 답변을 남겨주세요..">${requestScope.oneToOneInquiry.inquiryReply }</textarea></td>
 	</tr>
 </table>
-<div align="center">
+<div align="center" style="padding-bottom:30px;">
 	<input type="submit" value="답변등록">
 	<input type="button" id="deleteBtn" value="문의삭제">
 	<a href="/udongca_project/oneToOneInquiry/oneToOneInquiryListPaging.udc"><input type="button" value="문의목록"></a>
 	<a href="/udongca_project/main.udc"><input type="button" value="메인페이지"></a>
 </div>
 </form>
+</div></div>
