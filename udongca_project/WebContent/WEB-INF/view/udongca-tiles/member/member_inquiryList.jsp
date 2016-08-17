@@ -6,7 +6,6 @@ table{
 	border-top:2px solid;
 	border-bottom:2px solid;
 	width:800px;
-	margin:30px;
 	text-align:center;
 	table-layout:fixed;
 }

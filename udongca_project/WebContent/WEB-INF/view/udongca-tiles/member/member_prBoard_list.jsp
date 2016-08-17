@@ -5,15 +5,12 @@ table{
 	border-collapse: collapse;
 	border-top:2px solid;
 	border-bottom:2px solid;
-	width:800px;
-	margin:30px;
 	text-align:center;
 	table-layout:fixed;
 }
 
 thead{
 	text-align:center;
-	width:400px;
 	height:40px;
 	margin:20px;
 	font-size:13pt;
@@ -37,18 +34,22 @@ tr#tr, td{
 	cursor:pointer;
 }
 
+.table{
+	max-width:400px;
+}
+
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
 </style>
 <input type="hidden" value="${requestScope.error }" id="error">
-<div id="page" style="width: 700px;">
 	<h1>나의 홍보글</h1>
+<div align="center">
 	<c:choose>
 		<c:when test="${empty requestScope.error }">
-			<table id="memberReportList" border="1">
+			<table class="table" id="memberReportList">
 				<thead>
 					<tr>
-						<td>No</td>
+						<td style="width:90px;">No</td>
 						<td>카페명</td>
 					</tr>
 				</thead>
@@ -111,4 +112,5 @@ td#td2:hover{text-decoration:underline; color:red;}
 			</h3>
 		</c:otherwise>
 	</c:choose>
+
 </div>

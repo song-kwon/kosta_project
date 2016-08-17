@@ -139,7 +139,7 @@ table, tbody {
 	overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
 }
 .panel-default > .panel-heading{
-	background-image:linear-gradient(to bottom, #faebd7 0%, rgba(218, 159, 76, 0.68) 100%);
+	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 }
 .panel-title>a{
 	font-weight: bold;
@@ -173,7 +173,7 @@ table, tbody {
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion"
-						href="#collapse1" style="color: sienna; text-decoration: none;">
+						href="#collapse1" style="color: white; text-decoration: none;">
 						내정보</a>
 				</h4>
 			</div>
@@ -190,7 +190,7 @@ table, tbody {
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion"
-						href="#collapse2" style="color: sienna; text-decoration: none;">
+						href="#collapse2" style="color: white; text-decoration: none;">
 						신고 내역</a>
 				</h4>
 			</div>
@@ -214,7 +214,7 @@ table, tbody {
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion"
-						href="#collapse3" style="color: sienna; text-decoration: none;">
+						href="#collapse3" style="color: white; text-decoration: none;">
 						1:1문의 내역</a>
 				</h4>
 			</div>

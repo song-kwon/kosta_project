@@ -79,7 +79,9 @@ $(document).ready(function(){
 		text-decoration:none;
 	}
 }
-
+.nav_section{
+	padding: 0px;
+}
 </style>
 <ul class="nav nav-pills nav-stacked menu1">
 <li class="dropdown">
