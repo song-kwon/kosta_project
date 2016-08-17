@@ -17,7 +17,7 @@ table, td, th {
 }
 
 table {
-	border-collapse: collapse;
+	border-collapse: collapse; N
 	width: 700px;
 }
 

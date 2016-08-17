@@ -39,7 +39,7 @@ $(document).ready(function(){
 <style type="text/css">
 @media (min-width: 768px){
 
-	.menu{
+	.menu1{
 		display:none;
 	}
 	.nav-pills > li.active > a{
@@ -59,7 +59,7 @@ $(document).ready(function(){
 	.nav .open > a, .nav .open > a:hover{
 	background-color:inherit;
 	}
-	.menu{
+	.menu1{
 		background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);	
 		border-radius:4pt;
 	}
@@ -74,9 +74,11 @@ $(document).ready(function(){
 		color:white;
 	}
 }
-
+.nav_section{
+	padding: 0px;
+}
 </style>
-<ul class="nav nav-pills nav-stacked menu">
+<ul class="nav nav-pills nav-stacked menu1">
 <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown">Menu<span class="caret"></span></a>
       <ul class="dropdown-menu">

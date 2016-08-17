@@ -108,6 +108,14 @@ a.list-group-item:hover {
 	margin-top: 25px;
 	font-size: 18px;
 }
+
+.panel-primary>.panel-heading{
+		background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+		border-radius: 4pt;
+}
+.panel-primary{
+		border-color:black;
+}
 </style>
 
 <div class="container">

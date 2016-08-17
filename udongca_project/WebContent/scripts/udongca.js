@@ -170,12 +170,12 @@ $(document).ready(function(){
 	/*정보수정 클릭시 비밀번호 확인 페이지에서 버튼 클릭 이벤트*/
 	$('#verify').on('click',function(){
 		$.ajax({
-			'url':'/udongca_project/member/member_verify.udc',
+			'url':'/udongca_project/member/verify.udc',
 			'type':'post',
 			'data':{'id':$('#id').val(),'password':$('#password').val()},
 			'success':function(txt){
 				if(txt == 'true')
-					location.href='/udongca_project/member/member_modify_form.udc?flag='+txt;
+					location.href='/udongca_project/member/member_modify_form.udc?nav=verify&flag='+txt;
 				else
 					alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
