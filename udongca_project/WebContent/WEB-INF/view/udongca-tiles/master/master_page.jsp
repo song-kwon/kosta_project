@@ -86,22 +86,22 @@
 				 for(var i = 0; i<obj.length;i++){
 					 for(var j = 0 ;j<obj[i].length;j++){
 						if(i==0){ 
-						$("#table1").append("<tr id='tr1' class='cursor' data-backdrop='static' data-toggle='modal' data-target='#oneInquiry' onclick='one("+obj[i][j].inquiryNo+")'><td>"+obj[i][j].inquiryNo+"</td><td>"+obj[i][j].inquiryTitle+"</td><td>"+obj[i][j].inquiryType+"</td><td>"+obj[i][j].memberId+"</td></tr>");
+						$("#table1").append("<tr id='tr1' class='cursor' data-backdrop='static' data-toggle='modal' data-target='#oneInquiry' onclick='one("+obj[i][j].inquiryNo+")'><td>"+obj[i][j].inquiryNo+"</td><td class='cut'>"+obj[i][j].inquiryTitle+"</td><td>"+obj[i][j].inquiryType+"</td><td>"+obj[i][j].memberId+"</td></tr>");
 						}else if(i==1){
 							if(obj[i][j].reportResult==null){
 								obj[i][j].reportResult="처리안됨";
 							}
-							$("#table2").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
+							$("#table2").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td class='cut'>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
 						}else if(i==2){
 							if(obj[i][j].reportResult==null){
 								obj[i][j].reportResult="처리안됨";
 							}
-							$("#table3").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
+							$("#table3").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td class='cut'>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
 						}else{
 							if(obj[i][j].reportResult==null){
 								obj[i][j].reportResult="처리안됨";
 							}
-							$("#table4").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
+							$("#table4").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td class='cut'>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
 						}
 					 }
 				 } 
@@ -320,10 +320,13 @@
 </script>
 <style type="text/css">
 
-
-/* nav{
+.cut{
+  overflow:hidden;
+    text-overflow: ellipsis;
+}
+ nav{
 	line-height: 40px;
-} */
+} 
 /* .table{
 	border-collapse: collapse;
 	width:800px;
@@ -342,12 +345,12 @@ thead{
 	 
 } */
 
-table, tbody{
+/* table, tbody{
 	height:30px;
 }
 label{
 	margin-top:7px;
-}
+} */
 
 .cursor{
 	cursor:pointer;
@@ -372,12 +375,8 @@ h2{
 	font-weight: bold;
 	font-size:12pt;
 }
-.modal-footer{
-	background-color:#faebd7;
-	border-radius:6px;
-}
 .modal-header{
-	background-color:darkgoldenrod;
+	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 	border-radius:6px;
 }
 .modal-title{
@@ -388,15 +387,19 @@ h2{
 #tr1>td:nth-child(3){
 	display:none;
 }
-
-.m_hide{
-	display:none;
+td{
+	width:50%;
+	text-align:center;
 }
 }
+td{
+ 	text-align: center;
+ }
 .fa-thumbs-down{
 	cursor:pointer;
 	font-size:30pt;
 }
+
 </style>
 <!-- 3table -->
 <input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
@@ -410,13 +413,13 @@ h2{
     </div>
 		<div id="collapse1" class="panel-collapse collapse in">
 			<div class="panel-body">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
-						<tr>
-							<td class="m_hide" style="width: 50px;">No</td>
-							<td style="width: 200px;white-space: nowrap;">제목</td>
-							<td class="m_hide" style="width: 300px;white-space: nowrap;">문의유형</td>
-							<td style="width: 100px;white-space: nowrap;">작성자</td>
+						<tr id='tr1'>
+							<td style="width:10%;">No</td>
+							<td>제목</td>
+							<td>문의유형</td>
+							<td>작성자</td>
 						</tr>
 					</thead>
 					<tbody id="table1">
@@ -434,13 +437,13 @@ h2{
     </div>
 		<div id="collapse2" class="panel-collapse collapse">
 			<div class="panel-body" align="center">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
-						<tr id="tr">
-							<td class="m_hide" style="width: 100px;">No</td>
-							<td style="width: 100px;">신고자</td>
-							<td class="m_hide" style="width: 300px;">신고사유</td>
-							<td style="width: 100px;">처리결과</td>
+						<tr id="tr1">
+							<td style="width:10%;">No</td>
+							<td>신고자</td>
+							<td>신고사유</td>
+							<td>처리결과</td>
 						</tr>
 					</thead>
 					<tbody id="table2">
@@ -458,13 +461,13 @@ h2{
     </div>
 		<div id="collapse3" class="panel-collapse collapse">
 			<div class="panel-body">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
-						<tr id="tr">
-							<td class="m_hide" style="width: 100px;">No</td>
-							<td style="width: 100px;">신고자</td>
-							<td class="m_hide" style="width: 300px;">신고사유</td>
-							<td style="width: 100px;">처리결과</td>
+						<tr id="tr1">
+							<td style="width:10%;">No</td>
+							<td>신고자</td>
+							<td>신고사유</td>
+							<td>처리결과</td>
 						</tr>
 					</thead>
 					<tbody id="table3">
@@ -482,13 +485,13 @@ h2{
     </div>
 		<div id="collapse4" class="panel-collapse collapse">
 			<div class="panel-body">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
-						<tr id="tr">
-							<td class="m_hide" style="width: 100px;">No</td>
-							<td style="width: 100px;">신고자</td>
-							<td class="m_hide" style="width: 300px;">신고사유</td>
-							<td style="width: 100px;">처리결과</td>
+						<tr id="tr1">
+							<td style="width:10%;">No</td>
+							<td>신고자</td>
+							<td>신고사유</td>
+							<td>처리결과</td>
 						</tr>
 					</thead>
 					<tbody id="table4">
