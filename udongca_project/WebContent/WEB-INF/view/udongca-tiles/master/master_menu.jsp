@@ -39,7 +39,7 @@ $(document).ready(function(){
 <style type="text/css">
 @media (min-width: 768px){
 
-	.menu{
+	.menu1{
 		display:none;
 	}
 	.nav-pills > li.active > a{
@@ -47,9 +47,11 @@ $(document).ready(function(){
 		background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);	
 	}	
 	a,
-	a:hover
+	a:hover,
+	a:focus
 	{
 		color:black;
+		text-decoration:none;
 	}
 }
 @media(max-width: 768px){
@@ -59,26 +61,29 @@ $(document).ready(function(){
 	.nav .open > a, .nav .open > a:hover{
 	background-color:inherit;
 	}
-	.menu{
+	.menu1{
 		background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);	
 		border-radius:4pt;
 	}
 	.nav > li > a:hover{
 		background-color:inherit;
 	}
-	a:hover, a:focus{
+	.dropdown-toggle:hover, .dropdown-toggle:focus{
 		color:white;
 		cursor:pointer;
 	}
 	a{
 		color:white;
 	}
+	a:hover, a:focus{
+		text-decoration:none;
+	}
 }
 
 </style>
-<ul class="nav nav-pills nav-stacked menu">
+<ul class="nav nav-pills nav-stacked menu1">
 <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown">Menu<span class="caret"></span></a>
+      <a class="dropdown-toggle" data-toggle="dropdown" style="">Menu<span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li class="select1"><a href="/udongca_project/member/memberListPaging.udc?nav=member">회원정보관리</a></li>
         <li class="select2"><a href="/udongca_project/master/reportBoard.udc?reportType=all&nav=master">신고내역</a></li>

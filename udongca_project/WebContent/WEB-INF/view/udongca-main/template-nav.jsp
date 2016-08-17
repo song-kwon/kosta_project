@@ -153,9 +153,7 @@ a{
 
 		<div class="container">
 			<div class="col-sm-12">
-				<section class="nav_section col-sm-12">
 					<tiles:insertAttribute name="body" />
-				</section>
 			</div>
 		</div>
 
