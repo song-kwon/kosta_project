@@ -111,7 +111,8 @@ a.list-group-item:hover {
 
 .panel-primary>.panel-heading{
 		background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
-		border-radius: 4pt;
+		border-radius: 3px;
+		border-color:black
 }
 .panel-primary{
 		border-color:black;
