@@ -321,9 +321,9 @@
 <style type="text/css">
 
 
-/* nav{
+ nav{
 	line-height: 40px;
-} */
+} 
 /* .table{
 	border-collapse: collapse;
 	width:800px;
@@ -342,12 +342,12 @@ thead{
 	 
 } */
 
-table, tbody{
+/* table, tbody{
 	height:30px;
 }
 label{
 	margin-top:7px;
-}
+} */
 
 .cursor{
 	cursor:pointer;
@@ -388,14 +388,13 @@ h2{
 #tr1>td:nth-child(3){
 	display:none;
 }
-
-.m_hide{
-	display:none;
-}
 }
 .fa-thumbs-down{
 	cursor:pointer;
 	font-size:30pt;
+}
+td{
+	text-align:center;
 }
 </style>
 <!-- 3table -->
@@ -412,11 +411,11 @@ h2{
 			<div class="panel-body">
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<td class="m_hide" style="width: 50px;">No</td>
-							<td style="width: 200px;white-space: nowrap;">제목</td>
-							<td class="m_hide" style="width: 300px;white-space: nowrap;">문의유형</td>
-							<td style="width: 100px;white-space: nowrap;">작성자</td>
+						<tr id='tr1'>
+							<td style="width:10%;">No</td>
+							<td>제목</td>
+							<td>문의유형</td>
+							<td>작성자</td>
 						</tr>
 					</thead>
 					<tbody id="table1">
@@ -436,11 +435,11 @@ h2{
 			<div class="panel-body" align="center">
 				<table class="table table-hover">
 					<thead>
-						<tr id="tr">
-							<td class="m_hide" style="width: 100px;">No</td>
-							<td style="width: 100px;">신고자</td>
-							<td class="m_hide" style="width: 300px;">신고사유</td>
-							<td style="width: 100px;">처리결과</td>
+						<tr id="tr1">
+							<td style="width:10%;">No</td>
+							<td>신고자</td>
+							<td>신고사유</td>
+							<td>처리결과</td>
 						</tr>
 					</thead>
 					<tbody id="table2">
@@ -460,11 +459,11 @@ h2{
 			<div class="panel-body">
 				<table class="table table-hover">
 					<thead>
-						<tr id="tr">
-							<td class="m_hide" style="width: 100px;">No</td>
-							<td style="width: 100px;">신고자</td>
-							<td class="m_hide" style="width: 300px;">신고사유</td>
-							<td style="width: 100px;">처리결과</td>
+						<tr id="tr1">
+							<td style="width:10%;">No</td>
+							<td>신고자</td>
+							<td>신고사유</td>
+							<td>처리결과</td>
 						</tr>
 					</thead>
 					<tbody id="table3">
@@ -484,11 +483,11 @@ h2{
 			<div class="panel-body">
 				<table class="table table-hover">
 					<thead>
-						<tr id="tr">
-							<td class="m_hide" style="width: 100px;">No</td>
-							<td style="width: 100px;">신고자</td>
-							<td class="m_hide" style="width: 300px;">신고사유</td>
-							<td style="width: 100px;">처리결과</td>
+						<tr id="tr1">
+							<td style="width:10%;">No</td>
+							<td>신고자</td>
+							<td>신고사유</td>
+							<td>처리결과</td>
 						</tr>
 					</thead>
 					<tbody id="table4">

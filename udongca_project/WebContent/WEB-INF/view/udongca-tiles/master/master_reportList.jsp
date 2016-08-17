@@ -109,7 +109,7 @@
 						if(list[i].reportResult==null){
 							list[i].reportResult="처리안됨";
 						}
-						$("#table").append("<tr class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' id='td2' onclick='link("+list[i].reportboardNo+")'><td>"+list[i].reportboardNo+"</td><td>"+list[i].reportMemberId+"</td><td>"+list[i].reportReason+"</td><td>"+list[i].reportResult+"</td><td>"+list[i].reportType+"</td></tr>");
+						$("#table").append("<tr class='cursor' id='tr1' data-toggle='modal' data-backdrop='static' data-target='#report' id='td2' onclick='link("+list[i].reportboardNo+")'><td>"+list[i].reportboardNo+"</td><td>"+list[i].reportMemberId+"</td><td>"+list[i].reportReason+"</td><td>"+list[i].reportResult+"</td><td>"+list[i].reportType+"</td></tr>");
 						
 						}
 					
@@ -290,11 +290,12 @@
 </script>
 <style type="text/css">
 
+
+/* nav{
+	line-height: 40px;
+}
 label{
 	margin-top:7px;
-}
-nav{
-	line-height: 40px;
 }
 table{
 	border-collapse: collapse;
@@ -320,16 +321,16 @@ thead{
 	font-weight:bold;
 	cursor:default;
 	border-bottom:3px solid;
-}
+} */
 
 .form-group > .fa{
 	cursor:pointer;
 	font-size:30pt;
 }
-table, tbody{
+/* table, tbody{
 	height:30px;
 }
-
+ */
 .cursor{
 	cursor:pointer;
 	table-layout:fixed;
@@ -340,16 +341,7 @@ select#selectType{
 	width:100px;
 	float:left;
 }
-.pagination > .active > a,
-.pagination > .active > a:hover{
-	background-color:#6b4004;
-}
-.pagination > li > a{
-	color:#a2522d;
-}
-.pagination > li > a:hover{
-	color:#6b4004;
-}
+
 .modal-footer{
 	background-color:#faebd7;
 	border-radius:6px;
@@ -361,12 +353,22 @@ select#selectType{
 .modal-title{
 	color:white;
 }
+@media (max-width: 768px){
+#tr1>td:first-child,
+#tr1>td:nth-child(3)
+{
+	display:none;
+}
+}
+td{
+ 	text-align: center;
+ }
 </style>
 <div id="div">
 <input type="hidden" id="memberPenalty">
 	<input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
 	<c:if test="${sessionScope.login.memberType != master}">
-		<div style="margin-left: 30px; margin-top: 30px">
+		<div>
 			<h3>신고리스트</h3>
 			<!-- 신고 테이블 선택 -->
 			<div class="form-group">
@@ -378,12 +380,12 @@ select#selectType{
 		<!-- 테이블 -->
 		<table class="table table-hover">
 			<thead>
-				<tr>
-					<td style="width: 100px;">No</td>
-					<td style="width: 150px;">신고당한사람</td>
-					<td style="width: 250px;">신고사유</td>
-					<td style="width: 250px;">처리결과</td>
-					<td style="width: 100px;">유형</td>
+				<tr id="tr1">
+					<td style="white-space: nowrap; width:10%;">No</td>
+					<td style="white-space: nowrap;">suspectId</td>
+					<td style="white-space: nowrap;">신고사유</td>
+					<td style="white-space: nowrap;">처리결과</td>
+					<td style="white-space: nowrap;">유형</td>
 				</tr>
 			</thead>
 			<tbody id="table">

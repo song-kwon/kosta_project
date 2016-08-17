@@ -69,7 +69,7 @@ function link(id){
 			$("#table").empty();
 			$.each(obj['list'],function(){
 				
-				 $("#table").append("<tr class='cursor' data-toggle='modal' data-backdrop='static' data-target='#myModal' id='td2' onclick='link("+'"'+this.memberId+'"'+")'><td>"+this.memberId+"</td><td >"+this.memberName+"</td><td>"+this.memberEmail+"</td><td>"+this.memberPenalty+"</td><td>"+this.loginPossibility+"</td></tr>");
+				 $("#table").append("<tr class='cursor' id='tr1' data-toggle='modal' data-backdrop='static' data-target='#myModal' id='td2' onclick='link("+'"'+this.memberId+'"'+")'><td>"+this.memberId+"</td><td >"+this.memberName+"</td><td>"+this.memberEmail+"</td><td>"+this.memberPenalty+"</td><td>"+this.loginPossibility+"</td></tr>");
 			});
 			
 			$("#page").empty();
@@ -201,7 +201,7 @@ thead{
 	cursor:pointer;
 	font-size:30pt;
 }
-.pagination > .active > a,
+/* .pagination > .active > a,
 .pagination > .active > a:hover{
 	background-color:#6b4004;
 }
@@ -210,10 +210,20 @@ thead{
 }
 .pagination > li > a:hover{
 	color:#6b4004;
-}
+} */
 .modal-title{
 	color:white;
 }
+@media (max-width: 768px){
+#tr1>td:nth-child(3),
+#tr1>td:nth-child(2)
+{
+	display:none;
+}
+}
+td{
+ 	text-align: center;
+ }
 </style>
 
 
@@ -222,15 +232,15 @@ thead{
 <input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
 <input type="hidden" id="memberPenalty">
 <c:if test="${sessionScope.login.memberType == 'master'}">
-<h3 style="margin:30px;">회원리스트</h3> 
+<h3>회원리스트</h3> 
 <table class="table table-hover">
 <thead>
-	<tr>
-		<td style="width: 160px;">아이디</td>
-		<td style="width: 160px;">이름</td>
-		<td style="width: 160px;">이메일</td>
-		<td style="width: 160px;">페널티</td>
-		<td style="width: 160px;">로그인허용</td>
+	<tr id="tr1">
+		<td style="white-space: nowrap;">아이디</td>
+		<td style="white-space: nowrap;">이름</td>
+		<td style="white-space: nowrap;">이메일</td>
+		<td style="white-space: nowrap;">페널티</td>
+		<td style="white-space: nowrap;">로그인허용</td>
 	</tr>
 </thead>
 <tbody id = "table" >

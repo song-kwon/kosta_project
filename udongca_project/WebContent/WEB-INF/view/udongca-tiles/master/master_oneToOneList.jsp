@@ -5,7 +5,7 @@ nav{
 	line-height: 40px;
 }
 
-label{
+/* label{
 	margin-top:7px;
 }
 table{
@@ -13,7 +13,7 @@ table{
 	width:800px;
 	margin:30px;
 	text-align:center;
-}
+} */
 .pager li > a,
 .pager li > span {
   display: inline-block;
@@ -22,7 +22,7 @@ table{
   border: 1px solid #ddd;
   border-radius: 15px;
 }
-thead{
+/* thead{
 	text-align:center;
 	width:800px;
 	height:40px;
@@ -42,7 +42,10 @@ td{
 	border-top:1px dotted;
 	border-top-color:black;
 }
-
+ */
+ td{
+ 	text-align: center;
+ }
 .cursor{
 	cursor:pointer;
 	table-layout:fixed;
@@ -59,6 +62,15 @@ td{
 }
 .modal-title{
 	color:white;
+}
+@media (max-width: 768px){
+#tr1>td:nth-child(1)
+
+{
+	display:none;
+}
+
+
 }
 </style>
 <script type="text/javascript">
@@ -86,7 +98,7 @@ td{
 				$("#table").empty();
 				
 				$.each(obj['list'],function(){
-					$("#table").append("<tr class='cursor' id='td2' data-backdrop='static' data-toggle='modal' data-target='#otoModal' onclick='link("+'"'+this.inquiryNo+'",'+page.page+")'><td>"+this.inquiryNo+"</td><td>"+this.inquiryTitle+"</td><td>"+this.inquiryType+"</td><td>"+this.memberId+"</td></tr>");
+					$("#table").append("<tr class='cursor' id='tr1' data-backdrop='static' data-toggle='modal' data-target='#otoModal' onclick='link("+'"'+this.inquiryNo+'",'+page.page+")'><td>"+this.inquiryNo+"</td><td>"+this.inquiryTitle+"</td><td>"+this.inquiryType+"</td><td>"+this.memberId+"</td></tr>");
 					
 				});
 				
@@ -175,17 +187,17 @@ td{
 <div id="div">
 <input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
 <c:if test="${sessionScope.login.memberType != master}">
-<div style="margin-left: 30px; margin-top: 30px">
+<div>
 	<h3>1:1문의관리</h3>
 	</div>
 	<div class="form-group">
 	<table class="table table-hover">
 		<thead>
-		<tr>
-			<td style="width:100px;">NO</td>
-			<td style="width:300px;">제목</td>
-			<td style="width:300px;">문의유형</td>
-			<td style="width:100px;">id</td>
+		<tr id='tr1'>
+			<td  style="width:10%;">NO</td>
+			<td>제목</td>
+			<td>문의유형</td>
+			<td>id</td>
 		</tr>
 		</thead>
 		<tbody id="table">
