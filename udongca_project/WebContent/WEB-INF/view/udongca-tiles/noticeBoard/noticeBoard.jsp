@@ -18,6 +18,16 @@ tr#tr{
 .table > tbody > tr > td{
   border-top: 1px solid black;
 }
+@media (max-width: 768px){
+	.table>tbody>#tr{
+	display:none;
+	}
+}
+@media (min-width: 768px){
+	.table>tbody>.tr1{
+	display:none;
+	}
+}
 </style>
 
 <script type="text/javascript">
@@ -40,6 +50,12 @@ $(document).ready(function(){
 	<tr id="tr">
 		<td class="col-sm-9" style="font-weight:bold;">[${requestScope.noticeBoard.category }]&nbsp${requestScope.noticeBoard.noticeTitle }</td>
 		<td class="col-sm-3" align="right">작성일 : ${requestScope.noticeBoard.noticeDate }</td>
+	</tr>
+	<tr class="tr1">
+		<td colspan="2" class="col-sm-9" style="font-weight:bold;">[${requestScope.noticeBoard.category }]&nbsp${requestScope.noticeBoard.noticeTitle }</td>
+	</tr>
+	<tr class="tr1">
+		<td colspan="2">작성일:${requestScope.noticeBoard.noticeDate }</td>
 	</tr>
 	<tr>
 		<td colspan="2" style="width:100%; height:300px;">${requestScope.noticeBoard.noticeContent }</td>
