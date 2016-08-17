@@ -154,7 +154,7 @@
 	vertical-align: bottom;
 }
 
-.center {
+ .center {
 	margin: 300px auto;
 	padding: 10px;
 	width: 130px;
@@ -163,7 +163,7 @@
 	filter: alpha(opacity = 100);
 	opacity: 1;
 	-moz-opacity: 1;
-}
+} 
 
 .center img {
 	height: 120px;
@@ -270,7 +270,7 @@
 	</div>
 
 
-	<div class="modal fade" role="dialog" id="loading_modal"
+	<div class="modal" data-backdrop='static' role="dialog" id="loading_modal"
 		style="display: none;">
 		<div class="center">
 			<img alt="" src="/udongca_project/images/loader.gif" />

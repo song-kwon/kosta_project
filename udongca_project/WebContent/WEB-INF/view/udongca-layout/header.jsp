@@ -111,6 +111,10 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 .search{
  padding:0px;
 }
+
+.jumbotron .container{
+	max-width:50%;
+}
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">
@@ -186,9 +190,9 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 	</div>
 </div>
 
-<div class="jumbotron" onclick="location.href='http://localhost:5000/udongca_project/main.udc';">
-	<div class="container text-center">
-		<h1 class="ddd">우 동 카</h1>
+<div class="jumbotron" >
+	<div class="container text-center" onclick="location.href='http://localhost:5000/udongca_project/main.udc';">
+		<h1>우 동 카</h1>
 		<p>우리동네카페</p>
 	</div>
 </div>
