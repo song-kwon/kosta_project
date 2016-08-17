@@ -3,7 +3,7 @@
 	$(document).ready(function() {
 
 		$("#notice").prop("class", "active");
-
+		$(".dropdown-toggle").html("공지사항<span class='caret'></span>");
 	});
 </script>
 <div align="center">

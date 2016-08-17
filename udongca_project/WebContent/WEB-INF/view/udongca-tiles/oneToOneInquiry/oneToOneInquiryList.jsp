@@ -3,6 +3,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#oneToOneMaster").prop("class","active");
+	$(".dropdown-toggle").html("1:1문의관리<span class='caret'></span>");
 		$("#tbody").on("click","tr",function() {
 				location.replace("/udongca_project/oneToOneInquiry/oneToOneInquiry.udc?inquiryNo="
 						+ $(this).find(":first").text());

@@ -18,12 +18,15 @@ tr#tr{
 .table > tbody > tr > td{
   border-top: 1px solid black;
 }
-
+.cut{
+  	overflow:hidden;
+    text-overflow: ellipsis;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#oneToOneMaster").prop("class","active");
-	
+	$(".dropdown-toggle").html("1:1문의관리<span class='caret'></span>");
 	$("#deleteBtn").on("click",function(){
 		var result = confirm("해당 게시물을 삭제하시겠습니까?");
 		if(result==true){
@@ -40,9 +43,9 @@ $(document).ready(function(){
 </script>
 
 <div><h1>1:1문의</h1></div>
-<table class="table">
+<table class="table" style="table-layout: fixed;">
 	<tr id="tr">
-		<td class="col-sm-8" style="font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType }]&nbsp${requestScope.map.oneToOneInquiry.inquiryTitle }</td>
+		<td class="col-sm-8 cut" style="font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType }]&nbsp${requestScope.map.oneToOneInquiry.inquiryTitle }</td>
 		<td class="col-sm-4">작성자 : ${requestScope.map.oneToOneInquiry.memberId }</td>
 	</tr>
 	<tr>
@@ -57,7 +60,7 @@ $(document).ready(function(){
 		</c:when>
 		
 		<c:otherwise>
-			<tr><td colspan="2" align="center" style="width:100%; height:30px; border-top:3px double; border-bottom:1px dotted; font-weight:bold;">문의 답변</td></tr>
+			<tr><td colspan="2" align="center" style="width:100%; height:30px; border-top:3px double; font-weight:bold;">문의 답변</td></tr>
 			<tr>
 				<td colspan="2" style="width:100%; height:200px;">아직 답변이 달리지 않았습니다.</td>
 			</tr>
