@@ -87,6 +87,10 @@ div#menu3, a:hover {
 .search{
  padding:0px;
 }
+
+.jumbotron .container{
+	max-width:50%;
+}
 </style>
 <div class="navbar-inverse">
 	<div class="container-fluid">
