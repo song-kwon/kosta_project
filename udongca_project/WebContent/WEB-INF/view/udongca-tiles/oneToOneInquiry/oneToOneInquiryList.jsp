@@ -15,8 +15,6 @@ table{
 	border-collapse: collapse;
 	border-top:2px solid;
 	border-bottom:2px solid;
-	width:800px;
-	margin:30px;
 	text-align:center;
 	table-layout:fixed;
 }
@@ -42,6 +40,7 @@ tr#tr, td{
 	border-top-color:black;
 }
 
+
 .cursor{
 	text-align:left;
 	margin:30px;
@@ -53,7 +52,7 @@ td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
 
 @media (max-width:992px){
- .inquiry_content{
+ .inquiry_content, .inquiry_writer{
  	display: none;
  }
  
@@ -72,8 +71,7 @@ td#td2:hover{text-decoration:underline; color:red;}
 			<td class="inquiry_no">No</td>
 			<td>문의 제목</td>
 			<td class="inquiry_content">문의 내용</td>
-			<td>작성자</td>
-			<col width="50px"><col width="170px"><col width="300px"><col width="60px">
+			<td class="inquiry_writer">작성자</td>
 		</tr>
 	</thead>
 	<tbody id="tbody">
@@ -81,8 +79,8 @@ td#td2:hover{text-decoration:underline; color:red;}
 			<tr id="tr">
 				<td>${list.inquiryNo}</td>
 				<td id="td1" class="cursor"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.inquiryType }]</span>&nbsp;${list.inquiryTitle }</td>
-				<td id="td2" class="cursor">${list.inquiryContent }</td>
-				<td>${list.memberId }</td>
+				<td id="td2" class="cursor inquiry_content">${list.inquiryContent }</td>
+				<td class="inquiry_writer">${list.memberId }</td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -42,18 +42,23 @@ tr#tr, td{
 
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
+
+@media(max-width:768px){
+	.inquiry_content, .inquiry_result{
+		display: none;
+	}
+}
 </style>
 
 <div><h1>나의 1:1 문의 내역</h1></div>
 <br>
-<div align="left">
-	<table id="memberInquiryList">
+	<table class="table" id="memberInquiryList">
 		<thead>
 			<tr>
-				<td style="width:50px">No</td>
-				<td style="width:200px">문의 제목</td>
-				<td style="width:300px">문의 내용</td>
-				<td style="width:80px;">처리 결과</td>
+				<td style="width:88px">No</td>
+				<td>문의 제목</td>
+				<td class="inquiry_content">문의 내용</td>
+				<td class="inquiry_result">처리 결과</td>
 			</tr>
 		</thead>
 		<tbody class="tbody">
@@ -63,8 +68,8 @@ td#td2:hover{text-decoration:underline; color:red;}
 				<tr class="tr">
 					<td id="${list.inquiryNo }">${list.myInquiryNo }</td>
 					<td id="td1" class="cursor"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.inquiryType }]</span>&nbsp;${list.inquiryTitle }</td>
-					<td id="td2" class="cursor">${list.inquiryContent }</td>
-					<td>${empty list.inquiryReply or list.inquiryReply==' '?'처리 중':'답변 완료' }</td>
+					<td id="td2" class="cursor inquiry_content">${list.inquiryContent }</td>
+					<td class="inquiry_result">${empty list.inquiryReply or list.inquiryReply==' '?'처리 중':'답변 완료' }</td>
 				</tr>
 			</c:forEach>
 			</c:when>
@@ -117,4 +122,3 @@ td#td2:hover{text-decoration:underline; color:red;}
 		</c:choose>
 		</ul>
 	</div>
-</div>

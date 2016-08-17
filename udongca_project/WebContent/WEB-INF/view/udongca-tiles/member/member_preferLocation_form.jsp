@@ -2,23 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style type="text/css">
 .major_category{
-	width:120px;
+	min-width:120px;
 }
 .middle_category{
 	min-width:100px;
 	text-align: center;
 }
 </style>
-<div id="nav_bodyDiv">
 <div><h1>선호 지역</h1></div><br><br>
-<div class="form-inline" align="left" style="font-size:18px;">
+<div class="form-inline" align="center" style="font-size:18px;">
 	선호지역 1 : <select class="form-control major_category" id="first_category">
 		<option value="0">시/도 선택</option>
 		<c:forEach items="${requestScope.category.majorList }" var="majorList" varStatus="status">
 			<option value="${majorList.majorCategoryNo }"
 				${requestScope.category.myLocationList[0].majorCategoryNo == majorList.majorCategoryNo ? 'selected':'' }>${majorList.addressName }</option>
 		</c:forEach>
-	</select>&nbsp;&nbsp; 
+	</select> 
 	<select class="form-control middle_category" name="first_category">
 		<c:choose>
 			<c:when test="${empty requestScope.category.myLocationList[0]}">
@@ -41,7 +40,7 @@
 				<option value="${majorList.majorCategoryNo }"
 					${requestScope.category.myLocationList[1].majorCategoryNo == majorList.majorCategoryNo ? 'selected':'' }>${majorList.addressName }</option>
 			</c:forEach>
-		</select>&nbsp;&nbsp; 
+		</select> 
 		<select class="form-control middle_category" name="second_category">
 			<c:choose>
 				<c:when test="${empty requestScope.category.myLocationList[1]}">
@@ -63,7 +62,7 @@
 				<option value="${majorList.majorCategoryNo }"
 					${requestScope.category.myLocationList[2].majorCategoryNo == majorList.majorCategoryNo ? 'selected':'' }>${majorList.addressName }</option>
 			</c:forEach>
-		</select>&nbsp;&nbsp; 
+		</select> 
 		<select class="form-control middle_category" name="third_category">
 			<c:choose>
 				<c:when test="${empty requestScope.category.myLocationList[2]}">
@@ -78,6 +77,5 @@
 			</c:choose>
 		</select>
 	<p>
-</div><br>
-<div style="margin-left:20%"><button class="btn btn-default" id="preferLocation_modiftBtn">선호지역 수정</button></div>
+<button class="btn btn-default" id="preferLocation_modiftBtn">선호지역 수정</button>
 </div>

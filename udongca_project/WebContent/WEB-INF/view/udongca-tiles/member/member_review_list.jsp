@@ -6,7 +6,6 @@ table{
 	border-top:2px solid;
 	border-bottom:2px solid;
 	width:800px;
-	margin:30px;
 	text-align:center;
 	table-layout:fixed;
 }
@@ -42,19 +41,25 @@ tr#tr, td{
 
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
+
+@media(max-width:768px){
+	#content,#td2{
+		display: none;
+	}
+
+}
 </style>
 
 <div>
 	<h1>나의 리뷰 리스트</h1><br>
 	<c:choose>
 		<c:when test="${empty requestScope.error }">
-			<table>
+			<table class="table">
 				<thead>
 					<tr>
-						<td id="no">No</td>
+						<td id="no" style="width:88px;">No</td>
 						<td id="title">리뷰 제목</td>
 						<td id="content">리뷰 내용</td>
-						<col width="30px"><col width="200px"><col width="300px">
 					</tr>
 				</thead>
 

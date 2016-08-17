@@ -8,9 +8,6 @@ $(document).ready(function() {
 			location.replace("/udongca_project/noticeBoard/noticeBoard.udc?noticeNo="+ $(this).find(":first").text());
 	});
 	
-		if($(".container").width() <= 992){
-			$(".notice_content, .notice_date").remove();
-		}
 })
 </script>
 
@@ -19,14 +16,12 @@ table{
 	border-collapse: collapse;
 	border-top:2px solid;
 	border-bottom:2px solid;
-	width:800px;
 	text-align:center;
 	table-layout:fixed;
 }
 
 thead{
 	text-align:center;
-	width:400px;
 	height:40px;
 	margin:20px;
 	font-size:13pt;
@@ -81,7 +76,6 @@ td#td2:hover{text-decoration:underline; color:red;}
 			<td>공지 제목</td>
 			<td class="notice_content">공지 내용</td>
 			<td class="notice_date">작성일자</td>
-			<col width="50px"><col width="170px"><col width="300px"><col width="60px">
 		</tr>
 	</thead>
 	<tbody id="tbody">

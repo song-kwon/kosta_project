@@ -6,7 +6,6 @@ table{
 	border-top:2px solid;
 	border-bottom:2px solid;
 	width:800px;
-	margin:30px;
 	text-align:center;
 	table-layout:fixed;
 }
@@ -15,7 +14,6 @@ thead{
 	text-align:center;
 	width:400px;
 	height:40px;
-	margin:20px;
 	font-size:13pt;
 	font-weight:bold;
 	cursor:default;
@@ -49,18 +47,24 @@ tr#tr, td{
 }
 td#td1:hover{text-decoration:underline; color:red;}
 td#td2:hover{text-decoration:underline; color:red;}
+
+@media(max-width:768px){
+	.report_result{
+		display: none;
+	}
+	
+}
 </style>
 <input type="hidden" value="${requestScope.error }" id="error">
-<div id="page" style="width: 700px;">
 	<h1>나의 신고 내역</h1>
 	<c:choose>
 		<c:when test="${empty requestScope.error }">
-			<table id="memberReportList" border="1">
+			<table class="table" id="memberReportList">
 				<thead>
 					<tr>
-						<td style="width:30px;">No</td>
-						<td style="width:300px;">신고내역</td>
-						<td style="width:60px;">처리결과</td>
+						<td style="width:88px;">No</td>
+						<td>신고내역</td>
+						<td class="report_result">처리결과</td>
 					</tr>
 				</thead>
 				<tbody class="tbody" id="reportList">
@@ -69,14 +73,14 @@ td#td2:hover{text-decoration:underline; color:red;}
 							<td class="cursor">${list.myReportNo }</td>
 							<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" class="cursor">[${list.reportType}]${empty list.reportContent ? list.reportReason
 																				: list.reportContent}</td>
-							<td class="cursor">${empty list.reportResult ? '처리중':'처리됨'}</td>
+							<td class="cursor report_result">${empty list.reportResult ? '처리중':'처리됨'}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			
 			<!-- 이전페이지그룹 -->
-			<div style="text-align: center; margin-top: 6px; width:800px;">
+			<div style="text-align: center; margin-top: 6px;">
 				<ul class="pagination">
 				<c:choose>
 					<c:when
@@ -123,12 +127,11 @@ td#td2:hover{text-decoration:underline; color:red;}
 			</h3>
 		</c:otherwise>
 	</c:choose>
-</div>
 
 <div  class="modal fade" id="report_detail" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content" style="width:500px;">
+      <div class="modal-content">
         <div class="modal-header" align="center">
           <h4>신고 상세 내역</h4>
         </div>

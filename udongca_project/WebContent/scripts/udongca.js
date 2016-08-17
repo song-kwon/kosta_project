@@ -170,7 +170,7 @@ $(document).ready(function(){
 	/*정보수정 클릭시 비밀번호 확인 페이지에서 버튼 클릭 이벤트*/
 	$('#verify').on('click',function(){
 		$.ajax({
-			'url':'/udongca_project/member/verify.udc',
+			'url':'/udongca_project/member/member_verify.udc',
 			'type':'post',
 			'data':{'id':$('#id').val(),'password':$('#password').val()},
 			'success':function(txt){

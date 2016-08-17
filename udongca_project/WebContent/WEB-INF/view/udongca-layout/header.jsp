@@ -204,7 +204,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 						선택</option></select>
 				<button class="form-control btn-danger" id="main_searchAddress">검색</button>
 			</div>
-			<div class="col-sm-5 search" align="center">
+			<div class="z-5 search" align="center">
 				<label for="sel1">테마검색</label> <select id="theme"
 					class="form-control"><option>테마선택</option></select>
 				<button class="form-control btn-danger" id="main_searchTheme">검색</button>

@@ -58,33 +58,27 @@ function checkSubmit(){
 
 <style type="text/css">
 table{
-	margin:30px;
 	margin-top:20px;
 	margin-bottom:20px;
 	text-align:left;
-	font-size:18px;
+	font-size:15px;
 }
-.div{
-	border:1px dotted;
-	height:auto;
+.table{
+	max-width:800px;
 	background-color:antiquewhite;
-	width:900px;
 }
 
 .text{
 	font-weight:bold;
-	width:100px;
+	min-width:88px;
 	height:40px;
 }
 </style>
 
 <div style="padding:20px;"><h1>1:1문의 수정</h1></div>
-<div class="container">
-<div class="col-sm-12" align="center">
-<br>
+<div align="center">
 <form action="/udongca_project/oneToOneInquiry/modifyOneToOneInquiry.udc?inquiryNo=${requestScope.map.oneToOneInquiry.inquiryNo}" method="post" onsubmit="return checkSubmit();">
-<div class="div">
-<table>
+<table class="table">
 	<tr>
 		<td class="text">아이디</td>
 		<td>${sessionScope.login.memberId }</td>
@@ -92,7 +86,7 @@ table{
 	<tr>
 		<td class="text">문의 유형</td>
 		<td>
-			<select id="inquiryType" name="inquiryType" class="form-control" style="width:130px;">
+			<select id="inquiryType" name="inquiryType" class="form-control" style="max-width:120px;">
 				<option>유형 선택</option>
 				<c:forEach items="${requestScope.map.codeList }" var="code">
 					<option ${code.codeName == requestScope.map.oneToOneInquiry.inquiryType?'selected="selected"':'' }>${code.codeName }</option>
@@ -102,15 +96,13 @@ table{
 	</tr>
 	<tr>
 		<td class="text">제목</td>
-		<td><input type="text" id="title" name="inquiryTitle" placeholder="제목은 한글 기준 최대 50자까지 입력 가능합니다.." value="${requestScope.map.oneToOneInquiry.inquiryTitle }" style="width:660px;"></td>
+		<td><input type="text" id="title" name="inquiryTitle" placeholder="제목은 한글 기준 최대 50자까지 입력 가능합니다.." value="${requestScope.map.oneToOneInquiry.inquiryTitle }"></td>
 	</tr>
 	<tr>
 		<td class="text">내용</td>
-		<td><textarea id="content" name="inquiryContent" rows="30" cols="80" placeholder="내용을 입력해주세요..">${requestScope.map.oneToOneInquiry.inquiryContent }</textarea>
+		<td><textarea id="content" name="inquiryContent" style="width:100%; min-height:200px;" placeholder="내용을 입력해주세요..">${requestScope.map.oneToOneInquiry.inquiryContent }</textarea>
 	</tr>
 </table>
-</div>
-<br>
 <div align="center" style="padding-bottom:30px;"><input type="submit" value="수정"> <a href="/udongca_project/member/memberInquiryListPaging.udc"><input type="button" value="취소"></a></div>
 </form>
-</div></div>
+</div>

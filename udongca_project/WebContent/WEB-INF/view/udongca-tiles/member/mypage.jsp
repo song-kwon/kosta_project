@@ -57,7 +57,7 @@
 											for (var idx = 0; idx < object.reportList.length; idx++) {
 												$("#memberReportList")
 														.append(
-																"<tr onclick='memberReportDetail("+object.reportList[idx].reportboardNo+")'><td>"
+																"<tr onclick='memberReportDetail("+object.reportList[idx].reportboardNo+")'><td class='report_no'>"
 																		+ object.reportList[idx].myReportNo
 																		+ "</td><td>["
 																		+ object.reportList[idx].reportType
@@ -84,11 +84,11 @@
 											for (var idx = 0; idx < object.inquiryList.list.length; idx++) {
 												$("#memberInquiryList")
 														.append(
-																"<tr class='tr'><td id='"+object.inquiryList.list[idx].inquiryNo+"'>"
+																"<tr class='tr'><td class='inquiry_no' id='"+object.inquiryList.list[idx].inquiryNo+"'>"
 																		+ object.inquiryList.list[idx].myInquiryNo
 																		+ "</td><td>"
 																		+ object.inquiryList.list[idx].inquiryTitle
-																		+ "</td><td>["
+																		+ "</td><td class='inquiry_content'>["
 																		+ object.inquiryList.list[idx].inquiryType
 																		+ "]"
 																		+ object.inquiryList.list[idx].inquiryContent
@@ -157,6 +157,16 @@ table, tbody {
 	color:white;
 }
 #memberReportList tr:hover,#memberInquiryList tr:hover{text-decoration:underline; color:red;}
+
+@media(max-width:992px){
+	.report_no{
+		display: none;
+	}
+	
+	.inquiry_no, .inquiry_content{
+		display: none;
+	}
+}
 </style>
 	<div class="panel-group" id="accordion">
 		<div class="panel panel-default">
@@ -189,9 +199,9 @@ table, tbody {
 					<table class="table table-hover">
 						<thead>
 							<tr id="tr">
-								<td style="width: 100px;">No</td>
-								<td style="width: 300px;">신고 내역</td>
-								<td style="width: 100px;">처리 결과</td>
+								<td class="report_no" style="width: 100px;">No</td>
+								<td>신고 내역</td>
+								<td>처리 결과</td>
 							</tr>
 						</thead>
 						<tbody class="tbody" id="memberReportList">
@@ -213,9 +223,9 @@ table, tbody {
 					<table style="table-layout: fixed;" class="table table-hover">
 						<thead>
 							<tr id="tr">
-								<td style="width: 100px;">No</td>
-								<td style="width: 100px;">문의 제목</td>
-								<td style="width: 300px;">문의 내용</td>
+								<td class="inquiry_no">No</td>
+								<td >문의 제목</td>
+								<td class="inquiry_content" >문의 내용</td>
 								<td style="width: 100px;">처리 결과</td>
 							</tr>
 						</thead>

@@ -3,15 +3,20 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:900px;
-	margin:30px;
 	text-align:left;
-	font-size:18px;
+	font-size:15px;
 }
 
 tr#tr{
-	border-bottom:1px dotted;
 	height:40px;
+}
+
+.table{
+	border:1px solid;
+}
+
+.table > tbody > tr > td{
+  border-top: 1px solid black;
 }
 </style>
 
@@ -29,17 +34,14 @@ $(document).ready(function(){
 });
 </script>
 
-<div style="padding:20px;"><h1>공지 사항</h1></div>
-<div class="container">
-<div class="col-sm-12" align="center">
-<table border="1">
+<div><h1>공지 사항</h1></div>
+<table class="table">
 	<tr id="tr">
-		<td style="width:60px; border-right:1px dotted; font-weight:bold;">[${requestScope.noticeBoard.category }]</td>
-		<td style="width:200px; border-right:1px dotted; font-weight:bold;">${requestScope.noticeBoard.noticeTitle }</td>
-		<td style="width:30px;">${requestScope.noticeBoard.noticeDate }</td>
+		<td class="col-sm-9" style="font-weight:bold;">[${requestScope.noticeBoard.category }]&nbsp${requestScope.noticeBoard.noticeTitle }</td>
+		<td class="col-sm-3" align="right">작성일 : ${requestScope.noticeBoard.noticeDate }</td>
 	</tr>
 	<tr>
-		<td colspan="3" style="width:500px; height:300px;">${requestScope.noticeBoard.noticeContent }</td>
+		<td colspan="2" style="width:100%; height:300px;">${requestScope.noticeBoard.noticeContent }</td>
 	</tr>
 </table>
 <div align="center" style="padding-bottom:30px;">
@@ -50,4 +52,3 @@ $(document).ready(function(){
 	<a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc"><input type="button" value="공지목록"></a>
 	<a href="/udongca_project/main.udc"><input type="button" value="메인페이지"></a>
 </div>
-</div></div>
