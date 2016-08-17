@@ -51,13 +51,12 @@ td{
 	table-layout:fixed;
 }
 
-
-.modal-footer{
-	background-color:#faebd7;
-	border-radius:6px;
+.cut{
+  overflow:hidden;
+    text-overflow: ellipsis;
 }
 .modal-header{
-	background-color:darkgoldenrod;
+	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 	border-radius:6px;
 }
 .modal-title{
@@ -98,7 +97,7 @@ td{
 				$("#table").empty();
 				
 				$.each(obj['list'],function(){
-					$("#table").append("<tr class='cursor' id='tr1' data-backdrop='static' data-toggle='modal' data-target='#otoModal' onclick='link("+'"'+this.inquiryNo+'",'+page.page+")'><td>"+this.inquiryNo+"</td><td>"+this.inquiryTitle+"</td><td>"+this.inquiryType+"</td><td>"+this.memberId+"</td></tr>");
+					$("#table").append("<tr class='cursor' id='tr1' data-backdrop='static' data-toggle='modal' data-target='#otoModal' onclick='link("+'"'+this.inquiryNo+'",'+page.page+")'><td>"+this.inquiryNo+"</td><td class='cut'>"+this.inquiryTitle+"</td><td>"+this.inquiryType+"</td><td>"+this.memberId+"</td></tr>");
 					
 				});
 				
@@ -191,7 +190,7 @@ td{
 	<h3>1:1문의관리</h3>
 	</div>
 	<div class="form-group">
-	<table class="table table-hover">
+	<table class="table table-hover" style="table-layout: fixed">
 		<thead>
 		<tr id='tr1'>
 			<td  style="width:10%;">NO</td>

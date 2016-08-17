@@ -109,7 +109,7 @@
 						if(list[i].reportResult==null){
 							list[i].reportResult="처리안됨";
 						}
-						$("#table").append("<tr class='cursor' id='tr1' data-toggle='modal' data-backdrop='static' data-target='#report' id='td2' onclick='link("+list[i].reportboardNo+")'><td>"+list[i].reportboardNo+"</td><td>"+list[i].reportMemberId+"</td><td>"+list[i].reportReason+"</td><td>"+list[i].reportResult+"</td><td>"+list[i].reportType+"</td></tr>");
+						$("#table").append("<tr class='cursor' id='tr1' data-toggle='modal' data-backdrop='static' data-target='#report' id='td2' onclick='link("+list[i].reportboardNo+")'><td>"+list[i].reportboardNo+"</td><td>"+list[i].reportMemberId+"</td><td class='cut'>"+list[i].reportReason+"</td><td>"+list[i].reportResult+"</td><td>"+list[i].reportType+"</td></tr>");
 						
 						}
 					
@@ -289,7 +289,10 @@
 		  
 </script>
 <style type="text/css">
-
+.cut{
+  overflow:hidden;
+    text-overflow: ellipsis;
+}
 
 /* nav{
 	line-height: 40px;
@@ -341,13 +344,8 @@ select#selectType{
 	width:100px;
 	float:left;
 }
-
-.modal-footer{
-	background-color:#faebd7;
-	border-radius:6px;
-}
 .modal-header{
-	background-color:darkgoldenrod;
+	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 	border-radius:6px;
 }
 .modal-title{
@@ -378,7 +376,7 @@ td{
 			</div>
 		</div>
 		<!-- 테이블 -->
-		<table class="table table-hover">
+		<table class="table table-hover" style="table-layout: fixed;">
 			<thead>
 				<tr id="tr1">
 					<td style="white-space: nowrap; width:10%;">No</td>

@@ -86,22 +86,22 @@
 				 for(var i = 0; i<obj.length;i++){
 					 for(var j = 0 ;j<obj[i].length;j++){
 						if(i==0){ 
-						$("#table1").append("<tr id='tr1' class='cursor' data-backdrop='static' data-toggle='modal' data-target='#oneInquiry' onclick='one("+obj[i][j].inquiryNo+")'><td>"+obj[i][j].inquiryNo+"</td><td>"+obj[i][j].inquiryTitle+"</td><td>"+obj[i][j].inquiryType+"</td><td>"+obj[i][j].memberId+"</td></tr>");
+						$("#table1").append("<tr id='tr1' class='cursor' data-backdrop='static' data-toggle='modal' data-target='#oneInquiry' onclick='one("+obj[i][j].inquiryNo+")'><td>"+obj[i][j].inquiryNo+"</td><td class='cut'>"+obj[i][j].inquiryTitle+"</td><td>"+obj[i][j].inquiryType+"</td><td>"+obj[i][j].memberId+"</td></tr>");
 						}else if(i==1){
 							if(obj[i][j].reportResult==null){
 								obj[i][j].reportResult="처리안됨";
 							}
-							$("#table2").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
+							$("#table2").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td class='cut'>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
 						}else if(i==2){
 							if(obj[i][j].reportResult==null){
 								obj[i][j].reportResult="처리안됨";
 							}
-							$("#table3").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
+							$("#table3").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td class='cut'>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
 						}else{
 							if(obj[i][j].reportResult==null){
 								obj[i][j].reportResult="처리안됨";
 							}
-							$("#table4").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
+							$("#table4").append("<tr id='tr1' class='cursor' data-toggle='modal' data-backdrop='static' data-target='#report' onclick='report("+obj[i][j].reportboardNo+")'><td>"+obj[i][j].reportboardNo+"</td><td>"+obj[i][j].reportMemberId+"</td><td class='cut'>"+obj[i][j].reportReason+"</td><td>"+obj[i][j].reportResult+"</td></tr>");
 						}
 					 }
 				 } 
@@ -320,7 +320,10 @@
 </script>
 <style type="text/css">
 
-
+.cut{
+  overflow:hidden;
+    text-overflow: ellipsis;
+}
  nav{
 	line-height: 40px;
 } 
@@ -372,12 +375,8 @@ h2{
 	font-weight: bold;
 	font-size:12pt;
 }
-.modal-footer{
-	background-color:#faebd7;
-	border-radius:6px;
-}
 .modal-header{
-	background-color:darkgoldenrod;
+	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 	border-radius:6px;
 }
 .modal-title{
@@ -388,14 +387,19 @@ h2{
 #tr1>td:nth-child(3){
 	display:none;
 }
+td{
+	width:50%;
+	text-align:center;
 }
+}
+td{
+ 	text-align: center;
+ }
 .fa-thumbs-down{
 	cursor:pointer;
 	font-size:30pt;
 }
-td{
-	text-align:center;
-}
+
 </style>
 <!-- 3table -->
 <input type="hidden" id="memberCheck" value="${sessionScope.login.memberType }">
@@ -409,7 +413,7 @@ td{
     </div>
 		<div id="collapse1" class="panel-collapse collapse in">
 			<div class="panel-body">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
 						<tr id='tr1'>
 							<td style="width:10%;">No</td>
@@ -433,7 +437,7 @@ td{
     </div>
 		<div id="collapse2" class="panel-collapse collapse">
 			<div class="panel-body" align="center">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
 						<tr id="tr1">
 							<td style="width:10%;">No</td>
@@ -457,7 +461,7 @@ td{
     </div>
 		<div id="collapse3" class="panel-collapse collapse">
 			<div class="panel-body">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
 						<tr id="tr1">
 							<td style="width:10%;">No</td>
@@ -481,7 +485,7 @@ td{
     </div>
 		<div id="collapse4" class="panel-collapse collapse">
 			<div class="panel-body">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<thead>
 						<tr id="tr1">
 							<td style="width:10%;">No</td>
