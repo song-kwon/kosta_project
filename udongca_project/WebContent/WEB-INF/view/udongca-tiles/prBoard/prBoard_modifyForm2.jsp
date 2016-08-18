@@ -6,14 +6,14 @@
 	
 	$(document).ready(function(){
 		for(var i = 0; i < cafeFakeImageArrayNumber; i++){
-			$("#cafeImages").append("<img src='/udongca_project/images/" + cafeFakeImageArray[i] + "' class='image" + i + "' height='20' width='20'>");
+			$("#cafeImages").append("<img src='/udongca_project/images/" + cafeFakeImageArray[i] + "' class='image" + i + "'width='30%'>");
 			$("#cafeImages").append("<button onclick='deleteImage(" + i + ")' class='image" + i + "'>삭제</button>");
 			$("#cafeImages").append("<input type='hidden' name='modifiedCafeFakeImage' value='" + cafeFakeImageArray[i] + "' class='image" + i + "'>");
 			$("#cafeImages").append("<input type='hidden' name='modifiedCafeRealImage' value='" + cafeRealImageArray[i] + "' class='image" + i + "'>");
 			$("#cafeImages").append("<br class='image" + i + "'>");
 		}
 		
-		$("input[type='text']").prop({"class":"form-control col-xs-3"});
+		$("input[type='text']").prop({"class":"form-control"});
 		$("#cancel").on("click", function(){
 			history.back();
 		});
@@ -27,26 +27,30 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:900px;
-	margin:30px;
-	font-size:18px;
+	font-size:15px;
 }
 
 table, th{
 	text-align:left;
-	width:480px;
-	heigth:45px;
-}
-.width_size{
-	width:500px;
+	height:45px;
 }
 
-.width_size2{
-	width:350px;
+span{
+	font-size:13px;
+	color:red;
+}
+
+.table>tbody>tr>td
+{
+	border: none;
+}
+.table{
+	border:1px solid #ddd;
+	max-width:550px;
 }
 </style>
 
-<div class="nonav_bodyDiv" style="width:900px; padding-left:100px;">
+<div align="center">
 <div><h1>카페 홍보글 수정</h1></div><br>
 <div style="color:red;"><font size="3">*표시 항목은 필수 입력 사항입니다.</font></div>
 <form action="/udongca_project/prBoard/prModify.udc" enctype="multipart/form-data" method="post"><br>
@@ -63,18 +67,22 @@ table, th{
 	<input type="hidden" name="cafeRealImage" value="${requestScope.cafeRealImage}">
 	<input type="hidden" name="cafeFakeImage" value="${requestScope.cafeFakeImage}">
 	<input type="hidden" name="memberId" value="${requestScope.memberId}">
-<table>
+<table class="table">
 	<tr>
 		<th>기존 매장 사진</th>
-		<td id="cafeImages"></td>
+	</tr>
+	<tr>
+		<td id="cafeImages" align="center"></td>
+	</tr>
 	<tr>
 		<th>추가 매장 사진</th>
-		<td class="width_size"><input type="file" name="addCafeImage" multiple="multiple"></td>
+	</tr>
+	<tr>
+		<td align="center"><input type="file" name="addCafeImage" multiple="multiple"></td>
 	</tr>
 </table>
 
-
-	<div class="form-group" align="center" style="width:600px; padding-top:20px;">
+	<div class="form-group" align="center">
 		<input type="submit" value="등록">
 		<input type="reset" value="다시 입력">
 		<input type="button" value="취소" id="cancel">

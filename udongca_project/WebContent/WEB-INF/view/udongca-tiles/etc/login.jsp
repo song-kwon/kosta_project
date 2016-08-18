@@ -70,6 +70,8 @@
 																							'<font style="color:red;">'
 																									+ message
 																									+ '</font>');
+																			$('#memberName_id').val('');
+																			$('#memberEmail_id').val('');
 																		}
 																	}, 1000)
 														}
@@ -140,12 +142,23 @@
 																							'<font style="color:red;">'
 																									+ message
 																									+ '</font>');
+																			$('#memberId').val('');
+																			$('#memberName_pwd').val('');
+																			$('#memberEmail_pwd').val('');
 																		}
 																	}, 1000)
 														}
 													});
 
-										})
+										});
+						
+						$('.modal-close').click(function(){
+							$('#memberName_id').val('');
+							$('#memberEmail_id').val('');
+							$('#memberId').val('');
+							$('#memberName_pwd').val('');
+							$('#memberEmail_pwd').val('');
+						});
 
 					});
 </script>
@@ -227,7 +240,7 @@
 						<button id="find_id_btn" type="button"
 							class="btn btn-success btn-block"
 							style="margin-top: 15px; font-size: 20pt;">찾기</button>
-						<button id="close" class="btn btn-default btn-block"
+						<button id="close" class="btn btn-default btn-block modal-close"
 							data-dismiss="modal" style="margin-top: 15px; font-size: 20pt;">닫기</button>
 					</form>
 				</div>
@@ -238,7 +251,7 @@
 	</div>
 
 	<!-- 비밀번호 찾기 modal -->
-	<div class="modal fade" id="find_pwd_modal" role="dialog"
+	<div class="modal fade" data-backdrop='static' id="find_pwd_modal" role="dialog"
 		align="center">
 		<div class="modal-dialog modal-lg" style="max-width: 400px;">
 			<!-- Modal content-->
@@ -259,7 +272,7 @@
 						<button id="find_pwd_btn" type="button"
 							class="btn btn-success btn-block"
 							style="margin-top: 15px; font-size: 20pt;">찾기</button>
-						<button class="btn btn-default btn-block" data-dismiss="modal"
+						<button class="btn btn-default btn-block modal-close" data-dismiss="modal"
 							style="margin-top: 15px; font-size: 20pt;">닫기</button>
 					</form>
 				</div>

@@ -22,6 +22,17 @@ tr#tr{
   	overflow:hidden;
     text-overflow: ellipsis;
 }
+
+@media (max-width: 768px){
+	.table>tbody>#tr{
+	display:none;
+	}
+}
+@media (min-width: 768px){
+	.table>tbody>.tr1{
+	display:none;
+	}
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -48,6 +59,16 @@ $(document).ready(function(){
 		<td class="col-sm-8 cut" style="font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType }]&nbsp${requestScope.map.oneToOneInquiry.inquiryTitle }</td>
 		<td class="col-sm-4">작성자 : ${requestScope.map.oneToOneInquiry.memberId }</td>
 	</tr>
+	
+	<tr class="tr1">
+		<td colspan="2" style="font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType }]&nbsp${requestScope.map.oneToOneInquiry.inquiryTitle }</td>
+	</tr>
+	<tr class="tr1">
+		<td colspan="2" >작성자 : ${requestScope.map.oneToOneInquiry.memberId }</td>
+	</tr>
+	
+	
+	
 	<tr>
 		<td colspan="2" style="width:100%; height:250px;">${requestScope.map.oneToOneInquiry.inquiryContent }</td>
 	</tr>

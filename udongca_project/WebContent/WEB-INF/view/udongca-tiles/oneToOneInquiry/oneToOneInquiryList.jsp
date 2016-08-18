@@ -14,43 +14,67 @@ $(document).ready(function() {
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	border-top:2px solid;
-	border-bottom:2px solid;
 	text-align:center;
-	table-layout:fixed;
-}
-
-thead{
-	text-align:center;
-	width:400px;
-	height:40px;
-	font-size:13pt;
-	font-weight:bold;
-	cursor:default;
-	border-bottom:1.5px solid;
-}
-
-
-table, tbody{
-	height:30px;
-	font-size:12pt;
-}
-
-tr#tr, td{
-	border-top:1px dotted;
-	border-top-color:black;
-}
-
-
-.cursor{
-	text-align:left;
-	margin:30px;
 	cursor:pointer;
-	overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+	border-bottom:1px dotted;
 }
 
-td#td1:hover{text-decoration:underline; color:red;}
-td#td2:hover{text-decoration:underline; color:red;}
+.table{
+	max-width:800px;
+}
+
+.table>thead>tr>td{
+	border-collapse: collapse;
+	border-bottom:2px solid;
+	font-size:15pt;
+	font-weight:bold;
+	text-align:center;
+	cursor:default;
+}
+
+.table>tbody>tr>td{
+	border-collapse: collapse;
+}
+
+.target {
+    display: inline-block;
+    width:200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media(max-width:768px){
+	.table>thead>tr>td{
+		font-size:medium;
+		font-weight:bold;
+		text-align:center;
+	}
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>th{
+		font-size:medium;
+		text-align:center;
+	}
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>td{
+		font-size:medium;
+		text-align:center;
+	}
+}
+
+@media (max-width:768px){
+ .notice_content, .notice_date{
+ 	display: none;
+ }
+ 
+ .notice_no{
+ 	width:100px;
+ }
+}
 
 @media (max-width:992px){
  .inquiry_content, .inquiry_writer{
@@ -63,29 +87,31 @@ td#td2:hover{text-decoration:underline; color:red;}
 }
 </style>
 
-<div style="padding:20px;">
+<div style="padding-top:20px;">
 	<h1>1:1 문의 내역</h1>
-</div>
-<table class="table">
+</div><br>
+<div align="center">
+<table class="table table-hover">
 	<thead id="thead">
 		<tr>
-			<td class="inquiry_no">No</td>
-			<td>문의 제목</td>
-			<td class="inquiry_content">문의 내용</td>
-			<td class="inquiry_writer">작성자</td>
+			<td class="inquiry_no"  style="width:30px;">No</td>
+			<td  style="width:200px;">문의 제목</td>
+			<td class="inquiry_content" style="width:300px;">문의 내용</td>
+			<td class="inquiry_writer" style="width:100px;">작성자</td>
 		</tr>
 	</thead>
 	<tbody id="tbody">
 		<c:forEach items="${requestScope.map.oneToOneInquiryList}" var="list">
 			<tr id="tr">
 				<td>${list.inquiryNo}</td>
-				<td id="td1" class="cursor"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.inquiryType }]</span>&nbsp;${list.inquiryTitle }</td>
-				<td id="td2" class="cursor inquiry_content">${list.inquiryContent }</td>
+				<td id="td1" align="left" class="target"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.inquiryType }]</span>&nbsp;${list.inquiryTitle }</td>
+				<td id="td2" class="cursor inquiry_content" align="left" style="display:inline-block; width:300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.inquiryContent }</td>
 				<td class="inquiry_writer">${list.memberId }</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+</div>
 
 <div align="center">
 <!-- 이전페이지그룹 -->
@@ -127,3 +153,4 @@ td#td2:hover{text-decoration:underline; color:red;}
 </c:choose>
 </ul>
 </div>
+
