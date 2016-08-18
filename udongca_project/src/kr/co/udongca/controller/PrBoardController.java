@@ -161,6 +161,7 @@ public class PrBoardController {
 			return "redirect:/loginPage.udc";
 		}
 		map.put("prBoard", service.selectPRBoardByNo(cafeNo));
+		map.put("cafeNo", cafeNo);
 		return "prBoard/prBoard_modifyForm.tiles";
 	}
 	
