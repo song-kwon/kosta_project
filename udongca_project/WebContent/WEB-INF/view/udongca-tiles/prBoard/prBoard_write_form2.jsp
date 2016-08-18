@@ -23,7 +23,7 @@
 				});
 				
 				$("#menuAdd").on("click", function(){
-					$("#menuList").append("<div><b>종류:</b> <select name='menuTypeArray' class='form-control'><option>종류</option></select><br> <b>이름:</b> <input type='text' name='menuNameArray' class='form-control'><br> 사진: <input type='file' name='menuImageArray'><hr></div>");
+					$("#menuList").append("<hr><div><b>종류:</b> <select name='menuTypeArray' class='form-control'><option>종류</option></select><br> <b>이름:</b> <input type='text' name='menuNameArray' class='form-control'><br> 사진: <input type='file' name='menuImageArray'></div>");
 					if (menuTypeList){
 						for(var i = 0; i < menuTypeList.length; i++){
 							$("[name='menuTypeArray']:last").append("<option>" + menuTypeList[i].codeName + "</option>");
@@ -66,27 +66,26 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:900px;
-	margin:30px;
-	font-size:18px;
+	font-size:15px;
 }
 
 table, th{
 	text-align:left;
-	width:450px;
-}
-.width_size{
-	width:500px;
 }
 
-.width_size2{
-	width:350px;
+.table>tbody>tr>td
+{
+	border: none;
+}
+.table{
+	border:1px solid #ddd;
+	max-width:450px;
 }
 </style>
 
-<div class="nonav_bodyDiv" style="width:900px; padding-left:100px;">
+<div class="container" align="center">
 <div><h1>카페 홍보글 등록</h1></div><br>
-<div style="color:red;"><font size="3">*표시 항목은 필수 입력 사항입니다.</font></div>
+<div style="color:red;"><font size="2">*표시 항목은 필수 입력 사항입니다.</font></div>
 <form action="/udongca_project/prBoard/prWrite.udc" enctype="multipart/form-data" method="post" role="form"><br>
 	<input type="hidden" name="cafeName" value="${requestScope.cafeName}">
 	<input type="hidden" name="cafeIntro" value="${requestScope.cafeIntro}">
@@ -98,26 +97,27 @@ table, th{
 	<input type="hidden" name="managerName" value="${requestScope.managerName}">
 	<input type="hidden" name="managerTel" value="${requestScope.managerTel}">
 	
-<table>
+<table class="table">
 	<tr>
-		<th style="padding-bottom:55px;">매장 사진</th>
-		<td class="width_size" style="padding-bottom:55px;"><input type="file" name="cafeImage" multiple="multiple"></td>
+		<th>매장 사진</th>
+	<tr>
+		<td><input type="file" name="cafeImage" multiple="multiple"></td>
 	</tr>
 	<tr>
 		<th>*메뉴</th>
-		<td class="width_size">
+	<tr>
+		<td >
 			<div id="menuList" class="form-inline">
 					<div>
 						<b>종류:</b> <select name="menuTypeArray" class="form-control"><option>종류</option></select><br>
 						<b>이름:</b> <input type="text" name="menuNameArray"><br>
-						사진: <input type="file" name="menuImageArray"><br>
+						사진: <input type="file" name="menuImageArray">
 					</div>
 			</div>
 		</td>
 	</tr>
 	<tr>
-		<th></th>
-		<td class="width_size">
+		<td>
 			<input type="button" value="메뉴 추가" id="menuAdd">&nbsp;<input type="button" value="메뉴 삭제" id="menuDelete">
 		</td>
 	</tr>	
@@ -125,10 +125,10 @@ table, th{
 </table>
 
 
-	<div class="form-group" align="center" style="width:600px; padding-top:20px;">
+	<div class="form-group" align="center">
 		<input type="submit" value="등록">
 		<input type="reset" value="다시 입력">
 		<input type="button" value="취소" id="cancel">
 	</div>
-</form>
+	</form>
 </div>

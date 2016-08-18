@@ -82,6 +82,9 @@
 	<definition name="prBoard/prBoard_write_form.tiles" extends="default-nonav.tiles">
 		<put-attribute name="body" value="/WEB-INF/view/udongca-tiles/prBoard/prBoard_write_form.jsp"/>
 	</definition>
+		<definition name="prBoard/prBoard_write_form2.tiles" extends="default-nonav.tiles">
+		<put-attribute name="body" value="/WEB-INF/view/udongca-tiles/prBoard/prBoard_write_form2.jsp"/>
+	</definition>
 	<definition name="prBoard/review_write.tiles" extends="default-nav.tiles">
 		<put-attribute name="menu" value="/WEB-INF/view/udongca-tiles/prBoard/reviewWrite_menu.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/view/udongca-tiles/prBoard/review_write.jsp"/>

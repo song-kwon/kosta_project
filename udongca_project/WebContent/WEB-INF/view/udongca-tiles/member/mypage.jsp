@@ -22,7 +22,7 @@
 										$(".loginInfo").empty();
 										$(".loginInfo")
 												.append(
-														"<tr style='border-top-style:hidden;'><td>아이디</td><td>"
+														"<tr style='border-top-style:hidden;'><td style='min-width:100px;'>아이디</td><td>"
 																+ object.loginInfo.memberId
 																+ "</td><tr><td>이름</td><td>"
 																+ object.loginInfo.memberName
@@ -134,7 +134,6 @@ table, tbody {
 
 .cursor{
 	text-align:left;
-	margin:30px;
 	cursor:pointer;
 	overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
 }
@@ -240,7 +239,7 @@ table, tbody {
 	<div class="modal fade" id="report_detail" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-			<div class="modal-content" style="width: 500px;">
+			<div class="modal-content">
 				<div class="modal-header" align="center">
 					<h4>신고 상세 내역</h4>
 				</div>

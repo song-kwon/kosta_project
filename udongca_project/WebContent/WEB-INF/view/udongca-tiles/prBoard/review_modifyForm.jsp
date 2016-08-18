@@ -7,7 +7,7 @@
 	var reviewFakeImageArrayNumber = reviewFakeImageArray.length - 1;
 	
 	$(document).ready(function(){
-		$("button").prop({"class":"btn btn-default"});
+	/* 	$("button").prop({"class":"btn btn-default"}); */
 		$("input[type='text']").prop({"class":"form-control"});
 		
 		$("#reviewTitle").on("keyup keypress", function(){

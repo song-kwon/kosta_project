@@ -78,44 +78,27 @@ function checkSubmit(){
 
 <style type="text/css">
 table{
-	margin:30px;
 	margin-top:20px;
 	margin-bottom:20px;
 	text-align:left;
-	font-size:18px;
+	font-size:15px;
 }
-.div{
-	border:1px dotted;
-	height:auto;
+.table{
+	max-width:800px;
 	background-color:antiquewhite;
 }
 
 .text{
 	font-weight:bold;
+	min-width:88px;
 	height:40px;
-}
-@media (max-width: 768px){
-	.form1{
-		display:none;
-	}
-	table{
-		margin:0px;
-	}
-}
-@media (min-width: 768px){
-	.form2{
-		display:none;
-	}
-	
 }
 </style>
 
 <div><h1>공지 사항 등록</h1></div>
 <div align="center">
-<br>
 <form class="form1" action="/udongca_project/noticeBoard/registerNoticeBoard.udc" method="post" onsubmit="return checkSubmit();">
-<div class="div">
-<table>
+<table class="table">
 	<tr>
 		<td class="text" style="white-space: nowrap;">말머리</td>
 		<td id="abcd">
@@ -133,41 +116,10 @@ table{
 	</tr>
 	<tr>
 		<td class="text">내용</td>
-		<td><textarea name="noticeContent" id="content" rows="30" cols="80" placeholder="내용을 입력해주세요.."></textarea></td>
-	</tr>
-</table>
-</div>
-<br>
-<div align="center" style="padding-bottom:30px;"><input type="submit" value="등록"> <a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc"><input type="button" id="cancel" value="취소"></a></div>
-</form>
-</div>
-<form class="form2" action="/udongca_project/noticeBoard/registerNoticeBoard.udc" method="post" onsubmit="return checkSubmit();">
-<table>
-	<tr>
-		<td class="text">말머리</td>
-	</tr>
-	<tr>
-		<td>
-			<select id="category" name="category" class="form-control" >
-				<option>말머리선택</option>
-				<c:forEach items="${requestScope.codeList }" var="code">
-					<option>${code.codeName}</option>
-				</c:forEach>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td class="text">제목</td>
-	</tr>
-	<tr>
-		<td><input type="text" name="noticeTitle" id="title" placeholder="제목은 한글 기준 최대 50자까지 입력 가능합니다.."></td>
-	</tr>
-	<tr>
-		<td class="text">내용</td>
-		</tr>
-		<tr>
 		<td><textarea name="noticeContent" id="content" rows="10" cols="80" placeholder="내용을 입력해주세요.."></textarea></td>
 	</tr>
 </table>
+
 <div align="center" style="padding-bottom:30px;"><input type="submit" value="등록"> <a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc"><input type="button" id="cancel" value="취소"></a></div>
 </form>
+</div>

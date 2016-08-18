@@ -2,20 +2,37 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:400px;
-	margin:30px;
+	text-align:left;
 }
 
-table, th{
-	text-align:left;
-	width:250px;
+.table{
+	max-width:400px;
 }
+
+.table>tbody>tr>td{
+	border:none;
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>th{
+		font-size:medium;
+		text-align:center;
+	}
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>td{
+		font-size:medium;
+	}
+}
+
 </style>
 
 <div class="container">
 <div class="col-sm-12" align="center">
-<div><h1>회원 가입 완료</h1></div>
-<table>
+<div><h1>회원 가입 완료</h1></div><br>
+<div align="center">
+<table class="table">
 	<tr>
 		<th>아이디</th>
 		<td>${requestScope.member.memberId }</td>
@@ -29,7 +46,7 @@ table, th{
 		<td>${requestScope.member.memberEmail }</td>
 	</tr>
 </table>
-
+</div>
 <div>
 	성공적으로 가입되었습니다!<br>등록된 이메일로 인증 메일이 발송됐습니다.<br>인증 메일로 인증 절차를 거쳐야 로그인이 가능합니다.
 </div>

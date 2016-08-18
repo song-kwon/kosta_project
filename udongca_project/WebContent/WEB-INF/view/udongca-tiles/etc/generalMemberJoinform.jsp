@@ -207,19 +207,30 @@ function checkSubmit(){
 	}
 }
 </script>
-
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	width:900px;
-	margin:30px;
-	font-size:18px;
 	text-align:left;
 }
 
-table, th{
-	text-align:left;
-	width:600px;
+.table{
+	max-width:700px;
+}
+
+.table>tbody>tr>td{
+	border:none;
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>th{
+		font-size:medium;
+	}
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>td{
+		font-size:medium;
+	}
 }
 
 .width_size2{
@@ -230,7 +241,6 @@ table, th{
 
 <div class="container">
 <div class="col-sm-12" align="center">
-<div class="nonav_bodyDiv" style="width:700px;">
 <div><h1>일반 회원 가입</h1></div><br>
 <div style="color:red;"><font size="3">**모든 사항은 필수 입력 사항입니다.</font></div>
 <div><font size="2">아이디는 공백을 제외하여 영문, 숫자 또는 영문과 숫자를 혼합하여 6글자 이상으로 작성해주십시오.</font></div>
@@ -239,10 +249,10 @@ table, th{
 <form action="/udongca_project/member/generalMemberJoin.udc" method="post" onsubmit="return checkSubmit();">
 <input type="hidden" value="false" id="idVerify">
 <input type="hidden" value="false" id="emailVerify">
-<table>
+<table class="table">
 	<tr>
 		<th>아이디</th>
-		<td><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }" style="width:200px;"></td>
+		<td><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }"></td>
 		<td>&nbsp;<input type="button" id="idVerification" value="아이디 확인"></td>
 		<td><span class="error"><form:errors path="member.memberId"/></span></td>
 	</tr>
@@ -254,7 +264,7 @@ table, th{
 	</tr>
 	<tr>
 		<th>비밀번호 확인</th>
-		<td><input type="password" id="password2" class="width_size"></td>
+		<td><input type="password" id="password2"></td>
 	</tr>
 	<tr>
 		<th>이름</th>
@@ -265,7 +275,7 @@ table, th{
 	<tr>
 		<th>이메일</th>
 		<td><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }"></td>
-		<td class="input-group"><span class="input-group-addon">@</span><select id="emailAddress" name="emailAddress" style="width:130px;"class="form-control col-xs-2" aria-describedby="inputGroupSuccess1Status">
+		<td class="input-group"><span class="input-group-addon">@</span><select id="emailAddress" name="emailAddress" class="form-control col-xs-2" aria-describedby="inputGroupSuccess1Status">
 				<option>이메일선택</option>
 				<option>naver.com</option>
 				<option>daum.net</option>
@@ -284,4 +294,4 @@ table, th{
 	</div>
 </form>
 </div>
-</div></div>
+</div>

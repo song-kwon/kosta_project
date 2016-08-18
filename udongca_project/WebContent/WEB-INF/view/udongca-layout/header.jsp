@@ -113,7 +113,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 }
 
 .jumbotron .container{
-	max-width:50%;
+	max-width:60%;
 }
 </style>
 <div class="navbar-inverse">
@@ -166,8 +166,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 										page="/WEB-INF/view/udongca-tiles/etc/customerCenter_header_menu.jsp" /></li>
 								<li><c:if
 										test="${sessionScope.login.memberType eq 'licenseeMember' }">
-										<a href="/udongca_project/prBoard_write_form.udc"><input
-											type="button" value="홍보글 등록하기"></a>
+										<a href="/udongca_project/prBoard_write_form.udc">홍보글 등록하기</a>
 									</c:if></li>
 							</ul>
 						</div>
@@ -190,7 +189,7 @@ div#menu3,a:hover{color:navajowhite; font-weight:bold;} */
 	</div>
 </div>
 
-<div class="jumbotron" >
+<div class="jumbotron">
 	<div class="container text-center" onclick="location.href='http://localhost:5000/udongca_project/main.udc';">
 		<h1>우 동 카</h1>
 		<p>우리동네카페</p>

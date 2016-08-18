@@ -35,13 +35,13 @@ table{
 
 @media(min-width:768px){
 	.table>tbody>tr>td{
-		font-size:x-large;
+		font-size:xx-large;
 	} 
 }
 </style>
 
 <div class="container">
-<h1>우동카 회원가입</h1>
+<h1>우동카 회원가입</h1><br><br>
 <div align="center">
 <table class="table">
 	<tr>
@@ -50,7 +50,7 @@ table{
 	</tr>
 </table>
 
-<div id="a" align="center" style="padding-bottom:30px;">
+<div id="a" align="center" style="padding:30px;">
 	<input type="button" value="회원가입하기">
 </div>
 </div>
