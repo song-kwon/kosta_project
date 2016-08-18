@@ -47,7 +47,7 @@
  color:white;font-size:inherit;margin-right:0px;
 }
 
-.div2 {
+/* .div2 {
 	padding: 7px;
 	text-align: center;
 	background-color: antiquewhite;
@@ -55,7 +55,7 @@
 	color: sienna;
 	width: auto;
 	height: 48px;
-}
+} */
 
 /* .col-xs-1 {
 	width: 120px;
@@ -89,7 +89,9 @@ div#menu3, a:hover {
 }
 
 .jumbotron .container{
-	max-width:50%;
+	max-width:60%;
+}
+
 }
 </style>
 <div class="navbar-inverse">
@@ -133,16 +135,15 @@ div#menu3, a:hover {
 					<c:otherwise>
 						<div class="collapse navbar-collapse" id="myNavbar" align="right">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="/udongca_project/main.udc" class="menu">메인&nbsp;</a></li>
+								<li><div
+										style="font-size: 18px; font-weight: bold; color: antiquewhite;">
+										${sessionScope.login.memberName }님! 반갑습니다.&nbsp;&nbsp;</div></li>
 								<li><a href="/udongca_project/member/logout.udc"
 									class="menu">&nbsp;로그아웃&nbsp;</a></li>
 								<li><a href="/udongca_project/member/member_myPage.udc"
 									class="menu">&nbsp;마이페이지&nbsp;</a></li>
 								<li><jsp:include
 										page="/WEB-INF/view/udongca-tiles/etc/customerCenter_header_menu.jsp" /></li>
-								<li><div
-										style="font-size: 18px; font-weight: bold; color: antiquewhite;">
-										${sessionScope.login.memberName }님! 반갑습니다.&nbsp;&nbsp;</div></li>
 								<li><c:if
 										test="${sessionScope.login.memberType eq 'licenseeMember' }">
 										<a href="/udongca_project/prBoard_write_form.udc"><input
@@ -157,11 +158,10 @@ div#menu3, a:hover {
 			<c:otherwise>
 				<div class="collapse navbar-collapse" id="myNavbar" align="right">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/udongca_project/main.udc" class="menu">메인&nbsp;</a></li>
-						<li><a href="/udongca_project/joinSelect.udc" class="menu">&nbsp;회원가입&nbsp;</a></li>
-						<li><a href="/udongca_project/loginPage.udc" class="menu">&nbsp;로그인&nbsp;</a></li>
 						<li><jsp:include
 								page="/WEB-INF/view/udongca-tiles/etc/customerCenter_header_menu.jsp" /></li>
+						<li><a href="/udongca_project/joinSelect.udc" class="menu">&nbsp;회원가입&nbsp;</a></li>
+						<li><a href="/udongca_project/loginPage.udc" class="menu">&nbsp;로그인&nbsp;</a></li>
 					</ul>
 				</div>
 			</c:otherwise>
@@ -170,7 +170,7 @@ div#menu3, a:hover {
 </div>
 
 <div class="jumbotron">
-	<div class="container text-center">
+	<div class="container text-center" onclick="location.href='http://localhost:5000/udongca_project/main.udc';">
 		<h1 class="ddd">우 동 카</h1>
 		<p>우리동네카페</p>
 	</div>

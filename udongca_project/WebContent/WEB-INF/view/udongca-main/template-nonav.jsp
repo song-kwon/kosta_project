@@ -90,19 +90,28 @@ input[type="button"]{
 select{
 	width:150px !important;
 } */
+ .pagination > .active > a, 
+ .pagination > .active > span, 
+ .pagination > .active > a:hover, 
+ .pagination > .active > span:hover,
+ .pagination > .active > a:focus,
+ .pagination > .active > span:focus
+  {
+	background-color: inherit;
+	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);	
+	border-color: white;
+	
+} 
 a{
  font-size:15pt;
 }
-.pagination > .active > a,
-.pagination > .active > a:hover{
-	background-color:#6b4004;
+ .pagination>li>a {
+	color: black;
 }
-.pagination > li > a{
-	color:#a2522d;
-}
-.pagination > li > a:hover{
-	color:#6b4004;
-}
+
+.pagination>li>a:hover {
+	color: black;
+} 
 </style>
 </head>
 <body>
