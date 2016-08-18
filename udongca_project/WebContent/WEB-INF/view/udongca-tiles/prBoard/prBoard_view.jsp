@@ -525,10 +525,10 @@
 				
 				var writerId = "'" + currentReviewMemberId + "'";
 				reviewImageArray = json.review.reviewFakeImage.split(";");
-				html += "<table style='text-align:center; font-size:18px; height:50px; width:100%; table-layout:fixed;'><tr style='font-size:30px; font-weight:bold;'><td id='reviewTitle' colspan=3></td></tr>";
-				html += "<tr style='text-align:right'><td colspan=3>작성자 : " + currentReviewMemberId+"</td></tr>";
-				html += "<tr style='text-align:right'><td colspan=3>작성일자 : " + json.review.reviewDate + "</td></tr>";
-				html += "<tr><td colspan=3><div style='padding:10px;'>평점  ";
+				html += "<table style='text-align:center; font-size:18px; height:50px; width:100%; table-layout:fixed;'><tr style='font-size:30px; font-weight:bold; background:#f4f4f4;'><td id='reviewTitle' colspan=3></td></tr>";
+				html += "<tr style='text-align:right; background:#f4f4f4;'><td colspan=3 style='padding-right:3px;'>작성자 : " + currentReviewMemberId+"</td></tr>";
+				html += "<tr style='text-align:right; background:#f4f4f4;'><td colspan=3 style='padding-right:3px;'>작성일자 : " + json.review.reviewDate + "</td></tr>";
+				html += "<tr><td colspan=3><div style='padding:10px;'>";
 				for (var i = 0; i < 5; i++){
 					html += "<img src='/udongca_project/udongca-image/star" + ((i < json.review.ratingStars) ? "1" : "0" ) + ".png' height='32' width='32'>";
 				}
