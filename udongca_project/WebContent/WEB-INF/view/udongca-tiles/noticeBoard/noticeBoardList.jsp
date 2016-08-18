@@ -16,7 +16,7 @@ table{
 	border-collapse: collapse;
 	text-align:center;
 	cursor:pointer;
-	border-bottom:1px dotted;
+	border-bottom:2px solid;
 }
 
 .table{
@@ -37,8 +37,7 @@ table{
 }
 
 .target {
-    display: inline-block;
-    width:200px;
+    max-width:200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -100,7 +99,7 @@ table{
 			<tr id="tr">
 				<td>${list.noticeNo }</td>
 				<td id="td1" align="left" class="target"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.category }]</span>&nbsp;${list.noticeTitle }</td>
-				<td class="notice_content" id="td2" align="left" style="display:inline-block; width:300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.noticeContent }</td>
+				<td class="notice_content" id="td2" align="left" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.noticeContent }</td>
 				<td class="notice_date">${list.noticeDate }</td>
 			</tr>
 		</c:forEach>
