@@ -141,7 +141,7 @@ function chkPwd1(){
 		return false;
 	 }
 	 
-	 if(pw.length < 10 || pw.length > 20){
+	if(pw.length < 10 || pw.length > 20){
 	  alert("비밀번호는 10자리 ~ 20자리 이내로 입력해주세요.");
 	  $("#password").val('');
 	  $("#password2").val('');
@@ -157,8 +157,7 @@ function chkPwd1(){
 	  $("password").focus();
 	  return false;
 	 }
-	
-	return true;
+		return true;
 }
 
 //패스워드 일치 검사

@@ -60,11 +60,22 @@ function checkSubmit(){
 
 <style type="text/css">
 table{
-	margin-top:20px;
-	margin-bottom:20px;
+	border-collapse: collapse;
 	text-align:left;
-	font-size:15px;
 }
+
+.table>tr>td{
+	border-collapse: collapse;
+}
+
+@media(max-width:768px){
+	.table>tr>td{
+		font-size:medium;
+		font-weight:bold;
+		text-align:left;
+	}
+}
+
 .table{
 	max-width:800px;
 	background-color:antiquewhite;
@@ -72,12 +83,12 @@ table{
 
 .text{
 	font-weight:bold;
-	min-width:88px;
+	min-width:70px;
 	height:40px;
 }
 </style>
 
-<div style="padding:20px;"><h1>1:1문의 수정</h1></div>
+<div style="padding:20px;"><h1>1:1문의 수정</h1></div><br>
 <div align="center">
 <form action="/udongca_project/oneToOneInquiry/modifyOneToOneInquiry.udc?inquiryNo=${requestScope.map.oneToOneInquiry.inquiryNo}" method="post" onsubmit="return checkSubmit();">
 <table class="table">
@@ -88,7 +99,7 @@ table{
 	<tr>
 		<td class="text">문의 유형</td>
 		<td>
-			<select id="inquiryType" name="inquiryType" class="form-control" style="max-width:120px;">
+			<select id="inquiryType" name="inquiryType" class="form-control" style="width:130px;">
 				<option>유형 선택</option>
 				<c:forEach items="${requestScope.map.codeList }" var="code">
 					<option ${code.codeName == requestScope.map.oneToOneInquiry.inquiryType?'selected="selected"':'' }>${code.codeName }</option>
@@ -102,7 +113,7 @@ table{
 	</tr>
 	<tr>
 		<td class="text">내용</td>
-		<td><textarea id="content" name="inquiryContent" style="width:100%; min-height:200px;" placeholder="내용을 입력해주세요..">${requestScope.map.oneToOneInquiry.inquiryContent }</textarea>
+		<td><textarea id="content" name="inquiryContent" rows="25" cols="80" style="width:100%; min-height:200px;" placeholder="내용을 입력해주세요..">${requestScope.map.oneToOneInquiry.inquiryContent }</textarea>
 	</tr>
 </table>
 <div align="center" style="padding-bottom:30px;"><input type="submit" value="수정"> <a href="/udongca_project/member/memberInquiryListPaging.udc"><input type="button" value="취소"></a></div>

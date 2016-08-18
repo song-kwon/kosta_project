@@ -78,11 +78,22 @@ function checkSubmit(){
 
 <style type="text/css">
 table{
-	margin-top:20px;
-	margin-bottom:20px;
+	border-collapse: collapse;
 	text-align:left;
-	font-size:15px;
 }
+
+.table>tr>td{
+	border-collapse: collapse;
+}
+
+@media(max-width:768px){
+	.table>tr>td{
+		font-size:medium;
+		font-weight:bold;
+		text-align:left;
+	}
+}
+
 .table{
 	max-width:800px;
 	background-color:antiquewhite;
@@ -90,12 +101,12 @@ table{
 
 .text{
 	font-weight:bold;
-	min-width:88px;
+	min-width:70px;
 	height:40px;
 }
 </style>
 
-<div><h1>공지 사항 등록</h1></div>
+<div><h1>공지 사항 등록</h1></div><br>
 <div align="center">
 <form class="form1" action="/udongca_project/noticeBoard/registerNoticeBoard.udc" method="post" onsubmit="return checkSubmit();">
 <table class="table">
@@ -116,7 +127,7 @@ table{
 	</tr>
 	<tr>
 		<td class="text">내용</td>
-		<td><textarea name="noticeContent" id="content" rows="10" cols="80" placeholder="내용을 입력해주세요.."></textarea></td>
+		<td><textarea name="noticeContent" id="content" rows="25" cols="80" placeholder="내용을 입력해주세요.."></textarea></td>
 	</tr>
 </table>
 

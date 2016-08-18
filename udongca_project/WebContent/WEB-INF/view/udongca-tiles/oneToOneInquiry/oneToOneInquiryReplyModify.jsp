@@ -2,33 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
- table{
+table{
 	border-collapse: collapse;
-	text-align:left;
-	font-size:15px;
+	text-align:center;
+	border-bottom:1px dotted;
 }
 
-tr#tr{
-	height:40px;
-}
 .table{
-	border:1px solid;
+	max-width:800px;
 }
 
-.table > tbody > tr > td{
-  border-top: 1px solid black;
-} 
-.cut{
-  	overflow:hidden;
-  	text-overflow: ellipsis;
-}
 @media (max-width: 768px){
-	.table>tbody>#tr{
+	.table>#tr{
 	display:none;
 	}
 }
 @media (min-width: 768px){
-	.table>tbody>.tr1{
+	.table>.tr1{
 	display:none;
 	}
 }
@@ -54,27 +44,24 @@ function checkSubmit(){
 }
 </script>
 
-<div><h1>1:1문의</h1></div>
+<div><h1>1:1문의</h1></div><br>
 <form action="/udongca_project/oneToOneInquiry/modifyOneToOneInquiryReply.udc?inquiryNo=${requestScope.oneToOneInquiry.inquiryNo}" method="post" onsubmit="return checkSubmit();">
-<table class="table" style="table-layout: fixed;">
+<div align="center">
+<table class="table table-bordered">
 	<tr id="tr">
-		<td class="col-sm-8 cut" style="font-weight:bold;"><nobr>[${requestScope.oneToOneInquiry.inquiryType }]&nbsp${requestScope.oneToOneInquiry.inquiryTitle }</nobr></td>
-		<td class="col-sm-4">작성자 : ${requestScope.oneToOneInquiry.memberId }</td>
-	</tr>
-	<tr class="tr1">
-		<td colspan="2" style="font-weight:bold;"><nobr>[${requestScope.oneToOneInquiry.inquiryType }]&nbsp${requestScope.oneToOneInquiry.inquiryTitle }</nobr></td>
-	</tr>
-	<tr class="tr1">	
-		<td colspan="2">작성자 : ${requestScope.oneToOneInquiry.memberId }</td>
+		<td style="width:20px; color:red; font-weight:bold;">[${requestScope.oneToOneInquiry.inquiryType}]</td>
+		<td class="col-sm-9" style="font-weight:bold;">${requestScope.oneToOneInquiry.inquiryTitle }</td>
+		<td class="col-sm-2" align="left">작성자 : ${requestScope.oneToOneInquiry.memberId }</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="width:100%; height:250px;">${requestScope.oneToOneInquiry.inquiryContent }</td>
+		<td colspan="3" style="width:100%; height:250px;" align="left">${requestScope.oneToOneInquiry.inquiryContent }</td>
 	</tr>
-	<tr><td colspan="2" align="center" style="width:100%; height:30px; border-top:3px double; font-weight:bold;">문의 답변</td></tr>
+	<tr><td colspan="3" align="center" style="width:100%; height:30px; border-top:3px double; font-weight:bold;">문의 답변</td></tr>
 	<tr>
-		<td colspan="2"  style="width:100%; height:200px;"><textarea name="inquiryReply" rows="10" cols="140" placeholder="아직 답변이 달리지 않았습니다. 문의에 대한 답변을 남겨주세요..">${requestScope.oneToOneInquiry.inquiryReply }</textarea></td>
+		<td colspan="3"  style="width:100%; height:200px;" align="left"><textarea name="inquiryReply" rows="15" cols="140" placeholder="아직 답변이 달리지 않았습니다. 문의에 대한 답변을 남겨주세요..">${requestScope.oneToOneInquiry.inquiryReply }</textarea></td>
 	</tr>
 </table>
+</div>
 <div align="center" style="padding-bottom:30px;">
 	<input type="submit" value="답변등록">
 	<input type="button" id="deleteBtn" value="문의삭제">

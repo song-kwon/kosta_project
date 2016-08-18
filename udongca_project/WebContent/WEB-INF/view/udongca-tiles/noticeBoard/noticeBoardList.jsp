@@ -79,11 +79,6 @@ table{
 
 <div class="container">
 <div style="padding-top:20px;"><h1>공지 사항</h1></div><br>
-<c:if test="${sessionScope.login.memberId=='udongca' }">
-	<div align="right">
-		<a href="/udongca_project/noticeBoard/registerNoticeBoardform.udc?codeType=notice_type"><input type="button" value="공지사항 등록"></a>
-	</div>
-</c:if>
 <div align="center">
 <table class="table table-hover">
 	<thead id="thead">
@@ -99,12 +94,17 @@ table{
 			<tr id="tr">
 				<td>${list.noticeNo }</td>
 				<td id="td1" align="left" class="target"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.category }]</span>&nbsp;${list.noticeTitle }</td>
-				<td class="notice_content" id="td2" align="left" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.noticeContent }</td>
+				<td class="notice_content" id="td2" align="left" style="max-width:300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.noticeContent }</td>
 				<td class="notice_date">${list.noticeDate }</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+<c:if test="${sessionScope.login.memberId=='udongca' }">
+	<div align="right" style="margin:30px;">
+		<a href="/udongca_project/noticeBoard/registerNoticeBoardform.udc?codeType=notice_type"><input type="button" value="공지사항 등록"></a>
+	</div>
+</c:if>
 </div>
 </div>
 

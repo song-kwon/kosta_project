@@ -16,7 +16,7 @@ table{
 	border-collapse: collapse;
 	text-align:center;
 	cursor:pointer;
-	border-bottom:1px dotted;
+	border-bottom:2px solid;
 }
 
 .table{
@@ -37,8 +37,7 @@ table{
 }
 
 .target {
-    display: inline-block;
-    width:200px;
+    max-width:200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -64,16 +63,6 @@ table{
 		font-size:medium;
 		text-align:center;
 	}
-}
-
-@media (max-width:768px){
- .notice_content, .notice_date{
- 	display: none;
- }
- 
- .notice_no{
- 	width:100px;
- }
 }
 
 @media (max-width:992px){
@@ -105,7 +94,7 @@ table{
 			<tr id="tr">
 				<td>${list.inquiryNo}</td>
 				<td id="td1" align="left" class="target"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.inquiryType }]</span>&nbsp;${list.inquiryTitle }</td>
-				<td id="td2" class="cursor inquiry_content" align="left" style="display:inline-block; width:300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.inquiryContent }</td>
+				<td id="td2" class="cursor inquiry_content" align="left" style="max-width:300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.inquiryContent }</td>
 				<td class="inquiry_writer">${list.memberId }</td>
 			</tr>
 		</c:forEach>
