@@ -22,6 +22,31 @@ table{
   border: 1px solid #ddd;
   border-radius: 15px;
 }
+table{
+	border-collapse: collapse;
+	border-top:2px solid;
+	border-bottom:2px solid;
+	width:800px;
+	text-align:center;
+	table-layout:fixed;
+}
+
+thead{
+	text-align:center;
+	width:400px;
+	height:40px;
+	margin:20px;
+	font-size:13pt;
+	font-weight:bold;
+	cursor:default;
+	border-bottom:1.5px solid;
+}
+
+
+table, tbody{
+	height:30px;
+	font-size:12pt;
+}
 /* thead{
 	text-align:center;
 	width:800px;

@@ -153,11 +153,11 @@ function link(id){
  nav{
 	line-height: 40px;
 }
-/* table{
+ table{
 	border-collapse: collapse;
+	border-top:2px solid;
+	border-bottom:2px solid;
 	width:800px;
-	margin:30px;
-	text-align:center;
 }
 .pager li > a,
 .pager li > span {
@@ -178,8 +178,9 @@ thead{
 	font-size:13pt;
 	font-weight:bold;
 	cursor:default;
-	border-bottom:3px solid;
-} */
+	border-bottom:1.5px solid;
+	
+} 
 .modal-header{
 	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 	border-radius:6px;
@@ -197,16 +198,6 @@ thead{
 	cursor:pointer;
 	font-size:30pt;
 }
-/* .pagination > .active > a,
-.pagination > .active > a:hover{
-	background-color:#6b4004;
-}
-.pagination > li > a{
-	color:#a2522d;
-}
-.pagination > li > a:hover{
-	color:#6b4004;
-} */
 .modal-title{
 	color:white;
 }
