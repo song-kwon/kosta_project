@@ -14,42 +14,57 @@ $(document).ready(function() {
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	border-top:2px solid;
-	border-bottom:2px solid;
 	text-align:center;
-	table-layout:fixed;
-}
-
-thead{
-	text-align:center;
-	height:40px;
-	margin:20px;
-	font-size:13pt;
-	font-weight:bold;
-	cursor:default;
-	border-bottom:1.5px solid;
-}
-
-
-table, tbody{
-	height:30px;
-	font-size:12pt;
-}
-
-tr#tr, td{
-	border-top:1px dotted;
-	border-top-color:black;
-}
-
-.cursor{
-	text-align:left;
-	margin:50px;
 	cursor:pointer;
-	overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+	border-bottom:1px dotted;
 }
 
-td#td1:hover{text-decoration:underline; color:red;}
-td#td2:hover{text-decoration:underline; color:red;}
+.table{
+	max-width:800px;
+}
+
+.table>thead>tr>td{
+	border-collapse: collapse;
+	border-bottom:2px solid;
+	font-size:15pt;
+	font-weight:bold;
+	text-align:center;
+	cursor:default;
+}
+
+.table>tbody>tr>td{
+	border-collapse: collapse;
+}
+
+.target {
+    display: inline-block;
+    width:200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media(max-width:768px){
+	.table>thead>tr>td{
+		font-size:medium;
+		font-weight:bold;
+		text-align:center;
+	}
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>th{
+		font-size:medium;
+		text-align:center;
+	}
+}
+
+@media(max-width:768px){
+	.table>tbody>tr>td{
+		font-size:medium;
+		text-align:center;
+	}
+}
 
 @media (max-width:768px){
  .notice_content, .notice_date{
@@ -63,32 +78,36 @@ td#td2:hover{text-decoration:underline; color:red;}
 
 </style>
 
-<div style="padding-top:20px;"><h1>공지 사항</h1></div>
+<div class="container">
+<div style="padding-top:20px;"><h1>공지 사항</h1></div><br>
 <c:if test="${sessionScope.login.memberId=='udongca' }">
-	<div align="right" style="padding:20px;">
+	<div align="right">
 		<a href="/udongca_project/noticeBoard/registerNoticeBoardform.udc?codeType=notice_type"><input type="button" value="공지사항 등록"></a>
 	</div>
 </c:if>
-<table class="table">
+<div align="center">
+<table class="table table-hover">
 	<thead id="thead">
 		<tr>
-			<td class="notice_no">No</td>
-			<td>공지 제목</td>
-			<td class="notice_content">공지 내용</td>
-			<td class="notice_date">작성일자</td>
+			<td class="notice_no" style="width:30px;">No</td>
+			<td style="width:200px;">공지 제목</td>
+			<td class="notice_content" style="width:300px;">공지 내용</td>
+			<td class="notice_date" style="width:100px;">작성일자</td>
 		</tr>
 	</thead>
 	<tbody id="tbody">
 		<c:forEach items="${requestScope.map.noticeBoardList }" var="list">
 			<tr id="tr">
 				<td>${list.noticeNo }</td>
-				<td id="td1" class="cursor" nowrap="nowrap"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.category }]</span>&nbsp;${list.noticeTitle }</td>
-				<td class="notice_content" id="td2" class="cursor" nowrap="nowrap">${list.noticeContent }</td>
+				<td id="td1" align="left" class="target"><span style="text-align:left; width:100px; text-weight:bold; color:red;">[${list.category }]</span>&nbsp;${list.noticeTitle }</td>
+				<td class="notice_content" id="td2" align="left" style="display:inline-block; width:300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${list.noticeContent }</td>
 				<td class="notice_date">${list.noticeDate }</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+</div>
+</div>
 
 <div align="center">
 <!-- 이전페이지그룹 -->

@@ -3,21 +3,26 @@
 <style type="text/css">
 table{
 	border-collapse: collapse;
-	text-align:left;
-	font-size:15px;
-}
-
-tr#tr{
-	height:40px;
+	text-align:center;
+	border-bottom:1px dotted;
 }
 
 .table{
-	border:1px solid;
+	max-width:800px;
 }
 
-.table > tbody > tr > td{
-  border-top: 1px solid black;
+@media(max-width:768px){
+	.table>tr>th{
+		font-size:medium;
+		text-align:center;
+	}
 }
+
+@media (max-width:768px){
+ .notice_content, .notice_date{
+ 	display: none;
+ }
+
 @media (max-width: 768px){
 	.table>tbody>#tr{
 	display:none;
@@ -45,22 +50,20 @@ $(document).ready(function(){
 });
 </script>
 
-<div><h1>공지 사항</h1></div>
-<table class="table">
+<div><h1>공지 사항</h1></div><br>
+<div align="center">
+<table class="table table-bordered">
 	<tr id="tr">
-		<td class="col-sm-9" style="font-weight:bold;">[${requestScope.noticeBoard.category }]&nbsp${requestScope.noticeBoard.noticeTitle }</td>
-		<td class="col-sm-3" align="right">작성일 : ${requestScope.noticeBoard.noticeDate }</td>
-	</tr>
-	<tr class="tr1">
-		<td colspan="2" class="col-sm-9" style="font-weight:bold;">[${requestScope.noticeBoard.category }]&nbsp${requestScope.noticeBoard.noticeTitle }</td>
-	</tr>
-	<tr class="tr1">
-		<td colspan="2">작성일:${requestScope.noticeBoard.noticeDate }</td>
+		<td style="width:20px; color:red; font-weight:bold;">[${requestScope.noticeBoard.category }]</td>
+		<td class="col-sm-9" style="font-weight:bold;">${requestScope.noticeBoard.noticeTitle }</td>
+		<td class="col-sm-2" align="center">작성일 : ${requestScope.noticeBoard.noticeDate }</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="width:100%; height:300px;">${requestScope.noticeBoard.noticeContent }</td>
+		<td colspan="3" style="width:100%; height:300px;" align="left">${requestScope.noticeBoard.noticeContent }</td>
 	</tr>
 </table>
+</div>
+
 <div align="center" style="padding-bottom:30px;">
 	<c:if test="${sessionScope.login.memberId=='udongca' }">
 		<a href="/udongca_project/noticeBoard/modifyNoticeBoardform.udc?noticeNo=${requestScope.noticeBoard.noticeNo}&codeType=notice_type"><input type="button" value="공지수정"></a>
