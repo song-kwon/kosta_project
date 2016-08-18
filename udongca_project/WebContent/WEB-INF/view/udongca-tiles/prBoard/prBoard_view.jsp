@@ -8,18 +8,18 @@
 		font-weigth:bold;
 	}
 	.carousel-inner > .item > img {
-	      top: 0;
-	      left: 0;
-	      width: 600px;
-	      height: 350px;
-	 } 
-	 .carousel-indicators{
-	 	bottom:-70px;
-	 }
-	 .carousel-indicators .active{
-	 	width:60px;
-	 	height:60px;
-	 }
+		top: 0;
+		left: 0;
+		width: 600px;
+		height: 350px;
+	} 
+	.carousel-indicators{
+		bottom:-70px;
+	}
+	.carousel-indicators .active{
+		width:60px;
+		height:60px;
+	}
 	.carousel-indicators > img{
 		width:50px;
 		height:50px;
@@ -41,12 +41,14 @@
 		background-color: #FAEBD7;
 	}
 	table#review_table{
-	height:15px; 
-	font-size:18px; 
-	text-align:center; 
-	table-layout:fixed;
+		height:15px; 
+		font-size:18px; 
+		text-align:center; 
+		table-layout:fixed;
 	}
-	td#td1:hover{text-decoration:underline;}
+	td#td1:hover{
+		text-decoration:underline;
+	}
 	a#a1{
 		text-decoration:none;
 	}
@@ -56,18 +58,34 @@
 		text-align:center;
 		cursor:default;
 		border-bottom:1.5px solid;
-}
+	}
+	#replyBoard{
+		width:100%;
+	}
+	.reply{
+		border-bottom:1.5px dotted;
+	}
+	.reReply{
+		border-bottom:1.5px dotted;
+	}
 	.replyText{
 		white-space:pre-wrap;
+		background:#f4f4f4;
 	}
 	#reviewContentText{
 		white-space:pre-wrap;
 	}
-		.reportContent{
+	.reportContent{
 		display:none;
 	}
 	.cafeIntro{
 		white-space: pre-wrap;
+	}
+	td#replyArea{
+		background:#f4f4f4;
+	}
+	.form-group{
+		padding:5px;
 	}
 	
 	@media (max-width:992px){
@@ -178,7 +196,7 @@
 		
 		$(document).on('click','.reReplyInputBtn',function(){
 			$("#reReplyInput").remove();
-			$(this).parent().parent().parent().append("<div id='reReplyInput' style='height:70px;'><input type='text' id='reReplyContent' placeholder='댓글 입력' class='form-control' style='float:left'><button class='addReReply btn btn-default'>등록</button></div>");
+			$(this).parent().parent().parent().append("<div id='reReplyInput' style='height:70px;'><table width=100%><tr><td><input type='text' id='reReplyContent' placeholder='댓글 입력' class='form-control' style='float:left'></td><td><button class='addReReply btn btn-default'>등록</button></td></tr></table></div>");
 		});
 		
 		$(document).on('click','.addReReply',function(){
@@ -507,9 +525,9 @@
 				
 				var writerId = "'" + currentReviewMemberId + "'";
 				reviewImageArray = json.review.reviewFakeImage.split(";");
-				html += "<table style='text-align:center; font-size:18px; height:50px; width:inherit; table-layout:fixed;'><tr style='font-size:30px; font-weight:bold;'><td id='reviewTitle'></td></tr>";
-				html += "<tr style='text-align:right;'><td>작성자 : " + currentReviewMemberId+"</td></tr>";
-				html += "<tr style='text-align:right'><td>작성일자 : " + json.review.reviewDate + "</td></tr>";
+				html += "<table style='text-align:center; font-size:18px; height:50px; width:100%; table-layout:fixed;'><tr style='font-size:30px; font-weight:bold;'><td id='reviewTitle' colspan=3></td></tr>";
+				html += "<tr style='text-align:right'><td colspan=3>작성자 : " + currentReviewMemberId+"</td></tr>";
+				html += "<tr style='text-align:right'><td colspan=3>작성일자 : " + json.review.reviewDate + "</td></tr>";
 				html += "<tr><td colspan=3><div style='padding:10px;'>평점  ";
 				for (var i = 0; i < 5; i++){
 					html += "<img src='/udongca_project/udongca-image/star" + ((i < json.review.ratingStars) ? "1" : "0" ) + ".png' height='32' width='32'>";
@@ -533,7 +551,7 @@
 				$("#reviewArea").append(html);
 				$("#reviewTitle").text(json.review.reviewTitle);
 				for (var i = 0; i < reviewImageArray.length - 1; i++){
-					$("#reviewContent").append("<img src='/udongca_project/images/" + reviewImageArray[i] + "' width='100%' height='320px'><br>");
+					$("#reviewContent").append("<img src='/udongca_project/images/" + reviewImageArray[i] + "' max-width='50%' height='320px'><br>");
 				}
 				$("#reviewContentText").append(document.createTextNode(json.review.reviewContent));
 				
@@ -547,7 +565,7 @@
 							if (json.reply[idx].replyGroup == group && !json.reply[idx].parentReply && !i){
 								isParentExist = true;
 								html += "<tbody class='reply' id='" + json.reply[idx].replyNo + "'>";
-								html += "<tr class='" + group + "'><td id='" + json.reply[idx].replyId + "'>" + json.reply[idx].replyId;
+								html += "<tr class='" + group + "'><td style='padding-left:3px' id='" + json.reply[idx].replyId + "'>" + json.reply[idx].replyId;
 								if ("${sessionScope.login}"){
 									html += "&nbsp;<button class='reReplyInputBtn btn btn-default'>답글</button>";
 								}
@@ -558,7 +576,7 @@
 									html += "&nbsp;<button onclick='replyReport(" + json.reply[idx].replyNo + ", " + json.reply[idx].replyId + ")' class='btn btn-default'>신고</button>";
 								}
 								html += "</td></tr>";
-								html += "<tr><td>" + d.getFullYear() + "/" + (Number(d.getMonth()) + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + "</td></tr>";
+								html += "<tr><td style='padding-left:3px'>" + d.getFullYear() + "/" + (Number(d.getMonth()) + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + "</td></tr>";
 								html += "<tr><td class='replyContent'><pre class='replyText' style='width:inherit;font-size:inherit;' id='replyContent"+ json.reply[idx].replyNo + "'></pre></td></tr></tbody>";
 								
 							}
@@ -583,7 +601,7 @@
 				}
 				html += "</table>"
 				if ("${sessionScope.login}"){
-					html += "<div class='form-group'><input type='text' class='form-control input-lg' id='replyContent' style='float:left;' placeholder='댓글 입력'><button class='btn btn-default btn-lg' id='addReply'>등록</button></div>";
+					html += "<div class='form-group'><table width=100%><tr><td><input type='text' class='form-control input-lg' id='replyContent' style='float:left;' placeholder='댓글 입력'></td><td><button class='btn btn-default btn-lg' id='addReply'>등록</button></td></tr></div>";
 					html += "";
 				}
 				
@@ -626,88 +644,87 @@ pre{
 }
 
 </style>
-	<input type="hidden" id="cafeNo" value="${requestScope.prBoard.cafeNo}">
-	<div><h1 style="margin-top:0px;" id="cafeName">  ${requestScope.prBoard.cafeName }</h1></div><p>
-	<div style="color:darkorange;"><font size="4">&nbsp;&nbsp;안녕하세요! "${requestScope.prBoard.cafeName }"에 오신 것을 환영합니다!!</font></div><br>
-	<div class='col-sm-12'>
-		<div class='col-sm-6' style="margin-bottom:20px;">
-			<!--
-				홍보글 객체에서 fakeImage를 불러 와, 이를 Split한 뒤 for 문으로 경로를 순차적으로 조회.
-			-->
-			<div id="imageArea" style="height:320px;"></div>
-			<div align="center">
-				<button onclick="prevImage()" class="btn btn-default">이전</button>
-				<button onclick="nextImage()" class="btn btn-default">다음</button>
-			</div>
-		</div>
-		<div class='col-sm-6' style="min-height:200px;">
-			<table class="table">
-				<tr>
-					<td class='col-sm-2' style="min-width:60px; height:30px;">영업 시간</td>
-					<td class='col-sm-4' style="padding-left:10px">${requestScope.prBoard.operationHour}</td>
-				</tr>
-				<tr>
-					<td class='col-sm-2' >전화번호</td>
-					<td class='col-sm-4' style="padding-left:10px">
-						카페: ${requestScope.prBoard.cafeTel}<br>
-						사업자: ${requestScope.prBoard.managerTel}
-					</td>
-				</tr>
-				<tr>
-					<td class='col-sm-2' >카페 평점</td>
-					<td class='col-sm-4' id="cafeAverageRating" style="padding-left:10px; align:center;"></td>
-				</tr>
-				<tr>
-					<td class='col-sm-2' >카페 특징</td>
-					<td class='col-sm-4' style="padding-left:10px">
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'wifi')}">
-							<img src="/udongca_project/udongca-image/coffee-cup-with-wireless-symbol.png" title="Wi-Fi" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'socket')}">
-							<img src="/udongca_project/udongca-image/socket.png" title="콘센트" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'park')}">
-							<img src="/udongca_project/udongca-image/parking-sign.png" title="주차장" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'smoking')}">
-							<img src="/udongca_project/udongca-image/smoking-area.png" title="흡연실" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme1')}">
-							<img src="/udongca_project/udongca-image/sweet-cake-piece.png" title="디저트카페" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme2')}">
-							<img src="/udongca_project/udongca-image/books-stack.png" title="북카페" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme3')}">
-							<img src="/udongca_project/udongca-image/plain-dog.png" title="강아지카페" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme4')}">
-							<img src="/udongca_project/udongca-image/halloween-black-cat.png" title="고양이카페" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme5')}">
-							<img src="/udongca_project/udongca-image/mother-and-child-with-balloons.png" title="키즈카페" height="20" width="20">
-						</c:if>
-						<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme6')}">
-							<img src="/udongca_project/udongca-image/question-button.png" title="기타테마" height="20" width="20">
-						</c:if>
-					</td>
-				</tr>
-				<tr style="  padding: 8px;  line-height: 1.42857143;  vertical-align: top;  border-bottom: 1px solid #ddd;">
-					<td class='col-sm-2' >카페 소개</td>
-					<td class='col-sm-4' style="padding-left:10px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
-				</tr>
-			</table>
+<input type="hidden" id="cafeNo" value="${requestScope.prBoard.cafeNo}">
+<div><h1 style="margin-top:0px;" id="cafeName">  ${requestScope.prBoard.cafeName }</h1></div><p>
+<div style="color:darkorange;"><font size="4">&nbsp;&nbsp;안녕하세요! "${requestScope.prBoard.cafeName }"에 오신 것을 환영합니다!!</font></div><br>
+<div class='col-sm-12'>
+	<div class='col-sm-6' style="margin-bottom:20px;">
+		<!--
+			홍보글 객체에서 fakeImage를 불러 와, 이를 Split한 뒤 for 문으로 경로를 순차적으로 조회.
+		-->
+		<div id="imageArea" style="height:320px;"></div>
+		<div align="center">
+			<button onclick="prevImage()" class="btn btn-default">이전</button>
+			<button onclick="nextImage()" class="btn btn-default">다음</button>
 		</div>
 	</div>
-	
-	<div id="buttonArea" class="form-group" align="center" style="padding-top:20px; margin-bottom:20px;"></div>
-	<div id="menuType" align="center" style="font-size:x-large;"></div>
-	<div class="col-sm-12" align="center" id="content"></div>
+	<div class='col-sm-6' style="min-height:200px;">
+		<table class="table">
+			<tr>
+				<td class='col-sm-2' style="min-width:60px; height:30px;">영업 시간</td>
+				<td class='col-sm-4' style="padding-left:10px">${requestScope.prBoard.operationHour}</td>
+			</tr>
+			<tr>
+				<td class='col-sm-2' >전화번호</td>
+				<td class='col-sm-4' style="padding-left:10px">
+					카페: ${requestScope.prBoard.cafeTel}<br>
+					사업자: ${requestScope.prBoard.managerTel}
+				</td>
+			</tr>
+			<tr>
+				<td class='col-sm-2' >카페 평점</td>
+				<td class='col-sm-4' id="cafeAverageRating" style="padding-left:10px; align:center;"></td>
+			</tr>
+			<tr>
+				<td class='col-sm-2' >카페 특징</td>
+				<td class='col-sm-4' style="padding-left:10px">
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'wifi')}">
+						<img src="/udongca_project/udongca-image/coffee-cup-with-wireless-symbol.png" title="Wi-Fi" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'socket')}">
+						<img src="/udongca_project/udongca-image/socket.png" title="콘센트" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'park')}">
+						<img src="/udongca_project/udongca-image/parking-sign.png" title="주차장" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'smoking')}">
+						<img src="/udongca_project/udongca-image/smoking-area.png" title="흡연실" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme1')}">
+						<img src="/udongca_project/udongca-image/sweet-cake-piece.png" title="디저트카페" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme2')}">
+						<img src="/udongca_project/udongca-image/books-stack.png" title="북카페" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme3')}">
+						<img src="/udongca_project/udongca-image/plain-dog.png" title="강아지카페" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme4')}">
+						<img src="/udongca_project/udongca-image/halloween-black-cat.png" title="고양이카페" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme5')}">
+						<img src="/udongca_project/udongca-image/mother-and-child-with-balloons.png" title="키즈카페" height="20" width="20">
+					</c:if>
+					<c:if test="${fn:contains(requestScope.prBoard.cafeFeature, 'cafeTheme6')}">
+						<img src="/udongca_project/udongca-image/question-button.png" title="기타테마" height="20" width="20">
+					</c:if>
+				</td>
+			</tr>
+			<tr style="  padding: 8px;  line-height: 1.42857143;  vertical-align: top;  border-bottom: 1px solid #ddd;">
+				<td class='col-sm-2' >카페 소개</td>
+				<td class='col-sm-4' style="padding-left:10px"><pre class="cafeIntro"><c:out value="${requestScope.prBoard.cafeIntro}"/></pre></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div id="buttonArea" class="form-group" align="center" style="padding-top:20px; margin-bottom:20px;"></div>
+<div id="menuType" align="center" style="font-size:x-large;"></div>
+<div class="col-sm-12" align="center" id="content"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="prReportModal" role="dialog">
 	<div class="modal-dialog">
-	
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header" style="padding:35px 50px;">
@@ -747,7 +764,6 @@ pre{
 <!-- Modal -->
 <div class="modal fade" id="reviewReportModal" role="dialog">
 	<div class="modal-dialog">
-	
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header" style="padding:35px 50px;">
@@ -787,7 +803,6 @@ pre{
 <!-- Modal -->
 <div class="modal fade" id="replyReportModal" role="dialog">
 	<div class="modal-dialog">
-	
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header" style="padding:35px 50px;">
