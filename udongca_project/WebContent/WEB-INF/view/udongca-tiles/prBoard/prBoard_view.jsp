@@ -10,17 +10,23 @@
 	.carousel-inner > .item > img {
 		top: 0;
 		left: 0;
+		width: 100%;
+		height: 320px;
+	} 
+	.menu-inner > .item > img {
+		top: 0;
+		left: 0;
 		width: 600px;
 		height: 350px;
 	} 
-	.carousel-indicators{
+	.menu-indicators{
 		bottom:-70px;
 	}
-	.carousel-indicators .active{
+	.menu-indicators .active{
 		width:60px;
 		height:60px;
 	}
-	.carousel-indicators > img{
+	.menu-indicators > img{
 		width:50px;
 		height:50px;
 	}
@@ -102,7 +108,6 @@
 	var isAddedFavorite = null;
 	var cafeFakeImageArray = "${requestScope.prBoard.cafeFakeImage}".split(";");
 	var cafeFakeImageArrayNumber = cafeFakeImageArray.length - 1;
-	var currentImageNumber = 0;
 	var currentPage = 0;
 	var currentReviewNo = null;
 	var currentReviewMemberId = null;
@@ -112,6 +117,7 @@
 	var cafeRating = Number("${requestScope.prBoard.cafeRating}");
 	var cafeAverageRating = (cafeReviewCount) ? cafeRating / cafeReviewCount : 0;
 	var countGroup = null;
+	var html = "";
 	
 	$(document).ready(function(){
 		$("#prReportReason").on('change',function(){
@@ -141,7 +147,52 @@
 			}
 		});
 		
-		$("#imageArea").append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "'width='100%' height='320px'>");
+		html += "<ol class='carousel-indicators'>";
+		
+		if (cafeFakeImageArrayNumber == 0){
+			html += "<li data-target='imageArea' data-slide-to='0' class='cafeImage0'></li>";
+		}
+		else{
+			html += "<li data-target='imageArea' data-slide-to='0' class='cafeImage0 active'></li>";
+			for (var i = 1; i < cafeFakeImageArrayNumber; i++){
+				html += "<li data-target='imageArea' data-slide-to='" + i + "' class='cafeImage" + i + "'></li>";
+			}
+		}
+		
+		html += "</ol>";
+		
+		html += "<div class='carousel-inner' role='listbox'>";
+		
+		if (cafeFakeImageArrayNumber == 0){
+			html += "<div class='item'><img src='/udongca_project/images/" + cafeFakeImageArray[0] + "'></div>";
+		}
+		else{
+			html += "<div class='item active'><img src='/udongca_project/images/" + cafeFakeImageArray[0] + "'></div>";
+			for (var i = 1; i < cafeFakeImageArrayNumber; i++){
+				html += "<div class='item'><img src='/udongca_project/images/" + cafeFakeImageArray[i] + "'></div>";
+			}
+		}
+		
+		html += "</div>";
+		
+		$("#imageArea").append(html);
+		html = "";
+		
+		// Activate Carousel
+	    $("#imageArea").carousel({interval:3000});
+	    // Enable Carousel Indicators
+	    $(".cafeImage0").on("click",function(){
+	        $("#imageArea").carousel(0);
+	    });
+	    $(".cafeImage1").click(function(){
+	        $("#imageArea").carousel(1);
+	    });
+	    $(".cafeImage2").click(function(){
+	        $("#imageArea").carousel(2);
+	    });
+	    $(".cafeImage3").click(function(){
+	        $("#imageArea").carousel(3);
+	    });
 		
 		if ("${sessionScope.login}"){
 			if ("${sessionScope.login.memberId}" == "${requestScope.prBoard.memberId}" && "${sessionScope.login.memberType}" == "licenseeMember"){
@@ -324,22 +375,6 @@
 		});
 	}; 
 	
-	function prevImage(){
-		currentImageNumber--;
-		if (currentImageNumber < 0){
-			currentImageNumber = cafeFakeImageArrayNumber - 1;
-		}
-		$("#imageArea").empty().append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='320px' width='100%'>");
-	};
-	
-	function nextImage(){
-		currentImageNumber++;
-		if (currentImageNumber > cafeFakeImageArrayNumber - 1){
-			currentImageNumber = 0;
-		}
-		$("#imageArea").empty().append("<img src='/udongca_project/images/" + cafeFakeImageArray[currentImageNumber] + "' height='320px' width='100%''>");
-	};
-	
 	function menuImage(no,menuType){
 		$("#content").empty();
 		$(".myReviewReplyArea").empty();
@@ -356,18 +391,18 @@
 				if(obj != ""){
 					$("#content").append(
 							"<div id='myCarousel' class='carousel slide' style='margin-bottom:60px'>"+
-							"<ol class='carousel-indicators'></ol><div class='carousel-inner' role='listbox'></div>");
+							"<ol class='carousel-indicators menu-indicators'></ol><div class='carousel-inner menu-inner' role='listbox'></div>");
 					for(var i =0;i<obj.length;i++){
 
 						if(i==0){
-						$(".carousel-inner").append("<div class='item active'><img src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
-						$(".carousel-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='0'  class='item1 active'></li>");
+						$(".menu-inner").append("<div class='item active'><img src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
+						$(".menu-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='0'  class='item1 active'></li>");
 						}else{
-							$(".carousel-inner").append("<div class='item'><img src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
-							$(".carousel-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='"+(i)+"'  class='item"+(i+1)+"'></li>");
+							$(".menu-inner").append("<div class='item'><img src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
+							$(".menu-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='"+(i)+"'  class='item"+(i+1)+"'></li>");
 						}
 					}
-					 // Activate Carousel
+					// Activate Carousel
 				    $("#myCarousel").carousel({interval:3000});
 				    // Enable Carousel Indicators
 				    $(".item1").on("click",function(){
@@ -652,11 +687,7 @@ pre{
 		<!--
 			홍보글 객체에서 fakeImage를 불러 와, 이를 Split한 뒤 for 문으로 경로를 순차적으로 조회.
 		-->
-		<div id="imageArea" style="height:320px;"></div>
-		<div align="center">
-			<button onclick="prevImage()" class="btn btn-default">이전</button>
-			<button onclick="nextImage()" class="btn btn-default">다음</button>
-		</div>
+		<div id="imageArea" style="height:320px; max-height:480px;" class="carousel slide" data-ride="carousel"></div>
 	</div>
 	<div class='col-sm-6' style="min-height:200px;">
 		<table class="table">
