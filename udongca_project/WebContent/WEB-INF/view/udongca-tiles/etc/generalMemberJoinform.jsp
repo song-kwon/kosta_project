@@ -3,7 +3,7 @@
 <script type="text/javascript">
 //아이디 조건 검사
 $(document).ready(function(){
-	$("input[type='text']").prop({"class":"form-control col-xs-2","style":"width:150px;"});
+	$("input[type='text']").prop({"class":"form-control"});
 	
 	$("#id").on("keyup keypress", function(){
 		if($(this).val().length>50){
@@ -62,66 +62,66 @@ $(document).ready(function(){
 	
 	$("#idVerification").on("click",function(){
 		$.ajax({
-			"url":"/udongca_project/member/countSameId.udc",
-			"type":"POST",
-			"data":"memberId="+$("#id").val(),
-			"dataType":"text",
-			"success" : function(countId){
-				if(countId!=0){
-					alert("이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요.");
-					$("#id").focus();
-				}else{
-					var result = confirm("'"+$.trim($("#id").val())+"'"+"는 사용 가능한 아이디입니다. 사용하시겠습니까?");
-					if(result == false){
+				"url":"/udongca_project/member/countSameId.udc",
+				"type":"POST",
+				"data":"memberId="+$("#id").val(),
+				"dataType":"text",
+				"success" : function(countId){
+					if(countId!=0){
+						alert("이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요.");
 						$("#id").focus();
 					}else{
-						$("#id").val($.trim($("#id").val()));
-						$("#password").focus();
-						$("#idVerify").val(true);
+						var result = confirm("'"+$.trim($("#id").val())+"'"+"는 사용 가능한 아이디입니다. 사용하시겠습니까?");
+						if(result == false){
+							$("#id").focus();
+						}else{
+							$("#id").val($.trim($("#id").val()));
+							$("#password").focus();
+							$("#idVerify").val(true);
+						}
 					}
-				}
-			},
-			"beforeSend" : function chkId(){
-				var id = $("#id").val();
-				var id2 = $.trim($("#id").val());
-				var num = id.search(/[0-9]/g);
-				var eng = id.search(/[a-z]/ig);
-				var spe = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+				},
+				"beforeSend" : function chkId(){
+					var id = $("#id").val();
+					var id2 = $.trim($("#id").val());
+					var num = id.search(/[0-9]/g);
+					var eng = id.search(/[a-z]/ig);
+					var spe = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+					
+					//아이디 한글 에러 처리
+					for (i = 0; i < id.length; i++) {
+						   var retCode = id.charCodeAt(i);
+						   var retChar = id.substr(i,1).toUpperCase();
+						   retCode = parseInt(retCode);
+						   
+						  if ( (retChar < "0" || retChar > "9") && (retChar < "A" || retChar > "Z") && ((retCode > 255) || (retCode < 0)) ){
+							  alert("아이디는 영문과 숫자만 입력가능합니다.");
+							  $("#id").focus();
+							  return false;
+						  }
+					}
 				
-				//아이디 한글 에러 처리
-				for (i = 0; i < id.length; i++) {
-					   var retCode = id.charCodeAt(i);
-					   var retChar = id.substr(i,1).toUpperCase();
-					   retCode = parseInt(retCode);
-					   
-					  if ( (retChar < "0" || retChar > "9") && (retChar < "A" || retChar > "Z") && ((retCode > 255) || (retCode < 0)) ){
+					//영문, 숫자 이외의 문자 입력시 에러 처리
+					if((num<0 && eng<0) || spe.test(id)==true){
 						  alert("아이디는 영문과 숫자만 입력가능합니다.");
 						  $("#id").focus();
 						  return false;
-					  }
+					}
+					
+					//공백 입력시 에러 처리
+					if((id.length != id2.length) || id.length<6 || (id.search(/[" "]/g) > 0)){
+						alert("아이디는 공백없이 6글자 이상 입력해주세요.");
+						$("#id").focus();
+						return false;
+					}
+					return true;
 				}
-			
-				//영문, 숫자 이외의 문자 입력시 에러 처리
-				if((num<0 && eng<0) || spe.test(id)==true){
-					  alert("아이디는 영문과 숫자만 입력가능합니다.");
-					  $("id").focus();
-					  return false;
-				}
-				
-				//공백 입력시 에러 처리
-				if((id.length != id2.length) || id.length<6 || (id.search(/[" "]/g) > 0)){
-					alert("아이디는 공백없이 6글자 이상 입력해주세요.");
-					$("#id").focus();
-					return false;
-				}
-				return true;
-			}
-	});
+		});
 	});
 	
 	$("#id").on("focus",function(){
 		$("#idVerify").val(false);
-	});
+	})
 });
 
 //패스워드 조건 검사
@@ -141,7 +141,7 @@ function chkPwd1(){
 		return false;
 	 }
 	 
-	if(pw.length < 10 || pw.length > 20){
+	 if(pw.length < 10 || pw.length > 20){
 	  alert("비밀번호는 10자리 ~ 20자리 이내로 입력해주세요.");
 	  $("#password").val('');
 	  $("#password2").val('');
@@ -154,10 +154,10 @@ function chkPwd1(){
 	  $("#password").val('');
 	  $("#password2").val('');
 	  $("#password").focus();
-	  $("password").focus();
 	  return false;
 	 }
-		return true;
+	
+	return true;
 }
 
 //패스워드 일치 검사
@@ -182,6 +182,18 @@ function chkName(){
 		  alert("이름은 공백없이 입력해주세요.");
 		  $("#name").focus();
 		  return false;
+	}
+	return true;
+}
+
+//이메일 입력 검사
+function chkEmail(){
+	if($("#email").val()==''){
+		alert("이메일은 필수입력사항입니다.");
+		return false;
+	}else if($("#emailAddress").val()=="이메일선택"){
+		alert("이메일 주소를 선택해주세요.")
+		return false;
 	}
 	return true;
 }
@@ -216,7 +228,9 @@ table{
 	max-width:700px;
 }
 
-.table>tbody>tr>td{
+.table>tbody>tr>td,
+.table>tbody>tr>th
+{
 	border:none;
 }
 
@@ -224,22 +238,24 @@ table{
 	.table>tbody>tr>th{
 		font-size:medium;
 	}
-}
-
-@media(max-width:768px){
 	.table>tbody>tr>td{
 		font-size:medium;
 	}
+	
+	.table1{
+		display: none;
+	}
 }
 
-.width_size2{
-	width:150px;
+@media(min-width:768px){
+	.table2{
+		display: none;
+	}
 }
-
 </style>
 
 <div class="container">
-<div class="col-sm-12" align="center">
+<div align="center">
 <div><h1>일반 회원 가입</h1></div><br>
 <div style="color:red;"><font size="3">**모든 사항은 필수 입력 사항입니다.</font></div>
 <div><font size="2">아이디는 공백을 제외하여 영문, 숫자 또는 영문과 숫자를 혼합하여 6글자 이상으로 작성해주십시오.</font></div>
@@ -248,7 +264,8 @@ table{
 <form action="/udongca_project/member/generalMemberJoin.udc" method="post" onsubmit="return checkSubmit();">
 <input type="hidden" value="false" id="idVerify">
 <input type="hidden" value="false" id="emailVerify">
-<table class="table">
+
+<table class="table table1">
 	<tr>
 		<th>아이디</th>
 		<td><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }"></td>
@@ -274,7 +291,7 @@ table{
 	<tr>
 		<th>이메일</th>
 		<td><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }"></td>
-		<td class="input-group"><span class="input-group-addon">@</span><select id="emailAddress" name="emailAddress" class="form-control col-xs-2" aria-describedby="inputGroupSuccess1Status">
+		<td class="input-group"><span class="input-group-addon">@</span><select id="emailAddress" name="emailAddress" class="form-control" aria-describedby="inputGroupSuccess1Status">
 				<option>이메일선택</option>
 				<option>naver.com</option>
 				<option>daum.net</option>
@@ -287,10 +304,72 @@ table{
 		<td><span class="error"><form:errors path="member.memberEmail"/></span></td>
 	</tr>
 </table>
-	<div align="center" style="width:550px; padding-bottom:30px;">
-		<input type="submit" class="width_size2" value="가입하기"/>&nbsp;&nbsp;
-		<a href="/udongca_project/main.udc"><input type="button" id="cancel" class="width_size2" value="취소"></a>
-	</div>
+
+
+<table class="table table2">
+	<tr>
+		<th colspan="3">아이디</th>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }"></td>
+		<td><input type="button" id="idVerification" value="아이디 확인"></td>
+	</tr>	
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberId"/></span></td>
+	</tr>
+	<tr>
+		<th colspan="3">비밀번호</th>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="password" id="password" name="memberPassword" value="${requestScope.member.memberPassword }"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberPassword"/></span></td>
+	</tr>
+	<tr>
+		<th colspan="3">비밀번호 확인</th>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="password" id="password2"></td>
+	</tr>
+	<tr>
+		<th colspan="3">이름</th>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="text" id="name" name="memberName" value="${requestScope.member.memberName }"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberName"/></span></td>
+	</tr>
+	<tr>
+		<th colspan="3">이메일</th>
+	</tr>
+	
+	<tr>
+		<td colspan="3"><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><span class="input-group" style="width:100%;"><span class="input-group-addon">@</span><select style="min-width:130px;" id="emailAddress" name="emailAddress" class="form-control" aria-describedby="inputGroupSuccess1Status">
+				<option>이메일선택</option>
+				<option>naver.com</option>
+				<option>daum.net</option>
+				<option>hanmail.net</option>
+				<option>gmail.com</option>
+				<option>nate.com</option>
+			</select>
+			</span>
+		</td>
+		<td><input type="button" id="emailVerification" value="이메일 확인"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberEmail"/></span></td>
+	</tr>
+</table>
+	<div align="center">
+		<input type="submit"value="가입하기"/>&nbsp;&nbsp;
+		<a href="/udongca_project/main.udc"><input type="button" id="cancel" value="취소"></a>
+	</div><br>
 </form>
 </div>
 </div>

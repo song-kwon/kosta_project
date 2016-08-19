@@ -18,15 +18,15 @@
 $(document).ready(function(){
 	if("${param.nav}"=='member'){
 		$(".member").addClass("active");
-		$(".dropdown-toggle").html("회원정보관리<span class='caret'></span>");
+		$(".toggle-caret").html("회원정보관리<span class='caret'></span>");
 	}
 	if("${param.nav}"=='master'){
 		$(".master").addClass("active");
-		$(".dropdown-toggle").html("신고내역<span class='caret'></span>");
+		$(".toggle-caret").html("신고내역<span class='caret'></span>");
 	}
 	if("${param.nav}"=='oneToOneInquiry'){
 		$(".oneToOneInquiry").addClass("active");
-		$(".dropdown-toggle").html("1:1문의관리<span class='caret'></span>");
+		$(".toggle-caret").html("1:1문의관리<span class='caret'></span>");
 	}
 		
 	
@@ -85,7 +85,7 @@ $(document).ready(function(){
 </style>
 <ul class="nav nav-pills nav-stacked menu1">
 <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" style="">Menu<span class="caret"></span></a>
+      <a class="dropdown-toggle toggle-caret" data-toggle="dropdown" style="">Menu<span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li class="select1"><a href="/udongca_project/member/memberListPaging.udc?nav=member">회원정보관리</a></li>
         <li class="select2"><a href="/udongca_project/master/reportBoard.udc?reportType=all&nav=master">신고내역</a></li>

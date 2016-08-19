@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	
 $("#notice").prop("class","active");
-$(".dropdown-toggle").html("공지사항<span class='caret'></span>");
+$(".toggle-caret").html("공지사항<span class='caret'></span>");
 });
 </script>
 <div align="center"><h2>공지가 성공적으로 등록되었습니다!</h2></div>

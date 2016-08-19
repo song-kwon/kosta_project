@@ -4,7 +4,7 @@
 <script  type="text/javascript">
 		$(document).ready(function(){
 			$("#notice").prop("class","active");
-			$(".dropdown-toggle").html("공지사항<span class='caret'></span>");
+			$(".toggle-caret").html("공지사항<span class='caret'></span>");
 			/* 	
 			$.ajax({
 					"url" : "/udongca_project/noticeBoard/selectByCodeType.udc?codeType=notice_type",

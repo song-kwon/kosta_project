@@ -39,7 +39,7 @@ table{
 $(document).ready(function(){
 		
 		$("#notice").prop("class","active");
-		$(".dropdown-toggle").html("공지사항<span class='caret'></span>");
+		$(".toggle-caret").html("공지사항<span class='caret'></span>");
 
 	$("#deleteBtn").on("click",function(){
 		var result = confirm("해당 게시물을 삭제하시겠습니까?");		

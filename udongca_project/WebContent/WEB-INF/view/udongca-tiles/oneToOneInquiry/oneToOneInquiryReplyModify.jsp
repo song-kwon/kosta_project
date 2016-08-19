@@ -26,7 +26,7 @@ table{
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#oneToOneMaster").prop("class","active");
-	$(".dropdown-toggle").html("1:1문의관리<span class='caret'></span>");
+	$(".toggle-caret").html("1:1문의관리<span class='caret'></span>");
 	$("#deleteBtn").on("click",function(){
 		var result = confirm("게시물을 삭제하시겠습니까?");
 		if(result==true){
