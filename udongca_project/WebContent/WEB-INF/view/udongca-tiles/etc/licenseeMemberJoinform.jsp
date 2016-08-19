@@ -228,7 +228,9 @@ table{
 	max-width:700px;
 }
 
-.table>tbody>tr>td{
+.table>tbody>tr>td,
+.table>tbody>tr>th
+{
 	border:none;
 }
 
@@ -236,18 +238,20 @@ table{
 	.table>tbody>tr>th{
 		font-size:medium;
 	}
-}
-
-@media(max-width:768px){
 	.table>tbody>tr>td{
 		font-size:medium;
 	}
+	
+	.table1{
+		display: none;
+	}
 }
 
-.width_size2{
-	width:80px;
+@media(min-width:768px){
+	.table2{
+		display: none;
+	}
 }
-
 </style>
 
 <div class="container">
@@ -259,39 +263,35 @@ table{
 <br>
 <form action="/udongca_project/member/licenseeMemberJoin.udc" method="post" onsubmit="return checkSubmit();">
 <input type="hidden" value="false" id="idVerify">
-<table>
+<input type="hidden" value="false" id="emailVerify">
+
+<table class="table table1">
 	<tr>
-		<th>아이디<span class="error"><form:errors path="member.memberId"/></span></th>
+		<th>아이디</th>
+		<td><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }"></td>
+		<td>&nbsp;<input type="button" id="idVerification" value="아이디 확인"></td>
+		<td><span class="error"><form:errors path="member.memberId"/></span></td>
 	</tr>
 	<tr>
-		<td><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }">
-		<input type="button" id="idVerification" value="아이디 확인"></td>
-	</tr>
-	<tr>
-		<th>비밀번호<span class="error"><form:errors path="member.memberPassword"/></span></th>
-	</tr>
-	<tr>
+		<th>비밀번호</th>
 		<td><input type="password" id="password" name="memberPassword" value="${requestScope.member.memberPassword }"></td>
+		<td> </td>
+		<td><span class="error"><form:errors path="member.memberPassword"/></span></td>
 	</tr>
 	<tr>
 		<th>비밀번호 확인</th>
+		<td><input type="password" id="password2"></td>
 	</tr>
 	<tr>
-		<td><input type="password" id="password2" class="width_size"></td>
-	</tr>
-	<tr>
-		<th>이름<span class="error"><form:errors path="member.memberName"/></span></th>
-	</tr>
-	<tr>
+		<th>이름</th>
 		<td><input type="text" id="name" name="memberName" value="${requestScope.member.memberName }"></td>
+		<td> </td>
+		<td><span class="error"><form:errors path="member.memberName"/></span></td>
 	</tr>
 	<tr>
-		<th>이메일 <span class="error"><form:errors path="member.memberEmail"/></span></th>
-	</tr>
-	<tr>
-		<td><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }">
-		<span class="input-group" style="float:left; width:150px;"><span class="input-group-addon">@</span>
-		<select id="emailAddress" name="emailAddress" style="width:130px;"class="form-control" aria-describedby="inputGroupSuccess1Status">
+		<th>이메일</th>
+		<td><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }"></td>
+		<td class="input-group"><span class="input-group-addon">@</span><select id="emailAddress" name="emailAddress" class="form-control" aria-describedby="inputGroupSuccess1Status">
 				<option>이메일선택</option>
 				<option>naver.com</option>
 				<option>daum.net</option>
@@ -299,16 +299,78 @@ table{
 				<option>gmail.com</option>
 				<option>nate.com</option>
 			</select>
-		</span>
-		<input type="button" id="emailVerification" value="이메일 확인"></td>
-		
+		</td>
+		<td><input type="button" id="emailVerification" value="이메일 확인"></td>
+		<td><span class="error"><form:errors path="member.memberEmail"/></span></td>
 	</tr>
 </table>
-<br>
-	<div align="center" style="padding-bottom:30px;">
-		<input type="submit" class="width_size2" value="가입하기"/>&nbsp;&nbsp;
-		<a href="/udongca_project/main.udc"><input type="button" id="cancel" class="width_size2" value="취소"></a>
-	</div>
+
+
+<table class="table table2">
+	<tr>
+		<th colspan="3">아이디</th>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }"></td>
+		<td><input type="button" id="idVerification" value="아이디 확인"></td>
+	</tr>	
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberId"/></span></td>
+	</tr>
+	<tr>
+		<th colspan="3">비밀번호</th>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="password" id="password" name="memberPassword" value="${requestScope.member.memberPassword }"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberPassword"/></span></td>
+	</tr>
+	<tr>
+		<th colspan="3">비밀번호 확인</th>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="password" id="password2"></td>
+	</tr>
+	<tr>
+		<th colspan="3">이름</th>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="text" id="name" name="memberName" value="${requestScope.member.memberName }"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberName"/></span></td>
+	</tr>
+	<tr>
+		<th colspan="3">이메일</th>
+	</tr>
+	
+	<tr>
+		<td colspan="3"><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><span class="input-group" style="width:100%;"><span class="input-group-addon">@</span><select style="min-width:130px;" id="emailAddress" name="emailAddress" class="form-control" aria-describedby="inputGroupSuccess1Status">
+				<option>이메일선택</option>
+				<option>naver.com</option>
+				<option>daum.net</option>
+				<option>hanmail.net</option>
+				<option>gmail.com</option>
+				<option>nate.com</option>
+			</select>
+			</span>
+		</td>
+		<td><input type="button" id="emailVerification" value="이메일 확인"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="3"><span class="error"><form:errors path="member.memberEmail"/></span></td>
+	</tr>
+</table>
+	<div align="center">
+		<input type="submit"value="가입하기"/>&nbsp;&nbsp;
+		<a href="/udongca_project/main.udc"><input type="button" id="cancel" value="취소"></a>
+	</div><br>
 </form>
 </div>
 </div>
+

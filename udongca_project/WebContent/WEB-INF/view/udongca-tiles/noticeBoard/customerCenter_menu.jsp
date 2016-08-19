@@ -59,7 +59,7 @@
 </style>
 <ul class="nav nav-pills nav-stacked menu1">
 <li class="dropdown">
-      <a class="dropdown-toggle ff" data-toggle="dropdown">Menu<span class="caret"></span></a>
+      <a class="dropdown-toggle ff toggle-caret" data-toggle="dropdown">Menu<span class="caret"></span></a>
       <ul class="dropdown-menu">
 	      <li><a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc">공지사항</a></li>
 		<c:choose>
@@ -77,6 +77,7 @@
     </li>
 
 </ul>
+
 <ul class="nav nav-pills menu2">
 <li id="notice"><a href="/udongca_project/noticeBoard/noticeBoardListPaging.udc">공지사항</a></li>
 <c:choose>

@@ -16,37 +16,37 @@
 
 						if ("${param.nav}" == 'prboard') {
 							$(".prboard").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"회원정보관리<span class='caret'></span>");
 						}
 						if ("${param.nav}" == 'report') {
 							$(".report").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"신고내역<span class='caret'></span>");
 						}
 						if ("${param.nav}" == 'inquiry') {
 							$(".inquiry").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"1:1문의<span class='caret'></span>");
 						}
 						if ("${param.nav}" == 'verify') {
 							$(".verify").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"정보수정<span class='caret'></span>");
 						}
 						if ("${param.nav}" == 'bookmark') {
 							$(".bookmark").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"즐겨찾기<span class='caret'></span>");
 						}
 						if ("${param.nav}" == 'preferLocation') {
 							$(".preferLocation").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"선호지역<span class='caret'></span>");
 						}
 						if ("${param.nav}" == 'review') {
 							$(".review").addClass("active");
-							$(".dropdown-toggle").html(
+							$(".toggle-caret").html(
 									"내가쓴 리뷰<span class='caret'></span>");
 						}
 
@@ -130,7 +130,7 @@ a{
 <input type="hidden" value="${sessionScope.login.memberId }"
 	id="loginId">
 <ul class="nav nav-pills nav-stacked menu1">
-	<li class="dropdown"><a class="dropdown-toggle"
+	<li class="dropdown"><a class="dropdown-toggle toggle-caret"
 		data-toggle="dropdown">Menu<span class="caret"></span></a> <c:choose>
 			<c:when test="${sessionScope.login.memberType == 'licenseeMember' }">
 				<ul class="dropdown-menu">

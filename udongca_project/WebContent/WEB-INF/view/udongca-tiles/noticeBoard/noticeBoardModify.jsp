@@ -3,7 +3,7 @@
 <script  type="text/javascript">
 $(document).ready(function(){
 	$("#notice").prop("class","active");
-	$(".dropdown-toggle").html("공지사항<span class='caret'></span>");
+	$(".toggle-caret").html("공지사항<span class='caret'></span>");
 	$("input[type='text']").prop({"class":"form-control"});
 	$("#title").on("keyup keypress", function(){
 		if($(this).val().length>50){

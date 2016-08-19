@@ -13,8 +13,8 @@
 										for (var i = 0; i < json.length; i++) {
 											var a = "'" + json[i].codeName
 													+ "'";
-											$("#menuCategoryList").append(
-													'<li class="li"><a onclick="menuImage('
+											$(".menuCategoryList").append(
+													'<li class="li"><a style="color:#333;" onclick="menuImage('
 															+ $("#cafeNo")
 																	.val()
 															+ ',' + a + ')">'
@@ -277,46 +277,87 @@
 	function deleteMenuType() {
 		$("#menuType").empty();
 	}
+	
+	function menuActive(menu,type){
+		$(menu).addClass("active");
+		$(".toggle-caret").html(
+		type+"<span class='caret'></span>");
+	}
 </script>
 <style type="text/css">
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus
-	{
-	background-color: #6b4004;
+
+@media ( min-width : 768px) {
+	.menu1 {
+		display: none;
+	}
+	.nav-pills>li.active>a {
+		background-color: inherit;
+		background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+	}
+	a, a:hover {
+		color: black;
+	}
 }
 
-.nav>li>a {
-	font-size: 15pt;
+@media ( max-width : 768px) {
+	.menu2 {
+		display: none;
+	}
+	.nav .open>a, .nav .open>a:hover {
+		background-color: inherit;
+	}
+	.menu1 {
+		background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+		border-radius: 4pt;
+	}
+	.nav>li>a:hover {
+		background-color: inherit;
+	}
+	a:hover, a:focus {
+		color: white;
+		cursor: pointer;
+	}
+	a {
+		color: white;
+	}
 }
 
-.nav>li>a:hover, .nav>li>a:focus {
-	font-weight: bold;
-	background-color: #faebd7;
-}
-
-.nav-pills>li.active>div#dropBtn, .nav-pills>li.active>div#dropBtn:hover,
-	.nav-pills>li.active>div#dropBtn:focus {
-	background-color: #6b4004;
-}
-
-.nav>li>div#dropBtn:hover, .nav>li>a:focus {
-	font-weight: bold;
-	background-color: #faebd7;
-	cursor: pointer;
-}
 </style>
 <div id="optionList">
 	<div class="panel-group">
-		<ul class="nav nav-pills">
-			<li class="li"><a data-toggle="collapse" style='cursor: pointer'
-				onclick="deleteMenuType();collapseMenu();mapLocation();return false;">지도</a></li>
-			<li class="li"><a id="cafeMenuList" class="collapsed"
-				data-toggle="collapse" href="#collapse1">메뉴</a></li>
-			<li class="li"><a data-toggle="collapse" style='cursor: pointer'
-				onclick="deleteMenuType();collapseMenu();reviewList(1);return false;">리뷰</a></li>
-		</ul>
-		<div id="collapse1" class="panel-collapse collapse">
-			<ul class="nav nav-pills" id="menuCategoryList">
+		<div class="menu2">
+			<ul class="nav nav-pills">
+				<li class="li"><a data-toggle="collapse" style='cursor: pointer'
+					onclick="deleteMenuType();collapseMenu();mapLocation();return false;">지도</a></li>
+				<li class="li"><a id="cafeMenuList" class="collapsed"
+					data-toggle="collapse" href="#collapse1">메뉴</a></li>
+				<li class="li"><a data-toggle="collapse" style='cursor: pointer'
+					onclick="deleteMenuType();collapseMenu();reviewList(1);return false;">리뷰</a></li>
 			</ul>
+			<div id="collapse1" class="panel-collapse collapse">
+				<ul class="nav nav-pills menuCategoryList">
+				</ul>
+			</div>
 		</div>
+		
+		<ul class="nav nav-pills nav-stacked menu1">
+			<li class="dropdown"><a class="dropdown-toggle toggle-caret"
+				data-toggle="dropdown">지도<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li class="li cafeMap"><a data-toggle="collapse" style='cursor: pointer'
+						onclick="menuActive('.cafeMap','지도');deleteMenuType();collapseMenu();mapLocation();return false;">지도</a></li>
+					<li class="divider"></li>
+					<li class="li cafeMenu"><a >메뉴 </a>
+											<ul class="nav nav-stacked menuCategoryList" style="text-align:center;">
+												
+											</ul>
+											
+											</li>
+					<li class="divider"></li>
+					<li class="li cafeReview"><a data-toggle="collapse" style='cursor: pointer'
+						onclick="menuActive('.cafeReview','리뷰');deleteMenuType();collapseMenu();reviewList(1);return false;">리뷰</a></li>
+				</ul>
+			</li>
+		</ul>
 	</div>
 </div>

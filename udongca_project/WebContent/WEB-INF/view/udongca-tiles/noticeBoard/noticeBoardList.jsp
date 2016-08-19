@@ -3,7 +3,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#notice").prop("class","active");
-	$(".dropdown-toggle").html("공지사항<span class='caret'></span>");
+	$(".toggle-caret").html("공지사항<span class='caret'></span>");
 		$("#tbody").on("click","tr",function() {
 			location.replace("/udongca_project/noticeBoard/noticeBoard.udc?noticeNo="+ $(this).find(":first").text());
 	});
