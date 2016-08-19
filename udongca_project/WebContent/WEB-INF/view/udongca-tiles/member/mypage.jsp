@@ -26,7 +26,7 @@
 																+ object.loginInfo.memberId
 																+ "</td><tr><td>이름</td><td>"
 																+ object.loginInfo.memberName
-																+ "</td><tr><td>이메일</td><td>"
+																+ "</td><tr><td >이메일</td><td class='cursor' style='max-width:100px;'>"
 																+ object.loginInfo.memberEmail
 																+ "</td><tr><td>벌점</td><td id='penalty'></td></tr>");
 										var penalty = object.loginInfo.memberPenalty;
@@ -157,7 +157,7 @@ table, tbody {
 }
 #memberReportList tr:hover,#memberInquiryList tr:hover{text-decoration:underline; color:red;}
 
-@media(max-width:992px){
+@media(max-width:768px){
 	.report_no{
 		display: none;
 	}
@@ -178,7 +178,7 @@ table, tbody {
 			</div>
 			<div id="collapse1" class="panel-collapse collapse in">
 				<div class="panel-body">
-					<table class="table table-hover">
+					<table class="table table-hover" style="table-layout: fixed;">
 						<tbody class="loginInfo">
 						</tbody>
 					</table>
