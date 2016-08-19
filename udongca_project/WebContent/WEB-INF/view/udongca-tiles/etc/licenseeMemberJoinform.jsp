@@ -255,7 +255,6 @@ table{
 </style>
 
 <div class="container">
-<div class="col-sm-12" align="center">
 <div><h1>사업자 회원 가입</h1></div><br>
 <div style="color:red;"><font size="3">**모든 사항은 필수 입력 사항입니다.</font></div>
 <div><font size="2">아이디는 공백을 제외하여 영문, 숫자 또는 영문과 숫자를 혼합하여 6글자 이상으로 작성해주십시오.</font></div>
@@ -371,6 +370,5 @@ table{
 		<a href="/udongca_project/main.udc"><input type="button" id="cancel" value="취소"></a>
 	</div><br>
 </form>
-</div>
 </div>
 
