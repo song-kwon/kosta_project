@@ -502,15 +502,15 @@
 				else{
 					html += "<div style='font-size:30px;'>방문 후기</div><br>";
 					html += "<table class='table' id='review_table'><thead id='review_table_thead'><tr><td class='review_table_no'>No</td><td class='review_table_title'>제목</td>";
-					if ($(".container").width() >= 992){
+					if ($(".container").width() >= 768){
 						html += "<td class='review_table_content'>리뷰 내용</td><td class='review_table_date'>작성 날짜</td>";
 					}
 					html += "</tr></thead>";
 					for (var i = 0; i < json.list.length; i++){
 						html += "<tr onclick='reviewDetail(" + json.list[i].reviewNo + ")' style='cursor:pointer;'>";
 						html += "<td class='review_table_no'>" + json.list[i].reviewNo + "</td>";
-						html += "<td class='review_table_title' id='td1' style='text-align:left; cursor:pointer; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'><a href='javascript:void(0)' style='text-decoration:none;' >" + json.list[i].reviewTitle +"</a></td>";
-						if ($(".container").width() >= 992){
+						html += "<td class='review_table_title' id='td1' style='text-align:left; cursor:pointer; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" + json.list[i].reviewTitle +"</td>";
+						if ($(".container").width() >= 768){
 							html += "<td class='review_table_content' id='td2-" + i + "' style='text-align:left; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" + json.list[i].reviewContent + "</td>";
 							html += "<td class='review_table_date'>" + json.list[i].reviewDate + "</td>";
 						}
@@ -683,6 +683,9 @@
 pre{
  border: none;
  background-color:white;
+}
+td>a{
+	text-decoration:none;
 }
 @media (min-width: 768px){
 	.carousel-control{

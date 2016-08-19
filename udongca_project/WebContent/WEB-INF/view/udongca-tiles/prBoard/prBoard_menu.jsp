@@ -285,7 +285,6 @@
 	}
 </script>
 <style type="text/css">
-
 @media ( min-width : 768px) {
 	.menu1 {
 		display: none;
@@ -294,7 +293,7 @@
 		background-color: inherit;
 		background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
 	}
-	a, a:hover {
+	li>a, li>a:hover {
 		color: black;
 	}
 }
@@ -313,11 +312,11 @@
 	.nav>li>a:hover {
 		background-color: inherit;
 	}
-	a:hover, a:focus {
+	li>a:hover, li>a:focus {
 		color: white;
 		cursor: pointer;
 	}
-	a {
+	li>a {
 		color: white;
 	}
 }

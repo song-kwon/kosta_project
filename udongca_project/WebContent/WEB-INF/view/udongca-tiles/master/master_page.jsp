@@ -375,8 +375,12 @@ h2{
 	font-weight: bold;
 	font-size:12pt;
 }
+.modal-footer{
+	background-color:#faebd7;
+	border-radius:6px;
+}
 .modal-header{
-	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+	background-color:darkgoldenrod;
 	border-radius:6px;
 }
 .modal-title{

@@ -5,6 +5,7 @@ table{
 	border-collapse: collapse;
 	text-align:center;
 	border-bottom:1px dotted;
+	table-layout: fixed;
 }
 
 .table{
@@ -20,6 +21,10 @@ table{
 	.table>.tr1{
 	display:none;
 	}
+}
+.cut{
+  overflow:hidden;
+    text-overflow: ellipsis;
 }
 </style>
 <script type="text/javascript">
@@ -45,8 +50,8 @@ $(document).ready(function(){
 <div align="center">
 <table class="table table-bordered">
 	<tr id="tr">
-		<td style="width:20px; color:red; font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType}]</td>
-		<td class="col-sm-9" style="font-weight:bold;">${requestScope.map.oneToOneInquiry.inquiryTitle }</td>
+		<td class="col-sm-1" style=" color:red; font-weight:bold;">[${requestScope.map.oneToOneInquiry.inquiryType}]</td>
+		<td class="col-sm-8 cut" style="font-weight:bold;">${requestScope.map.oneToOneInquiry.inquiryTitle }</td>
 		<td class="col-sm-2" align="left">작성자 : ${requestScope.map.oneToOneInquiry.memberId }</td>
 	</tr>
 	<tr>

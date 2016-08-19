@@ -181,10 +181,6 @@ thead{
 	border-bottom:1.5px solid;
 	
 } 
-.modal-header{
-	background-image:linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
-	border-radius:6px;
-}
 .cursor{
 	cursor:pointer;
 	table-layout:fixed;
@@ -197,6 +193,14 @@ thead{
 .fa-thumbs-down{
 	cursor:pointer;
 	font-size:30pt;
+}
+.modal-footer{
+	background-color:#faebd7;
+	border-radius:6px;
+}
+.modal-header{
+	background-color:darkgoldenrod;
+	border-radius:6px;
 }
 .modal-title{
 	color:white;
