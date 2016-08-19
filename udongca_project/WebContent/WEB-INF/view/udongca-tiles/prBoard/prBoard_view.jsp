@@ -123,42 +123,19 @@
 	var html = "";
 	
 	$(document).ready(function(){
-		$("#prReportReason").on('change',function(){
-			var text = this.value;
-			if(text == '직접 입력'){
-				$('.reportContent').show();
-			}else{
-				$('.reportContent').hide();
-			}
-		});
-		
-		$("#reviewReportReason").on('change',function(){
-			var text = this.value;
-			if(text == '직접 입력'){
-				$('.reportContent').show();
-			}else{
-				$('.reportContent').hide();
-			}
-		});
-		
-		$("#replyReportReason").on('change',function(){
-			var text = this.value;
-			if(text == '직접 입력'){
-				$('.reportContent').show();
-			}else{
-				$('.reportContent').hide();
-			}
+		$("#prReportReason, #reviewReportReason, #replyReportReason").on('change',function(){
+			(this.value == '직접 입력') ? $('.reportContent').show() : $('.reportContent').hide();
 		});
 		
 		html += "<ol class='carousel-indicators'>";
 		
 		if (cafeFakeImageArrayNumber == 0){
-			html += "<li data-target='#imageArea' data-slide-to='0' class='cafeImage0'></li>";
+			html += "<li data-target='#imageArea' data-slide-to='0' class='cafeImage'></li>";
 		}
 		else{
-			html += "<li data-target='#imageArea' data-slide-to='0' class='cafeImage0 active'></li>";
+			html += "<li data-target='#imageArea' data-slide-to='0' class='cafeImage active'></li>";
 			for (var i = 1; i < cafeFakeImageArrayNumber; i++){
-				html += "<li data-target='#imageArea' data-slide-to='" + i + "' class='cafeImage" + i + "'></li>";
+				html += "<li data-target='#imageArea' data-slide-to='" + i + "' class='cafeImage'></li>";
 			}
 		}
 		
@@ -184,17 +161,9 @@
 		// Activate Carousel
 	    $("#imageArea").carousel({interval:3000});
 	    // Enable Carousel Indicators
-	     $(".cafeImage0").on("click",function(){
-	        $("#imageArea").carousel(0);
-	    });
-	    $(".cafeImage1").click(function(){
-	        $("#imageArea").carousel(1);
-	    });
-	    $(".cafeImage2").click(function(){
-	        $("#imageArea").carousel(2);
-	    });
-	    $(".cafeImage3").click(function(){
-	        $("#imageArea").carousel(3);
+	    $(".cafeImage").click(function(){
+	    	var index = $(".cafeImage").index(this);
+	        $("#imageArea").carousel(index);
 	    });
 		
 		if ("${sessionScope.login}"){
