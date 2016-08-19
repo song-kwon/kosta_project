@@ -405,7 +405,7 @@
 							$(".menu-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='"+(i)+"'  class='item"+(i+1)+"'></li>");
 						}
 					}
-					$("#content").append("<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>"+
+					$("#myCarousel").append("<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>"+
 										"<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span><span class='sr-only'>Previous</span></a>"+
 										"<a class='right carousel-control' href='#myCarousel' role='button' data-slide='next'>"+
 										"<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span><span class='sr-only'>Next</span></a>");
