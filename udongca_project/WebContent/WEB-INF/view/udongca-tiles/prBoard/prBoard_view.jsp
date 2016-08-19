@@ -3,22 +3,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=fb0d10514e172c531b661118b62d9c6f&libraries=services"></script>
 <style type="text/css">
+	.img-responsive{
+		display:initial;
+	}
 	table, th{
 		font-size:15px;
 		font-weigth:bold;
 	}
-	.carousel-inner > .item > img {
+ 	.cafeImage > .item > img {
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 320px;
 	} 
-	.menu-inner > .item > img {
+	/* .menu-inner > .item > img {
 		top: 0;
 		left: 0;
 		width: 600px;
 		height: 350px;
-	} 
+	}  */
 	.menu-indicators{
 		bottom:-70px;
 	}
@@ -150,18 +153,18 @@
 		html += "<ol class='carousel-indicators'>";
 		
 		if (cafeFakeImageArrayNumber == 0){
-			html += "<li data-target='imageArea' data-slide-to='0' class='cafeImage0'></li>";
+			html += "<li data-target='#imageArea' data-slide-to='0' class='cafeImage0'></li>";
 		}
 		else{
-			html += "<li data-target='imageArea' data-slide-to='0' class='cafeImage0 active'></li>";
+			html += "<li data-target='#imageArea' data-slide-to='0' class='cafeImage0 active'></li>";
 			for (var i = 1; i < cafeFakeImageArrayNumber; i++){
-				html += "<li data-target='imageArea' data-slide-to='" + i + "' class='cafeImage" + i + "'></li>";
+				html += "<li data-target='#imageArea' data-slide-to='" + i + "' class='cafeImage" + i + "'></li>";
 			}
 		}
 		
 		html += "</ol>";
 		
-		html += "<div class='carousel-inner' role='listbox'>";
+		html += "<div class='carousel-inner cafeImage' role='listbox'>";
 		
 		if (cafeFakeImageArrayNumber == 0){
 			html += "<div class='item'><img src='/udongca_project/images/" + cafeFakeImageArray[0] + "'></div>";
@@ -181,7 +184,7 @@
 		// Activate Carousel
 	    $("#imageArea").carousel({interval:3000});
 	    // Enable Carousel Indicators
-	    $(".cafeImage0").on("click",function(){
+	     $(".cafeImage0").on("click",function(){
 	        $("#imageArea").carousel(0);
 	    });
 	    $(".cafeImage1").click(function(){
@@ -395,17 +398,21 @@
 					for(var i =0;i<obj.length;i++){
 
 						if(i==0){
-						$(".menu-inner").append("<div class='item active'><img src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
+						$(".menu-inner").append("<div class='item active'><img class='img-responsive' src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
 						$(".menu-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='0'  class='item1 active'></li>");
 						}else{
-							$(".menu-inner").append("<div class='item'><img src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
+							$(".menu-inner").append("<div class='item'><img class='img-responsive' src='/udongca_project/images/"+obj[i].menuFakeImage+"' alt='"+obj[i].menuName+"'><div class='carousel-caption'><h3>"+obj[i].menuName+"</h3></div></div>");
 							$(".menu-indicators").append("<img src='/udongca_project/images/"+obj[i].menuFakeImage+"' data-target='#myCarousel' data-slide-to='"+(i)+"'  class='item"+(i+1)+"'></li>");
 						}
 					}
+					$("#content").append("<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>"+
+										"<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span><span class='sr-only'>Previous</span></a>"+
+										"<a class='right carousel-control' href='#myCarousel' role='button' data-slide='next'>"+
+										"<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span><span class='sr-only'>Next</span></a>");
 					// Activate Carousel
 				    $("#myCarousel").carousel({interval:3000});
 				    // Enable Carousel Indicators
-				    $(".item1").on("click",function(){
+				    /* $(".item1").on("click",function(){
 				        $("#myCarousel").carousel(0);
 				    });
 				    $(".item2").click(function(){
@@ -416,7 +423,7 @@
 				    });
 				    $(".item4").click(function(){
 				        $("#myCarousel").carousel(3);
-				    });
+				    }); */
 				}
 				else{
 					$("#content").append("<font size=3 style='align:center'>해당 카테고리의 메뉴가 존재하지 않습니다.</font>");
@@ -586,7 +593,7 @@
 				$("#reviewArea").append(html);
 				$("#reviewTitle").text(json.review.reviewTitle);
 				for (var i = 0; i < reviewImageArray.length - 1; i++){
-					$("#reviewContent").append("<img src='/udongca_project/images/" + reviewImageArray[i] + "' max-width='50%' height='320px'><br>");
+					$("#reviewContent").append("<img class='img-responsive' src='/udongca_project/images/" + reviewImageArray[i] + "'max-width='50%' height='320px'><br>");
 				}
 				$("#reviewContentText").append(document.createTextNode(json.review.reviewContent));
 				
@@ -677,7 +684,23 @@ pre{
  border: none;
  background-color:white;
 }
-
+@media (min-width: 768px){
+	.carousel-control{
+		display:none;
+	}
+	.menu-indicators{
+		left:30%;
+		width:100%;
+	}
+}
+@media (max-width: 768px){
+	.menu-indicators{
+		display:none;
+	}
+	#myCarousel{
+		margin-bottom:0px;
+	}
+}
 </style>
 <input type="hidden" id="cafeNo" value="${requestScope.prBoard.cafeNo}">
 <div><h1 style="margin-top:0px;" id="cafeName">  ${requestScope.prBoard.cafeName }</h1></div><p>
