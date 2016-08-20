@@ -14,73 +14,25 @@
 			})
 		});
 		// Activate Carousel
-		$("#rating").carousel({
+		$("#rating, #new, #bookmark, #preferCafe").carousel({
 			interval : 3000
 		});
 		// Enable Carousel Indicators
-		$("#rating .item1").on("click", function() {
-			$("#rating").carousel(0);
+		$("#rating .items").click(function() {
+			var index = $("#rating .items").index(this);
+	        $("#rating").carousel(index);
 		});
-		$("#rating .item2").click(function() {
-			$("#rating").carousel(1);
+		$("#new .items").click(function() {
+			var index = $("#new .items").index(this);
+	        $("#new").carousel(index);
 		});
-		$("#rating .item3").click(function() {
-			$("#rating").carousel(2);
+		$("#bookmark .items").click(function() {
+			var index = $("#bookmark .items").index(this);
+	        $("#bookmark").carousel(index);
 		});
-		$("#rating .item4").click(function() {
-			$("#rating").carousel(3);
-		});
-		// Activate Carousel
-		$("#new").carousel({
-			interval : 3000
-		});
-		// Enable Carousel Indicators
-		$("#new .item1").on("click", function() {
-			$("#new").carousel(0);
-		});
-		$("#new .item2").click(function() {
-			$("#new").carousel(1);
-		});
-		$("#new .item3").click(function() {
-			$("#new").carousel(2);
-		});
-		$("#new .item4").click(function() {
-			$("#new").carousel(3);
-		});
-		// Activate Carousel
-		$("#bookmark").carousel({
-			interval : 3000
-		});
-		// Enable Carousel Indicators
-		$("#bookmark .item1").on("click", function() {
-			$("#bookmark").carousel(0);
-		});
-		$("#bookmark .item2").click(function() {
-			$("#bookmark").carousel(1);
-		});
-		$("#bookmark .item3").click(function() {
-			$("#bookmark").carousel(2);
-		});
-		$("#bookmark .item4").click(function() {
-			$("#bookmark").carousel(3);
-		});
-
-		// Activate Carousel
-		$("#preferCafe").carousel({
-			interval : 3000
-		});
-		// Enable Carousel Indicators
-		$("#preferCafe .item1").on("click", function() {
-			$("#preferCafe").carousel(0);
-		});
-		$("#preferCafe .item2").click(function() {
-			$("#preferCafe").carousel(1);
-		});
-		$("#preferCafe .item3").click(function() {
-			$("#preferCafe").carousel(2);
-		});
-		$("#preferCafe .item4").click(function() {
-			$("#preferCafe").carousel(3);
+		$("#preferCafe .items").click(function() {
+			var index = $("#preferCafe .items").index(this);
+	        $("#preferCafe").carousel(index);
 		});
 	});
 </script>
@@ -134,11 +86,11 @@ a.list-group-item:hover {
 									<c:choose>
 										<c:when test="${status.index==0 }">
 											<li data-target='#bookmark' data-slide-to='0'
-												class='item1 active'></li>
+												class='items active'></li>
 										</c:when>
 										<c:otherwise>
 											<li data-target='#bookmark' data-slide-to='${status.index }'
-												class='item${status.index+1 }'></li>
+												class='items'></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -190,11 +142,11 @@ a.list-group-item:hover {
 									<c:choose>
 										<c:when test="${status.index==0 }">
 											<li data-target='#rating' data-slide-to='0'
-												class='item1 active'></li>
+												class='items active'></li>
 										</c:when>
 										<c:otherwise>
 											<li data-target='#rating' data-slide-to='${status.index }'
-												class='item${status.index+1 }'></li>
+												class='items'></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -255,12 +207,12 @@ a.list-group-item:hover {
 										<c:choose>
 											<c:when test="${status.index==0 }">
 												<li data-target='#preferCafe' data-slide-to='0'
-													class='item1 active'></li>
+													class='items active'></li>
 											</c:when>
 											<c:otherwise>
 												<li data-target='#preferCafe'
 													data-slide-to='${status.index }'
-													class='item${status.index+1 }'></li>
+													class='items'></li>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -314,11 +266,11 @@ a.list-group-item:hover {
 									var="newCafe">
 									<c:choose>
 										<c:when test="${status.index==0 }">
-											<li data-target='#new' data-slide-to='0' class='item1 active'></li>
+											<li data-target='#new' data-slide-to='0' class='items active'></li>
 										</c:when>
 										<c:otherwise>
 											<li data-target='#new' data-slide-to='${status.index }'
-												class='item${status.index+1 }'></li>
+												class='items'></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
