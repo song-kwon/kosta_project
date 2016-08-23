@@ -231,7 +231,7 @@ $(document).ready(function(){
 				'data':'location='+middle_category,
 				'dataType':'text',
 				'success':function(txt){
-					alert('선호지역이 수정되었습니다.');
+					alert((txt == 'success') ? '선호지역이 수정되었습니다.' : '오류가 발생했습니다. 다시 시도해 주십시오.' );
 					location.reload();
 				}
 			});

@@ -282,7 +282,7 @@ public class MemberController {
 		PreferLocation pl = new PreferLocation(0, location[0], location[1], location[2], login.getMemberId());
 		if (login != null && !login.getMemberType().equals("master")) {
 			memberService.managePreferLocation(pl);
-			return "sucess";
+			return "success";
 		} else {
 			return "fail";
 		}
