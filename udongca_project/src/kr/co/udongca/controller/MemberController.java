@@ -1,6 +1,7 @@
 package kr.co.udongca.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -134,42 +136,55 @@ public class MemberController {
 
 	@RequestMapping("generalMemberJoin.udc")
 	public String generalMemberJoin(@ModelAttribute("member") @Valid Member member, String emailAddress,
-			BindingResult errors) throws UnsupportedEncodingException {
+			BindingResult errors, ModelMap model) throws UnsupportedEncodingException {
 		if (errors.hasErrors()) {
 			return "member/generalMemberJoinform.tiles";
 		} else {
 			String email = member.getMemberEmail() + "@" + emailAddress;
 			member.setMemberEmail(email);
-			memberService.generalMemberJoin(member);
 			String memberId = member.getMemberId();
-
+			
 			SendEmailConfig sendEmail = new SendEmailConfig();
-			sendEmail.sendEmail(member,
+			String result = sendEmail.sendEmail(member,
 					"<a href='http://localhost:5000/udongca_project/member/memberLoginPossible.udc?memberId="
 							+ memberId + "'><input type='button' value='이메일 인증 완료'></a>",
 					"회원가입 - 이메일 인증");
-			return "redirect:/member/joinSuccess.udc?memberId=" + memberId;
+			if (result.equals("success")){
+				memberService.generalMemberJoin(member);
+				return "redirect:/member/joinSuccess.udc?memberId=" + memberId;
+			} else {
+				ArrayList<String> errorList = new ArrayList<String>();
+				errorList.add("메일 전송 중 오류가 발생했습니다");
+				model.put("error", errorList);
+				return "error.tiles";
+			}
 		}
 	}
 
 	@RequestMapping("licenseeMemberJoin.udc")
 	public String licenseeMemberJoin(@ModelAttribute("member") @Valid Member member, String emailAddress,
-			BindingResult errors) throws UnsupportedEncodingException {
+			BindingResult errors, ModelMap model) throws UnsupportedEncodingException {
 		if (errors.hasErrors()) {
 			return "member/licenseeMemberJoinform.tiles";
 		} else {
 			String email = member.getMemberEmail() + "@" + emailAddress;
 			member.setMemberEmail(email);
-			memberService.licenseeMemberJoin(member);
-
 			String memberId = member.getMemberId();
-
+			
 			SendEmailConfig sendEmail = new SendEmailConfig();
-			sendEmail.sendEmail(member,
+			String result = sendEmail.sendEmail(member,
 					"<a href='http://localhost:5000/udongca_project/member/memberLoginPossible.udc?memberId="
 							+ memberId + "'><input type='button' value='이메일 인증 완료'></a>",
 					"회원가입 - 이메일 인증");
-			return "redirect:/member/joinSuccess.udc?memberId=" + member.getMemberId();
+			if (result.equals("success")){
+				memberService.licenseeMemberJoin(member);
+				return "redirect:/member/joinSuccess.udc?memberId=" + memberId;
+			} else {
+				ArrayList<String> errorList = new ArrayList<String>();
+				errorList.add("메일 전송 중 오류가 발생했습니다");
+				model.put("error", errorList);
+				return "error.tiles";
+			}
 		}
 	}
 

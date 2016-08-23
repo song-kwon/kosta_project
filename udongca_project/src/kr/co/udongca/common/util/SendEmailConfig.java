@@ -62,8 +62,10 @@ public class SendEmailConfig {
 
 		} catch (AddressException addr_e) {
 			addr_e.printStackTrace();
+			return "failed";
 		} catch (MessagingException msg_e) {
 			msg_e.printStackTrace();
+			return "failed";
 		}
 
 		return "success";
