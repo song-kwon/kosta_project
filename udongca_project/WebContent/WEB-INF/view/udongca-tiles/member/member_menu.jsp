@@ -4,7 +4,7 @@
 	$(document)
 			.ready(
 					function() {
-						$("#dropBtn")
+						$(".dropBtn")
 								.on(
 										"click",
 										function() {
@@ -143,7 +143,7 @@ a{
 						href="/udongca_project/member/memberInquiryListPaging.udc?nav=inquiry">1:1문의</a></li>
 					<li class="li verify"><a
 						href="/udongca_project/member/member_verify.udc?nav=verify">정보수정</a></li>
-					<li class="li"><a id="dropBtn">회원탈퇴</a></li>
+					<li class="li"><a href="#" class="dropBtn">회원탈퇴</a></li>
 				</ul>
 			</c:when>
 			<c:otherwise>
@@ -161,7 +161,7 @@ a{
 							1:1문의</a></li>
 					<li class="li verify"><a
 						href="/udongca_project/member/member_verify.udc?nav=verify">정보수정</a></li>
-					<li class="li"><a id="dropBtn">회원탈퇴</a></li>
+					<li class="li"><a href="#" class="dropBtn">회원탈퇴</a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose></li>
@@ -181,7 +181,7 @@ a{
 				href="/udongca_project/member/memberInquiryListPaging.udc?nav=inquiry">1:1문의</a></li>
 			<li class="li verify"><a
 				href="/udongca_project/member/member_verify.udc?nav=verify">정보수정</a></li>
-			<li class="li"><a id="dropBtn">회원탈퇴</a></li>
+			<li class="li"><a href="#" class="dropBtn">회원탈퇴</a></li>
 		</c:when>
 		<c:otherwise>
 			<li class="li bookmark"><a id="book"
@@ -197,7 +197,7 @@ a{
 					1:1문의</a></li>
 			<li class="li verify"><a
 				href="/udongca_project/member/member_verify.udc?nav=verify">정보수정</a></li>
-			<li class="li"><a id="dropBtn">회원탈퇴</a></li>
+			<li class="li"><a href="#" class="dropBtn">회원탈퇴</a></li>
 		</c:otherwise>
 	</c:choose>
 </ul>

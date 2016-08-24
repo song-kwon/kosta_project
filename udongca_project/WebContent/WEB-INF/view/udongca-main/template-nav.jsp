@@ -68,13 +68,11 @@ nav, .col-md-2{
 	color-link:saddlebrown;
 	height: 100%;
 }
-section, .col-md-8{
-	padding: 15px;
-	margin-left:50px;
-	margin-top:30px;
-	min-height:700px; 
-	float:left;
+*/
+section{
+	min-height:360px; 
 }
+/*
 footer{
 	background-color:darkgoldenrod;
 	padding-top:20px;

@@ -225,7 +225,7 @@ table{
 }
 
 .table{
-	max-width:700px;
+	max-width:400px;
 }
 
 .table>tbody>tr>td,
@@ -234,7 +234,7 @@ table{
 	border:none;
 }
 
-@media(max-width:768px){
+/* @media(max-width:768px){
 	.table>tbody>tr>th{
 		font-size:medium;
 	}
@@ -251,7 +251,7 @@ table{
 	.table2{
 		display: none;
 	}
-}
+} */
 </style>
 
 <div class="container">
@@ -264,48 +264,7 @@ table{
 <input type="hidden" value="false" id="idVerify">
 <input type="hidden" value="false" id="emailVerify">
 
-<table class="table table1">
-	<tr>
-		<th>아이디</th>
-		<td><input type="text" id="id" name="memberId" value="${requestScope.member.memberId }"></td>
-		<td>&nbsp;<input type="button" id="idVerification" value="아이디 확인"></td>
-		<td><span class="error"><form:errors path="member.memberId"/></span></td>
-	</tr>
-	<tr>
-		<th>비밀번호</th>
-		<td><input type="password" id="password" name="memberPassword" value="${requestScope.member.memberPassword }"></td>
-		<td> </td>
-		<td><span class="error"><form:errors path="member.memberPassword"/></span></td>
-	</tr>
-	<tr>
-		<th>비밀번호 확인</th>
-		<td><input type="password" id="password2"></td>
-	</tr>
-	<tr>
-		<th>이름</th>
-		<td><input type="text" id="name" name="memberName" value="${requestScope.member.memberName }"></td>
-		<td> </td>
-		<td><span class="error"><form:errors path="member.memberName"/></span></td>
-	</tr>
-	<tr>
-		<th>이메일</th>
-		<td><input type="text" id="email" name="memberEmail" value="${requestScope.member.memberEmail }"></td>
-		<td class="input-group"><span class="input-group-addon">@</span><select id="emailAddress" name="emailAddress" class="form-control" aria-describedby="inputGroupSuccess1Status">
-				<option>이메일선택</option>
-				<option>naver.com</option>
-				<option>daum.net</option>
-				<option>hanmail.net</option>
-				<option>gmail.com</option>
-				<option>nate.com</option>
-			</select>
-		</td>
-		<td><input type="button" id="emailVerification" value="이메일 확인"></td>
-		<td><span class="error"><form:errors path="member.memberEmail"/></span></td>
-	</tr>
-</table>
-
-
-<table class="table table2">
+<table class="table">
 	<tr>
 		<th colspan="3">아이디</th>
 	</tr>

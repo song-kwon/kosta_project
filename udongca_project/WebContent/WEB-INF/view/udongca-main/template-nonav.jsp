@@ -40,16 +40,12 @@ header, a{
 	font-size:15px;
 	color:antiquewhite;
 }
-
+*/
 
 section {
-	padding: 15px;
-	margin-top:30px;
-	width: 100%;
-	min-height: 768px;
-	float: left;
+	min-height: 360px;
 }
-
+/*
 footer {
 	background-color: darkgoldenrod;
 	padding-top: 20px;
