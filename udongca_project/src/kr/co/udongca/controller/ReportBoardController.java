@@ -117,11 +117,17 @@ public class ReportBoardController {
 	@RequestMapping("addReport.udc")
 	public String insertReport(@RequestParam Map map, HttpSession session,
 			ModelMap model){
+		/*
+		 * 로그인되지 않았으면 로그인 페이지로 이동
+		 */
 		Member login = (Member) session.getAttribute("login");
 		if (login == null){
 			return "redirect:/loginPage.udc";
 		}
 		
+		/*
+		 * 파라미터 검증 후 오류가 있을 경우 오류 메세지 추가
+		 */
 		ArrayList<String> errorList = new ArrayList<String>();
 		String reportReason = (String)map.get("reportReason");
 		String reportContent = (String)map.get("reportContent");
@@ -130,6 +136,10 @@ public class ReportBoardController {
 			errorList.add("직접 입력 선택 시 신고 사유 입력 필수");
 		}
 		
+		/*
+		 * 오류가 없을 경우 사용자에게 받은 파라미터를 신고글 객체에 추가
+		 * 신고글 객체의 내용이 DB에 추가됨
+		 */
 		if (errorList.size() == 0){
 			reportService.insertReport(new ReportBoard(
 				reportService.selectNextReportBoardSequence(),
@@ -144,6 +154,9 @@ public class ReportBoardController {
 			));
 			return "/prBoard/prView.udc?cafeNo=" + (String)map.get("cafeNo");
 		}
+		/*
+		 * 오류 메세지가 존재할 경우 오류 페이지로 이동
+		 */
 		else{
 			model.put("error", errorList);
 			return "error.tiles";

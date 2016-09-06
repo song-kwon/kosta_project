@@ -84,11 +84,17 @@ public class PrBoardController {
 			MultipartFile[] menuImageArray, HttpServletRequest req,
 			ModelMap model, HttpSession session)
 					throws IllegalStateException, IOException{
+		/*
+		 * 로그인되지 않았거나 사업자 회원이 아니면 로그인 페이지로 이동
+		 */
 		Member mem = (Member)session.getAttribute("login");
 		if (mem == null || !mem.getMemberType().equals("licenseeMember")){
 			return "redirect:/loginPage.udc";
 		}
 		
+		/*
+		 * 메뉴가 비어 있거나 조건에 맞지 않으면 오류 메세지 추가
+		 */
 		ArrayList<String> errorList = new ArrayList<String>();
 		
 		for(int i = 0; i < menuNameArray.length; i++){
@@ -102,12 +108,18 @@ public class PrBoardController {
 			}
 		}
 		
+		/*
+		 * 메뉴 오류가 없으면 입력된 카페 정보를 DB에 추가
+		 */
 		if (errorList.size() == 0){
 			PRBoard prBoard = new PRBoard();
 			String cafeRealImagesName="";
 			String cafeFakeImagesName="";
 			int cafeNo = service.selectNextPRBoardSequence();
 			
+			/*
+			 * 홍보글 객체에 사용자가 입력한 파라미터 추가
+			 */
 			prBoard.setCafeNo(cafeNo);
 			prBoard.setCafeName((String)map.get("cafeName"));
 			prBoard.setCafeIntro((String)map.get("cafeIntro"));
@@ -120,6 +132,9 @@ public class PrBoardController {
 			prBoard.setManagerTel((String)map.get("managerTel"));
 			prBoard.setMemberId(mem.getMemberId());
 			
+			/*
+			 * 사용자가 업로드한 카페 사진이 있을 경우의 처리
+			 */
 			if (!isMultipartFileArrayEmpty(cafeImage)) {
 				for(int idx = 0 ; idx < cafeImage.length ; idx++){
 					String imageName = cafeImage[idx].getOriginalFilename();// 업로드된 파일명
@@ -136,18 +151,30 @@ public class PrBoardController {
 				}
 			}
 			
+			/*
+			 * 업로드한 카페 사진이 없을 경우 기본 이미지 사용
+			 */
 			prBoard.setCafeRealImage((cafeRealImagesName.equals("") ? "defaultCafe.png;" : cafeRealImagesName));
 			prBoard.setCafeFakeImage((cafeFakeImagesName.equals("") ? "defaultCafe.png;" : cafeFakeImagesName));
 			
+			/*
+			 * 카페, 메뉴를 DB에 저장
+			 */
 			service.insertPRBoard(prBoard);
 			
 			for(int i = 0; i < menuNameArray.length; i++){
 				menuAdd(cafeNo, menuTypeArray[i], menuNameArray[i], menuImageArray[i], req, session);
 			}
 			
+			/*
+			 * 성공적으로 DB에 추가된 카페 정보를 사용자에게 보여줌
+			 */
 			return "redirect:/prBoard/prView.udc?cafeNo=" + cafeNo;
 		}
 		
+		/*
+		 * 입력된 메뉴 정보에 오류가 있으면 기존 페이지로 돌아감
+		 */
 		else{
 			model.put("errorList", errorList);
 			return "prBoard/prBoard_write_form2.tiles";
@@ -166,7 +193,7 @@ public class PrBoardController {
 	}
 	
 	/**
-	 * 현재 제작 중
+	 * 구현 완료
 	 * @param prBoard
 	 * @param modifiedCafeFakeImage
 	 * @param modifiedCafeRealImage
@@ -390,19 +417,29 @@ public class PrBoardController {
 	@RequestMapping("moveToNewPr2Jsp.udc")
 	public String moveToNewPr2Jsp(@RequestParam Map map, String[] cafeFeature1,
 			HttpSession session, ModelMap model) throws UnsupportedEncodingException{
+		/*
+		 * 로그인되지 않았거나 사업자 회원이 아니면 로그인 페이지로 이동
+		 */
 		Member mem = (Member)session.getAttribute("login");
 		if (mem == null || !mem.getMemberType().equals("licenseeMember")){
 			return "redirect:/loginPage.udc";
 		}
 		
+		/*
+		 * 선택된 카페 테마를 공백을 구분자로 삼아서 변수에 저장
+		 */
 		String cafeFeature = "";
-		ArrayList<String> errorList = new ArrayList<String>();
 		
 		if (cafeFeature1 != null){
 			for (int i = 0; i < cafeFeature1.length; i++){
 				cafeFeature += cafeFeature1[i] + " ";
 			}
 		}
+		
+		/*
+		 * 파라미터가 비어 있거나 조건에 맞지 않으면 오류 메세지 추가
+		 */
+		ArrayList<String> errorList = new ArrayList<String>();
 		
 		if (!((String)map.get("cafeFeature2")).equals("테마 선택")){
 			cafeFeature += map.get("cafeFeature2");
@@ -461,6 +498,10 @@ public class PrBoardController {
 			errorList.add("중복된 사업자 등록 번호입니다");
 		}
 		
+		
+		/*
+		 * model에 파라미터 및 오류 메세지 저장
+		 */
 		model.put("cafeName", map.get("cafeName"));
 		model.put("cafeIntro", map.get("cafeIntro"));
 		model.put("cafeFeature", cafeFeature);
@@ -475,6 +516,10 @@ public class PrBoardController {
 			model.put("errorList", errorList);
 		}
 		
+		/*
+		 * 파라미터가 적합하면 다음 페이지로 이동
+		 * 오류 메세지가 존재하면 기존 페이지로 돌아감
+		 */
 		return "prBoard/prBoard_write_form" + ((errorList.size() == 0) ? "2" : "") + ".tiles";
 	}
 	
@@ -566,7 +611,7 @@ public class PrBoardController {
 	}
 	
 	/**
-	 * 현재 제작 중
+	 * 구현 완료
 	 * @param menu
 	 * @param session
 	 */
