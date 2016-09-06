@@ -120,6 +120,7 @@ public class PrBoardController {
 			/*
 			 * 홍보글 객체에 사용자가 입력한 파라미터 추가
 			 */
+			
 			prBoard.setCafeNo(cafeNo);
 			prBoard.setCafeName((String)map.get("cafeName"));
 			prBoard.setCafeIntro((String)map.get("cafeIntro"));
