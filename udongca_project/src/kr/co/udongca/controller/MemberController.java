@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -30,7 +32,8 @@ import kr.co.udongca.vo.PreferLocation;
 @Controller
 @RequestMapping({ "/member/", "/", "/master/" })
 public class MemberController {
-
+	
+	
 	@Autowired
 	private MemberService memberService;
 
@@ -93,6 +96,7 @@ public class MemberController {
 	@RequestMapping("login.udc")
 	public ModelAndView login(String id, String password, HttpSession session) throws Exception {
 		Member login = memberService.login(id, password);
+		
 		if (login == null || login.getLoginPossibility().equals("impossible")) {
 			return new ModelAndView("etc/login.tiles", "error", "회원이 아니거나 정지된 회원입니다.");
 		} else if (session.getAttribute("login") != null) {

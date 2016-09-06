@@ -88,5 +88,13 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:order="3" />
 
+	<bean name="loginIntercepter" class="kr.co.udongca.common.util.LoginInterceptor"/>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/login.udc"/>
+			<ref bean="loginIntercepter"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>
