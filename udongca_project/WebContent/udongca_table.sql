@@ -79,8 +79,8 @@ insert into code values('cafeMenu6', 'etc.', 'cafe_menu');
 insert into code values('possible','로그인허용','login_possibility');
 insert into code values('impossible','로그인불가','login_possibility');
 insert into code values('all','all','reportBoard');
-insert into code values('review','review','reportBoard');
-insert into code values('prboard','prboard','reportBoard');
+insert into code values('review','리뷰','reportBoard');
+insert into code values('prboard','홍보글','reportBoard');
 
 
 
@@ -92,8 +92,8 @@ category varchar2(50) NOT NULL,
 noticeDate	DATE	NOT NULL
 );
 
-insert into notice_board values(notice_board_noticeNo_seq.nextval,'반갑습니다. 우동카에 오신걸 환영합니다.','우동카에 오신걸 환영합니다.','notice7',sysdate);
-insert into notice_board values(notice_board_noticeNo_seq.nextval,'홈페이지 이용안내','회원가입은 가입신청후 이메일 인증을 통해 가능합니다. 회원가입후 모든 메뉴는 무료 이용 가능합니다.','notice7',sysdate);
+insert into notice_board values(notice_board_noticeNo_seq.nextval,'반갑습니다. 우동카에 오신걸 환영합니다.','우동카에 오신걸 환영합니다.','공지',sysdate);
+insert into notice_board values(notice_board_noticeNo_seq.nextval,'홈페이지 이용안내','회원가입은 가입신청후 이메일 인증을 통해 가능합니다. 회원가입후 모든 메뉴는 무료 이용 가능합니다.','공지',sysdate);
 
 
 
@@ -109,9 +109,12 @@ memberType	varchar2(50)	NOT NULL
 
 insert into member values('udongca','udongca','master','master@udongca.com','0','possible','master'); --관리자
 insert into member values('scott','scott','tiger','osung212@naver.com','0','possible','generalMember'); -- 일반회원
-insert into member values('marketer','marketer','maketer','osung212@naver.com','0','possible','licenseeMember'); -- 사업자회원
-
-
+insert into member values('dessertcafe','dessertcafe','dessertcafe','email','0','possible','licenseeMember'); -- 사업자회원
+insert into member values('bookcafe','bookcafe','bookcafe','email','0','possible','licenseeMember'); -- 사업자회원
+insert into member values('puppycafe','puppycafe','puppycafe','email','0','possible','licenseeMember'); -- 사업자회원
+insert into member values('catcafe','catcafe','catcafe','email','0','possible','licenseeMember'); -- 사업자회원
+insert into member values('kidscafe','kidscafe','kidscafe','email','0','possible','licenseeMember'); -- 사업자회원
+insert into member values('otherTheme','otherTheme','otherTheme','email','0','possible','licenseeMember'); -- 사업자회원
 
 create table onetoone_inquiry(
 inquiryNo	NUMBER	primary key,
@@ -125,9 +128,6 @@ foreign key (memberId)
 references member(memberId) on delete cascade
 );
 
-
-insert into onetoone_inquiry values(onetoone_inquiry_inquiryNo_seq.nextval,'1:1 문의 테스트 입니다.','문의 타입','문의 내용입니다.','','scott');
-insert into onetoone_inquiry values(onetoone_inquiry_inquiryNo_seq.nextval,'1:1 문의 테스트 입니다.','문의 타입','문의 내용입니다.','답변 테스트입니다.','scott');
 
 
 create table PRboard(
@@ -152,7 +152,13 @@ foreign key (memberId)
 references member(memberId) on delete cascade
 );
 
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'홍보글 테스트','홍보글 테스트 입니다.','010-0000-0000','wifi','경기도 성남시 분당구 삼평동 682 유스페이스2 B동','0000000000','24시간','marketer','010-0000-0000',0,'java.png','1468208081880java.png',0,sysdate,'marketer');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'디저트카페 홍보글','디저트카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','dessertcafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'dessertcafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'북카페 홍보글','북카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','bookcafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'bookcafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'애견카페 홍보글','애견카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','puppycafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'puppycafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'고양이카페 홍보글','고양이카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','catcafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'catcafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'키즈카페 홍보글','키즈카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','kidscafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'kidscafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'기타 테마 카페 홍보글','기타 테마 카페 홍모물','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','otherTheme','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'otherTheme');
+
 
 
 create table review_board(
@@ -173,8 +179,6 @@ foreign key (cafeNo)
 references PRboard(cafeNo) on delete cascade
 );
 
-insert into review_board values(review_board_reviewNo_seq.nextval,'리뷰 테스트입니다.',sysdate,'리뷰 테스트입니다.','','',3,'scott',1);
-
 
 create table report_board(
 reportboardNo	NUMBER	primary key,
@@ -191,8 +195,6 @@ foreign key (memberId)
 references member(memberId) on delete cascade
 );
 
-insert into REPORT_BOARD values(report_board_reportboardNo_seq.nextval,'marketer','테스트','신고 테스트.','','','prboard',1,'scott');
-
 
 create table menu(
 menuNo	NUMBER	primary key,
@@ -206,11 +208,23 @@ foreign key (cafeNo)
 references PRboard(cafeNo) on delete cascade
 );
 
-insert into menu values(menu_menuNo_seq.nextval,1,'coffee','아메리카노','/udongca_project/udongca-image/book-stack.png','fake');
-insert into menu values(menu_menuNo_seq.nextval,1,'coffee','아메리카노','/udongca_project/udongca-image/book-stack.png','fake');
-insert into menu values(menu_menuNo_seq.nextval,1,'coffee','아메리카노','/udongca_project/udongca-image/book-stack.png','fake');
-insert into menu values(menu_menuNo_seq.nextval,1,'coffee','아메리카노','/udongca_project/udongca-image/book-stack.png','fake');	
+insert into menu values(menu_menuNo_seq.nextval,1,'coffee','아메리카노','1468209568084아메리카노_sweet.PNG','1468209568084아메리카노_sweet.PNG');
+insert into menu values(menu_menuNo_seq.nextval,1,'coffee','카페라떼','1468209371281카페라떼_sweet.PNG','1468209371281카페라떼_sweet.PNG');
 
+insert into menu values(menu_menuNo_seq.nextval,2,'coffee','아메리카노','1468209568084아메리카노_sweet.PNG','1468209568084아메리카노_sweet.PNG');
+insert into menu values(menu_menuNo_seq.nextval,2,'coffee','카페라떼','1468209371281카페라떼_sweet.PNG','1468209371281카페라떼_sweet.PNG');
+
+insert into menu values(menu_menuNo_seq.nextval,3,'coffee','아메리카노','1468209568084아메리카노_sweet.PNG','1468209568084아메리카노_sweet.PNG');
+insert into menu values(menu_menuNo_seq.nextval,3,'coffee','카페라떼','1468209371281카페라떼_sweet.PNG','1468209371281카페라떼_sweet.PNG');
+
+insert into menu values(menu_menuNo_seq.nextval,4,'coffee','아메리카노','1468209568084아메리카노_sweet.PNG','1468209568084아메리카노_sweet.PNG');
+insert into menu values(menu_menuNo_seq.nextval,4,'coffee','카페라떼','1468209371281카페라떼_sweet.PNG','1468209371281카페라떼_sweet.PNG');
+
+insert into menu values(menu_menuNo_seq.nextval,5,'coffee','아메리카노','1468209568084아메리카노_sweet.PNG','1468209568084아메리카노_sweet.PNG');
+insert into menu values(menu_menuNo_seq.nextval,5,'coffee','카페라떼','1468209371281카페라떼_sweet.PNG','1468209371281카페라떼_sweet.PNG');
+
+insert into menu values(menu_menuNo_seq.nextval,6,'coffee','아메리카노','1468209568084아메리카노_sweet.PNG','1468209568084아메리카노_sweet.PNG');
+insert into menu values(menu_menuNo_seq.nextval,6,'coffee','카페라떼','1468209371281카페라떼_sweet.PNG','1468209371281카페라떼_sweet.PNG');
 
 create table preferLocation(
 preferLocationNo	NUMBER	primary key,
@@ -249,8 +263,6 @@ constraint bookmark_fk_PRboard
 foreign key (cafeNo)
 references prboard(cafeNo) on delete set null
 );
-
-insert into bookmark values('scott',1);
 
 
 -- address table --

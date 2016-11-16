@@ -56,7 +56,7 @@ $(document).ready(function(){
 	<tr id="tr">
 		<td style="width:20px; color:red; font-weight:bold;">[${requestScope.noticeBoard.category }]</td>
 		<td class="col-sm-9" style="font-weight:bold;">${requestScope.noticeBoard.noticeTitle }</td>
-		<td class="col-sm-2" align="center">작성일 : ${requestScope.noticeBoard.noticeDate }</td>
+		<td class="col-sm-3" align="center">작성일 : ${requestScope.noticeBoard.noticeDate }</td>
 	</tr>
 	<tr>
 		<td colspan="3" style="width:100%; height:300px;" align="left">${requestScope.noticeBoard.noticeContent }</td>
