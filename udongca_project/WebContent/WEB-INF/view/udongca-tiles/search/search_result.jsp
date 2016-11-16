@@ -10,7 +10,7 @@
 							<a
 								href="/udongca_project/prBoard/prView.udc?cafeNo=${result.cafeNo }"><img
 								style="width: 200px; height: 200px;"
-								src="/udongca_project/images/${result.cafeFakeImage} "><br>${result.cafeNo }
+								src="/udongca_project/images/${result.cafeFakeImage} "><br>
 								${result.cafeName}</a>
 						</div>
 					</div>

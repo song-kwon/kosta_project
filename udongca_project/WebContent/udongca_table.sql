@@ -152,12 +152,12 @@ foreign key (memberId)
 references member(memberId) on delete cascade
 );
 
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'디저트카페 홍보글','디저트카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','dessertcafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'dessertcafe');
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'북카페 홍보글','북카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','bookcafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'bookcafe');
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'애견카페 홍보글','애견카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','puppycafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'puppycafe');
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'고양이카페 홍보글','고양이카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','catcafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'catcafe');
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'키즈카페 홍보글','키즈카페 홍모물 게시물.','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','kidscafe','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'kidscafe');
-insert into PRboard values(PRboard_cafeNo_seq.nextval,'기타 테마 카페 홍보글','기타 테마 카페 홍모물','010-0000-0000','wifi','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','otherTheme','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'otherTheme');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'디저트카페 홍보글','디저트카페 홍모물 게시물.','010-0000-0000','wifi;cafeTheme1','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','cafeTheme1','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'dessertcafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'북카페 홍보글','북카페 홍모물 게시물.','010-0000-0000','wifi;cafeTheme2','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','cafeTheme2','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'bookcafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'애견카페 홍보글','애견카페 홍모물 게시물.','010-0000-0000','wifi;cafeTheme3','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','cafeTheme3','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'puppycafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'고양이카페 홍보글','고양이카페 홍모물 게시물.','010-0000-0000','wifi;cafeTheme4','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','cafeTheme4','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'catcafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'키즈카페 홍보글','키즈카페 홍모물 게시물.','010-0000-0000','wifi;cafeTheme5','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','cafeTheme5','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'kidscafe');
+insert into PRboard values(PRboard_cafeNo_seq.nextval,'기타 테마 카페 홍보글','기타 테마 카페 홍모물','010-0000-0000','wifi;cafeTheme6','경기도 성남시 분당구 대왕판교로645번길 12','0000000000','24시간','cafeTheme6','010-0000-0000',0,'java.png;','1468208081880java.png;',0,sysdate,'otherTheme');
 
 
 
